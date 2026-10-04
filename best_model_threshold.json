@@ -1,0 +1,5 @@
+{
+  "checkpoint_path": "C:\\Users\\K SAIRAM\\OneDrive\\Desktop\\MedVision\\best_model.pt",
+  "calibrated_threshold": 0.9,
+  "validation_dice_at_threshold": 0.4586593828436439
+}
