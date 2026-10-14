@@ -1,0 +1,198 @@
+{
+  "status": "passed_TRAIN_only_positive_dice_smoke",
+  "arms": [
+    {
+      "name": "original_hard_loss",
+      "coefficient": null,
+      "initial_parameter_sha256": "dbd1d7298b3d2ef0775eacbe926daa30697616adbdc7f3276ddb6397f57d03f4",
+      "initial_optimizer_state_sha256": "2dfbaf6909f6685833c0bd4117ab269ca1f56e4b694eb3e0ddae184092f5635d",
+      "final_parameter_sha256": "dc1c99a329943571ec7c99998fc7baeb6f4a613616025f6be2cc9a80a855667e",
+      "final_optimizer_state_sha256": "2ad06a562b98e418b2b690e6c06b1d8b12c9835cef6097fed1a5833bbb876cf3",
+      "full_restore_passed": true,
+      "smoke_checkpoint_sha256": "c0ab70c7beedbf7be2b06454a3856a417a10aad9f0a0ae6a9f3da32d5e237997",
+      "measurements": [
+        {
+          "image_ids": [
+            "IMG0000059.jpg",
+            "IMG0000011.jpg"
+          ],
+          "frozen_example_weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "losses": {
+            "total": 1.4885709285736084,
+            "segmentation_total": 1.4885709285736084,
+            "bce": 0.01682562567293644,
+            "dice": 1.471745252609253,
+            "presence_bce": 3.8516383171081543
+          },
+          "parity": null,
+          "encoder_gradient_L2": 1.0895099639892578,
+          "decoder_gradient_L2": 0.03578850254416466,
+          "gradient_norm_before_clip": 1.403411626815796
+        },
+        {
+          "image_ids": [
+            "IMG0000025.jpg",
+            "IMG0000000.jpg"
+          ],
+          "frozen_example_weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "losses": {
+            "total": 0.7950750589370728,
+            "segmentation_total": 0.7950750589370728,
+            "bce": 0.007530182600021362,
+            "dice": 0.787544846534729,
+            "presence_bce": 1.9601167440414429
+          },
+          "parity": null,
+          "encoder_gradient_L2": 0.762765645980835,
+          "decoder_gradient_L2": 0.027146905660629272,
+          "gradient_norm_before_clip": 0.8697617053985596
+        }
+      ],
+      "cuda_peak_allocated_bytes": 1330724352,
+      "cuda_peak_reserved_bytes": 1614807040
+    },
+    {
+      "name": "coefficient1",
+      "coefficient": 1,
+      "initial_parameter_sha256": "dbd1d7298b3d2ef0775eacbe926daa30697616adbdc7f3276ddb6397f57d03f4",
+      "initial_optimizer_state_sha256": "2dfbaf6909f6685833c0bd4117ab269ca1f56e4b694eb3e0ddae184092f5635d",
+      "final_parameter_sha256": "dc1c99a329943571ec7c99998fc7baeb6f4a613616025f6be2cc9a80a855667e",
+      "final_optimizer_state_sha256": "2ad06a562b98e418b2b690e6c06b1d8b12c9835cef6097fed1a5833bbb876cf3",
+      "full_restore_passed": true,
+      "smoke_checkpoint_sha256": "d2f181f3b0b65b47a9678b253ab7c0929fe3de1977df9e18d13c103afa516ff1",
+      "measurements": [
+        {
+          "image_ids": [
+            "IMG0000059.jpg",
+            "IMG0000011.jpg"
+          ],
+          "frozen_example_weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "losses": {
+            "total": 1.4885709285736084,
+            "segmentation_total": 1.4885709285736084,
+            "bce": 0.01682562567293644,
+            "dice": 1.471745252609253,
+            "presence_bce": 3.8516383171081543,
+            "positive_dice_offset": 0.0
+          },
+          "parity": {
+            "exact_scalar_components": true,
+            "exact_output_gradients": true
+          },
+          "encoder_gradient_L2": 1.0895099639892578,
+          "decoder_gradient_L2": 0.03578850254416466,
+          "gradient_norm_before_clip": 1.403411626815796
+        },
+        {
+          "image_ids": [
+            "IMG0000025.jpg",
+            "IMG0000000.jpg"
+          ],
+          "frozen_example_weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "losses": {
+            "total": 0.7950750589370728,
+            "segmentation_total": 0.7950750589370728,
+            "bce": 0.007530182600021362,
+            "dice": 0.787544846534729,
+            "presence_bce": 1.9601167440414429,
+            "positive_dice_offset": 0.0
+          },
+          "parity": {
+            "exact_scalar_components": true,
+            "exact_output_gradients": true
+          },
+          "encoder_gradient_L2": 0.762765645980835,
+          "decoder_gradient_L2": 0.027146905660629272,
+          "gradient_norm_before_clip": 0.8697617053985596
+        }
+      ],
+      "cuda_peak_allocated_bytes": 1714691072,
+      "cuda_peak_reserved_bytes": 1981808640
+    },
+    {
+      "name": "coefficient2",
+      "coefficient": 2,
+      "initial_parameter_sha256": "dbd1d7298b3d2ef0775eacbe926daa30697616adbdc7f3276ddb6397f57d03f4",
+      "initial_optimizer_state_sha256": "2dfbaf6909f6685833c0bd4117ab269ca1f56e4b694eb3e0ddae184092f5635d",
+      "final_parameter_sha256": "4b154bb8b310f821747670ca378596778edb95b7999ed2b45ff4f10cbb73d55d",
+      "final_optimizer_state_sha256": "62e9c7381d049185c4d4e652f7b339cd6ead6722c21351ab8953a9e55f1797f9",
+      "full_restore_passed": true,
+      "smoke_checkpoint_sha256": "0861303b8388d812b1b745657ac521df18c1b8f85fc61d332ee173665b054508",
+      "measurements": [
+        {
+          "image_ids": [
+            "IMG0000059.jpg",
+            "IMG0000011.jpg"
+          ],
+          "frozen_example_weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "losses": {
+            "total": 2.1957852840423584,
+            "segmentation_total": 2.1957852840423584,
+            "bce": 0.01682562567293644,
+            "dice": 2.178959608078003,
+            "presence_bce": 3.8516383171081543,
+            "positive_dice_offset": 0.7072142958641052
+          },
+          "parity": {
+            "all_image_BCE_unchanged": true,
+            "normal_output_gradients_unchanged": true
+          },
+          "encoder_gradient_L2": 2.1304731369018555,
+          "decoder_gradient_L2": 0.17338690161705017,
+          "gradient_norm_before_clip": 2.755070924758911
+        },
+        {
+          "image_ids": [
+            "IMG0000025.jpg",
+            "IMG0000000.jpg"
+          ],
+          "frozen_example_weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "losses": {
+            "total": 1.199676752090454,
+            "segmentation_total": 1.199676752090454,
+            "bce": 0.0075218332931399345,
+            "dice": 1.192154884338379,
+            "presence_bce": 1.96019446849823,
+            "positive_dice_offset": 0.4049447178840637
+          },
+          "parity": {
+            "all_image_BCE_unchanged": true,
+            "normal_output_gradients_unchanged": true
+          },
+          "encoder_gradient_L2": 1.6371970176696777,
+          "decoder_gradient_L2": 0.05932267755270004,
+          "gradient_norm_before_clip": 1.8672285079956055
+        }
+      ],
+      "cuda_peak_allocated_bytes": 1333880832,
+      "cuda_peak_reserved_bytes": 1612709888
+    }
+  ],
+  "full_matched_initialization": true,
+  "coefficient1_exact_model_optimizer_parity": true,
+  "coefficient2_finite_updates": true,
+  "negative_BCE_and_normal_output_gradients_preserved": true,
+  "model_improvement_claim": false,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "promotion": false
+}

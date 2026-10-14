@@ -1,0 +1,7 @@
+{
+  "status": "completed",
+  "metrics_sha256": "9462e29da66793eadd90439645d001d0eabdeebb811d8db34cf543b45fc5f92e",
+  "cases_sha256": "4925674bda9f4146477011cb7915d60d7dc6158cdd25b807ece3cd9639798ca1",
+  "checkpoint_sha256": "f411edcba96a35e66f0038c3811b1f9fb864ef846dea966536a4503a61c801ee",
+  "test_images_read": 0
+}

@@ -1,0 +1,32 @@
+{
+  "scope": "4 actual TRAIN tensors only; no validation/calibration/test inference or metric claims",
+  "source_hashes": {
+    "tools/verify_ai_presence_model.py": "5d9804edf121b8009d720d69b08d16583418ac24fba81a6c359f9720eea2d5bb",
+    "tools/ai_presence_model.py": "7b6ccadb11f9cd4083e1ac40c97f0311f1454bd31fcb777195447ebf0ede087e",
+    "tools/train_ai_presence_candidate.py": "d3c71530be261ce4c76633bb56084c1904b149bcb0c47b937774dfe563511ce2",
+    "tools/ai_cached_dataset.py": "0cdf89276b3fae7bd1279712fb37224fa009952e4f261f1400e86d6f73dbf2b9",
+    "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc"
+  },
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "initial_checkpoint_sha256": "4bf4065a256c412c735895b26b42f3b5c1ef862f89376973236c66f43acb0ba7",
+  "preprocess": {
+    "size": 256,
+    "resize": "stretch",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 3,
+    "normalization": "unit"
+  },
+  "train_ids": [
+    "IMG0000025.jpg",
+    "IMG0000000.jpg",
+    "IMG0000059.jpg",
+    "IMG0000001.jpg"
+  ],
+  "device": "cuda",
+  "torch": "2.9.1+cu128",
+  "cublas_workspace_config": ":4096:8",
+  "output_contract": "medvision.shared_unet_presence_logits.v1"
+}

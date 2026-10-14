@@ -1,0 +1,70 @@
+{
+  "mask_classification": {
+    "n": 2808,
+    "positive": 493,
+    "normal": 2315,
+    "accuracy": 0.6677350427350427,
+    "precision": 0.33024691358024694,
+    "recall_sensitivity": 0.8681541582150102,
+    "specificity": 0.6250539956803456,
+    "f1": 0.47847959754052544,
+    "false_positive_rate": 0.3749460043196544,
+    "false_negative_rate": 0.13184584178498987,
+    "auroc": 0.8570890961583115,
+    "auprc_average_precision": 0.689390479641623,
+    "confusion_matrix": {
+      "tn": 1447,
+      "fp": 868,
+      "fn": 65,
+      "tp": 428
+    },
+    "score_definition": "Uncalibrated TRAIN mask_classification diagnostic, not clinical confidence"
+  },
+  "conservative_review_classification": {
+    "n": 2808,
+    "positive": 493,
+    "normal": 2315,
+    "accuracy": 0.6677350427350427,
+    "precision": 0.33024691358024694,
+    "recall_sensitivity": 0.8681541582150102,
+    "specificity": 0.6250539956803456,
+    "f1": 0.47847959754052544,
+    "false_positive_rate": 0.3749460043196544,
+    "false_negative_rate": 0.13184584178498987,
+    "auroc": 0.8570890961583115,
+    "auprc_average_precision": 0.689390479641623,
+    "confusion_matrix": {
+      "tn": 1447,
+      "fp": 868,
+      "fn": 65,
+      "tp": 428
+    },
+    "score_definition": "Uncalibrated TRAIN conservative_review_classification diagnostic, not clinical confidence"
+  },
+  "independent_grid_segmentation": {
+    "n_positive": 493,
+    "mean_positive_dice": 0.4430172683091954,
+    "mean_positive_iou": 0.33685543724100503,
+    "mean_positive_precision_nonempty": 0.5747503341806613,
+    "mean_positive_recall": 0.4881571548866048,
+    "global_dice": 0.36234514754511904,
+    "global_iou": 0.2212585557951699,
+    "global_pixel_precision": 0.3205748358893994,
+    "global_pixel_recall": 0.41663146080168484,
+    "pixel_counts": {
+      "tp": 66074,
+      "fp": 140037,
+      "fn": 92517
+    },
+    "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+  },
+  "head_classification": null,
+  "uncalibrated_head_diagnostic": null,
+  "positive_zero_overlap_masks": 107,
+  "scope": "TRAIN grid fit only; no validation or clinical performance claim",
+  "no_optimizer_steps": true,
+  "model_improvement_claim": false,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

@@ -1,0 +1,20 @@
+{
+  "status": "completed_TRAIN_hard_catalog_refresh_only",
+  "historical_hard_positive": 127,
+  "historical_hard_negative": 1641,
+  "persistent_hard_positive": 109,
+  "persistent_hard_negative": 713,
+  "positive_class_total_weight": 493.0,
+  "normal_class_total_weight": 2315.0,
+  "minimum_weight": 0.7645310435931308,
+  "maximum_weight": 1.6378737541528239,
+  "raw_hard_factor": 2.0,
+  "weighting_applied": false,
+  "no_duplicate_samples": true,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "clinical_subtle_nondisplaced_labels_available": false,
+  "scope": "Existing historical TRAIN hard examples still wrong in BOTH selected models; grid diagnostic only",
+  "next": "Root must first inspect matched native audits and then register one factor before any training"
+}

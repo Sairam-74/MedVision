@@ -1,0 +1,44 @@
+{
+  "run": "experiments\\AI_E8_v3_presence_supervision_r2",
+  "checkpoint_sha256": "e9c1af3d9e3199735bfbb89438191bf42e60831205c4741664603bc7884eb9d0",
+  "epoch": 7,
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "preprocess": {
+    "size": 256,
+    "resize": "stretch",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 3,
+    "normalization": "unit"
+  },
+  "sample_ids": [
+    "IMG0002377.jpg",
+    "IMG0000297.jpg",
+    "IMG0002456.jpg",
+    "IMG0002819.jpg",
+    "IMG0003813.jpg",
+    "IMG0003460.jpg",
+    "IMG0002394.jpg",
+    "IMG0002669.jpg",
+    "IMG0002579.jpg",
+    "IMG0001545.jpg",
+    "IMG0002417.jpg",
+    "IMG0001567.jpg",
+    "IMG0003924.jpg",
+    "IMG0000308.jpg",
+    "IMG0003183.jpg",
+    "IMG0003114.jpg"
+  ],
+  "sampling": "8 area-rank-spanning TRAIN positives and8 seeded TRAIN normals; same prespecified sample as E5",
+  "augmentation": false,
+  "batchnorm": "eval; frozen stored running statistics",
+  "device": "cpu",
+  "source_hashes": {
+    "tools\\audit_ai_presence_loss_gradients.py": "833c0dbc3b922aed3d41e1d1d057f4dcd95f11c888b694f44460d35839aeb3a7"
+  },
+  "no_optimizer_steps": true,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

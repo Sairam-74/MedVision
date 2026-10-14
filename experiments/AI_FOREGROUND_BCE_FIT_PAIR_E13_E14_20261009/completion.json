@@ -1,0 +1,18 @@
+{
+  "status": "completed_saved_TRAIN_grid_foreground_BCE_fit_pair_comparison",
+  "analysis_sha256": "a97740468d33bc61ed3cacd113ef87c872d9090688eece97bbabd2f2bb6ede48",
+  "report_sha256": "bbdf61c8c386f28f6b72bbb5543e24ed7c7a162fd87155a9d0e435a073cd1287",
+  "per_case_sha256": "74564917ee9de6ac831dc8b80532e3d3bb8237c97ab24492e13d0c7212157c9c",
+  "source_sha256": "c256141213f37254116fadbea4aae4713b3d26fa68b690e3eae414a3270ae962",
+  "adapted_source_sha256": "5e5a0a46dfdf2e0391741c76dff087111d5fa321d8eaa683957ba8c1a76547ce",
+  "new_image_reads": 0,
+  "new_mask_array_reads": 0,
+  "checkpoint_tensor_loads": 0,
+  "checkpoint_file_byte_reads_performed": true,
+  "unique_checkpoint_files_byte_hashed": 4,
+  "inference_performed": false,
+  "GPU_work_performed": false,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "promotion": false
+}

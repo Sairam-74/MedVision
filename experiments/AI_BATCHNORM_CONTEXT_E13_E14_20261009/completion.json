@@ -1,0 +1,16 @@
+{
+  "status": "completed_TRAIN_only_frozen_BN_context_diagnosis",
+  "config_sha256": "b6235bd096a174e2c29377d7f7aa51469ec77e4f1f73ac676b7c1b2351944859",
+  "per_case_sha256": "3b214e4ea3f15a7fef1884d40de1e52d791fd276b34c780108e08d8fd48c258f",
+  "summary_sha256": "b7c232a09eb03fdc1ef73b61365f5db02528a62ad0ba15e9728ed1c30ebecaf2",
+  "source_sha256": "04d48e8f5cbdf044e4689aa4f237a1816e0e5d1cf0c89acfc28aa82836123009",
+  "completed_queue_guards_verified_unchanged": 189,
+  "model_tensors_and_buffers_unchanged": true,
+  "BN_flags_restored": true,
+  "no_optimizer_steps": true,
+  "model_trained": false,
+  "promotion": false,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

@@ -1,0 +1,15 @@
+{
+  "status": "completed_actual_native_positive_failure_review",
+  "tagged_positive_cases_reviewed": 64,
+  "remaining_sheet_cases": 61,
+  "earlier_full_panel_cases": 3,
+  "sheets_reviewed": 11,
+  "complete_empty_misses_reviewed": 22,
+  "wrong_region_image_positives_reviewed": 15,
+  "source_sha256": "46b87e0af2fd8a32caeb5b44b3e2a781b413ae42c3f05203ff27eae821269601",
+  "index_sha256": "000687cf4fe861167db06d7b7a67b2981f3d6cf6bcfba65ce684a8e2b7d49016",
+  "no_new_inference": true,
+  "no_label_changes": true,
+  "clinical_adjudication": false,
+  "limitations": "Annotation overlap observations only; casts/hardware do not prove failure cause. Tiny1/3-pixel signals separately checked in actual full panels/native PNGs."
+}

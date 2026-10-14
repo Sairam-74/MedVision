@@ -1,0 +1,25 @@
+{
+  "output_contract": "medvision.shared_unet_presence_logits.v1",
+  "architecture": "AttentionUNet64PresenceGAP",
+  "checkpoint": "best_model.pt",
+  "checkpoint_sha256": "a6fdfe62225dbac1e992edc2eb04433e75bbfcb77bac808a104114e88c1fc4ae",
+  "epoch": 10,
+  "global_epoch": 18,
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "preprocess": {
+    "size": 256,
+    "resize": "stretch",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 3,
+    "normalization": "unit"
+  },
+  "postprocess": {
+    "threshold": 0.5,
+    "policy": "all",
+    "min_pixels": 16
+  },
+  "presence_weight": 0,
+  "calibration_status": "UNSELECTED research; no calibration/freeze/promotion"
+}

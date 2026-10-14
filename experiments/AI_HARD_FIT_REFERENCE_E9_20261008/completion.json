@@ -1,0 +1,11 @@
+{
+  "status": "completed_saved_TRAIN_grid_hard_fit_reference_analysis",
+  "analysis_sha256": "42c40d2cc0b07f367540f5cc365c9b9c60cca0d20ee75c104e656008969eb6e1",
+  "report_sha256": "e13ace689888ce5c56ba08eb9af982e6890882dd8a52fb02f91d615fc82abbb7",
+  "new_image_reads": 0,
+  "inference_performed": false,
+  "GPU_work_performed": false,
+  "E10_results_read": false,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

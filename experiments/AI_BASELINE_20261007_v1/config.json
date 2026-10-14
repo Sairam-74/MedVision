@@ -1,0 +1,26 @@
+{
+  "scope": "Unchanged original model, diagnostic validation baseline; prior training exposure unknown. NOT independent locked-test performance.",
+  "split": "val",
+  "test_images_read": 0,
+  "checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+  "manifest_sha256": "19a950c34d96c0fc076fbb75bdeffbf2f0b262626817d61018eff31e907544bb",
+  "archive_sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8",
+  "threshold": 0.9,
+  "threshold_metadata_sha256": "02d33de4874bcb22816225b8c0834123388f90505a16a3953b7e452a103e3830",
+  "policy": "all-components-v1",
+  "architecture": "Attention U-Net 64/128/256/512/1024, 4 gated skip connections, sigmoid head",
+  "preprocessing": "grayscale CLAHE clip2 tile8x8 -> Gaussian3x3 -> stretch256 AREA -> float32 /255",
+  "inverse": "threshold model grid then native nearest-neighbor resize, same as original serving",
+  "source_hashes": {
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc",
+    "medvision_serving.py": "5fdf5fa352e5fd86afde07c0841afe9c6368b6bba5da69e49e784bff0a2971c3",
+    "tools/evaluate_ai_baseline.py": "c44d753e17ced5946c1f292f307ca6cb927865aa0313cbe537ad10837ebca4dd",
+    "tools/ai_metrics.py": "8008b83db7b8ee2bac1f137e8aa1a0383731320d9e97a330c410c32690476aca"
+  },
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "torch": "2.14.1+cpu",
+  "device": "cpu",
+  "threads": 4,
+  "platform": "Windows-11-10.0.26300-SP0",
+  "seed": 42
+}

@@ -1,0 +1,22 @@
+{
+  "mode": "learning-sanity",
+  "archive": "FracAtlas.zip",
+  "manifest": "experiments/data_v1/manifest.json",
+  "checkpoint": "best_model.pt",
+  "out": "experiments/E0_learning_clean_cpu",
+  "split": "val",
+  "final_test": false,
+  "limit": null,
+  "steps": 12,
+  "seed": 42,
+  "threads": 4,
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "torch": "2.9.1+cpu",
+  "device": "cpu",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "manifest_sha256": "e931cd3d3dce044f7d8f43fefeda596d39d9dc8529453f5262441c1a64e20227",
+  "checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+  "code_sha256": "8fce35cf96fd9cda11a40370c3df05ceedb9691cc5c2c120b7bb40eacb2251ef",
+  "started_monotonic": 559208.7086195,
+  "cpu": "Intel64 Family 6 Model 191 Stepping 2, GenuineIntel"
+}

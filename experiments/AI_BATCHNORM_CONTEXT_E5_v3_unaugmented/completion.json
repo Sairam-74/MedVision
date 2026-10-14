@@ -1,0 +1,38 @@
+{
+  "status": "completed_TRAIN_only_context_diagnostic",
+  "cases_per_mode": 16,
+  "comparisons": {
+    "eval_batch1": {
+      "max_abs_probability_delta": 0.0,
+      "changed_thresholded_pixels": 0,
+      "changed_case_decisions": 0,
+      "mean_positive_grid_dice": 0.15634749632620085
+    },
+    "eval_batch2": {
+      "max_abs_probability_delta": 0.0,
+      "changed_thresholded_pixels": 0,
+      "changed_case_decisions": 0,
+      "mean_positive_grid_dice": 0.15634749632620085
+    },
+    "current_input_stats_batch1": {
+      "max_abs_probability_delta": 0.9485175013542175,
+      "changed_thresholded_pixels": 2330,
+      "changed_case_decisions": 3,
+      "mean_positive_grid_dice": 0.14262149552004627
+    },
+    "current_input_stats_batch2": {
+      "max_abs_probability_delta": 0.9315400123596191,
+      "changed_thresholded_pixels": 1488,
+      "changed_case_decisions": 2,
+      "mean_positive_grid_dice": 0.1738585750277436
+    }
+  },
+  "elapsed_seconds": 126.31885540000076,
+  "no_optimizer_steps": true,
+  "no_checkpoint_saved": true,
+  "model_improvement_claim": false,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "limitations": "A deliberately balanced16-case sample only. Input-stat modes are diagnostics, never validation inference or a clinical candidate. No generalization/cause claim."
+}

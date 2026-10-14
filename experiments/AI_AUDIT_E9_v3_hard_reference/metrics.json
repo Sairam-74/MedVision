@@ -1,0 +1,1117 @@
+{
+  "config": {
+    "run": "experiments\\AI_E9_v3_hard_reference",
+    "epoch": 9,
+    "global_epoch": 27,
+    "output_contract": "medvision.shared_unet_presence_logits.v1",
+    "architecture": "AttentionUNet64PresenceGAP",
+    "presence_weight": 0,
+    "checkpoint_sha256": "770c791a49073ad36d77095fe9f900ac51c02024cf99b385780103d9e748144f",
+    "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+    "archive_sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8",
+    "preprocess": {
+      "size": 256,
+      "resize": "stretch",
+      "clahe": true,
+      "clip_limit": 2.0,
+      "tile_grid": 8,
+      "blur_kernel": 3,
+      "normalization": "unit"
+    },
+    "postprocess": {
+      "threshold": 0.5,
+      "policy": "all",
+      "min_pixels": 16
+    },
+    "device": "cuda",
+    "torch": "2.9.1+cu128",
+    "original_checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+    "source_hashes": {
+      "tools/train_ai_hard_candidate.py": "82cfd00a2b31d3f69196b2eb6700cff5c8e90cdaaea56991eba0c8d3f3e43370",
+      "tools/ai_hard_example_loss.py": "f99459644ec0c5dba8c09aeda44eb432bb89d48fb9c700785378497bf8870e3a",
+      "tools/ai_bounded_hard_weights.py": "817334e5e441bd89a76a6db0e578604cc0fa4887e97cd2e9049ec2b351cbcc6a",
+      "tools/train_ai_presence_candidate.py": "cbfe78ab7c87dc5268d1111dffdfa13a6801987f4557f6160b58a27c1be43b41",
+      "tools/ai_presence_model.py": "7b6ccadb11f9cd4083e1ac40c97f0311f1454bd31fcb777195447ebf0ede087e",
+      "tools/ai_cached_dataset.py": "0cdf89276b3fae7bd1279712fb37224fa009952e4f261f1400e86d6f73dbf2b9",
+      "tools/ai_atomic_io.py": "5e96df283d717e086ff72a4e19d1d5d6fcc0677fc30728c0187e9fd767f675aa",
+      "tools/train_reliability_candidate.py": "48d006df19115111e081ae899c0fccd1e5a7d657705bea40aeef5739929a7b36",
+      "tools/cache_ai_training_inputs.py": "2e4610efc6b7b1277ecce6ea99ba2c10d1e4bd63fba6a69ac641819f6d4ca0cd",
+      "tools/ai_metrics.py": "8008b83db7b8ee2bac1f137e8aa1a0383731320d9e97a330c410c32690476aca",
+      "tools/run_experiment.py": "8fce35cf96fd9cda11a40370c3df05ceedb9691cc5c2c120b7bb40eacb2251ef",
+      "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+      "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc",
+      "tools/audit_ai_presence_candidate.py": "1a7bf51d31e42d729452b983d9db64123560088f406059477c88ea6fb087b562",
+      "tools/ai_validation_audit.py": "273d7364f6ab64553bac36c0f4407d249db1120ce85467dbc3013789332e587b",
+      "tools/evaluate_ai_baseline.py": "c44d753e17ced5946c1f292f307ca6cb927865aa0313cbe537ad10837ebca4dd"
+    },
+    "scope": "Full frozen463 VAL: independent masks, supervised head when enabled, conservative review union; no CAL/test/selection change",
+    "timing_context": "CPU audit may overlap separate GPU training; not an isolated idle latency comparison",
+    "test_images_read": 0,
+    "calibration_fit": false,
+    "promotion": false
+  },
+  "classification": {
+    "n": 463,
+    "positive": 83,
+    "normal": 380,
+    "accuracy": 0.5140388768898488,
+    "precision": 0.2427536231884058,
+    "recall_sensitivity": 0.8072289156626506,
+    "specificity": 0.45,
+    "f1": 0.3732590529247911,
+    "false_positive_rate": 0.55,
+    "false_negative_rate": 0.1927710843373494,
+    "auroc": 0.7850982878883958,
+    "auprc_average_precision": 0.5926414243099495,
+    "confusion_matrix": {
+      "tn": 171,
+      "fp": 209,
+      "fn": 16,
+      "tp": 67
+    },
+    "score_definition": "Independent mask presence, maximum pixel proxy"
+  },
+  "segmentation": {
+    "n_positive": 83,
+    "mean_positive_dice": 0.35934235628847794,
+    "mean_positive_iou": 0.26556882623002753,
+    "mean_positive_precision_nonempty": 0.4481060329038986,
+    "mean_positive_recall": 0.43061548413319173,
+    "global_dice": 0.20523259440471137,
+    "global_iou": 0.11435052462223638,
+    "global_pixel_precision": 0.1462363912891242,
+    "global_pixel_recall": 0.34402119721416785,
+    "pixel_counts": {
+      "tp": 134900,
+      "fp": 787579,
+      "fn": 257227
+    },
+    "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+  },
+  "localization": {
+    "component_box_map50": 0.11203922407482282,
+    "component_box_map50_95": 0.04304281428568692,
+    "ground_truth_instances": 99,
+    "predicted_regions": 430,
+    "by_iou": [
+      {
+        "iou": 0.5,
+        "ap101": 0.11203922407482282,
+        "tp": 22,
+        "fp": 408,
+        "fn": 77,
+        "precision": 0.05116279069767442,
+        "recall": 0.2222222222222222
+      },
+      {
+        "iou": 0.55,
+        "ap101": 0.09144544849990395,
+        "tp": 20,
+        "fp": 410,
+        "fn": 79,
+        "precision": 0.046511627906976744,
+        "recall": 0.20202020202020202
+      },
+      {
+        "iou": 0.6,
+        "ap101": 0.0866603226278532,
+        "tp": 19,
+        "fp": 411,
+        "fn": 80,
+        "precision": 0.044186046511627906,
+        "recall": 0.1919191919191919
+      },
+      {
+        "iou": 0.65,
+        "ap101": 0.058418683800891144,
+        "tp": 14,
+        "fp": 416,
+        "fn": 85,
+        "precision": 0.03255813953488372,
+        "recall": 0.1414141414141414
+      },
+      {
+        "iou": 0.7,
+        "ap101": 0.04341336474053422,
+        "tp": 12,
+        "fp": 418,
+        "fn": 87,
+        "precision": 0.027906976744186046,
+        "recall": 0.12121212121212122
+      },
+      {
+        "iou": 0.75,
+        "ap101": 0.03513135537378403,
+        "tp": 10,
+        "fp": 420,
+        "fn": 89,
+        "precision": 0.023255813953488372,
+        "recall": 0.10101010101010101
+      },
+      {
+        "iou": 0.8,
+        "ap101": 0.0023296447291788003,
+        "tp": 3,
+        "fp": 427,
+        "fn": 96,
+        "precision": 0.0069767441860465115,
+        "recall": 0.030303030303030304
+      },
+      {
+        "iou": 0.85,
+        "ap101": 0.0009900990099009901,
+        "tp": 1,
+        "fp": 429,
+        "fn": 98,
+        "precision": 0.002325581395348837,
+        "recall": 0.010101010101010102
+      },
+      {
+        "iou": 0.9,
+        "ap101": 0.0,
+        "tp": 0,
+        "fp": 430,
+        "fn": 99,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      {
+        "iou": 0.95,
+        "ap101": 0.0,
+        "tp": 0,
+        "fp": 430,
+        "fn": 99,
+        "precision": 0.0,
+        "recall": 0.0
+      }
+    ],
+    "method": "Native predicted connected-component enclosing boxes vs enclosing boxes of individual COCO polygon rasterizations; confidence=max pixel output per component; masks gated at native threshold 0.5; one-to-one, equal-score batching, 101-point interpolated AP. Not canonical COCO mAP or a separately trained detection head."
+  },
+  "mask_instance_localization": {
+    "0.1": {
+      "matches": 57,
+      "gt": 99,
+      "predicted": 430,
+      "precision": 0.1325581395348837,
+      "recall": 0.5757575757575758,
+      "false_positive_regions": 373,
+      "missed_regions": 42
+    },
+    "0.5": {
+      "matches": 24,
+      "gt": 99,
+      "predicted": 430,
+      "precision": 0.05581395348837209,
+      "recall": 0.24242424242424243,
+      "false_positive_regions": 406,
+      "missed_regions": 75
+    }
+  },
+  "calibration": {
+    "brier_score": 0.4072090601840746,
+    "expected_calibration_error": 0.4340871883559767,
+    "bins": 10,
+    "binning": "equal-width; final bin includes 1",
+    "reliability_curve": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "n": 142,
+        "mean_score": 0.021775864849267135,
+        "observed_fracture_fraction": 0.07746478873239436
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "n": 22,
+        "mean_score": 0.1486463655125011,
+        "observed_fracture_fraction": 0.13636363636363635
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "n": 7,
+        "mean_score": 0.24842980716909682,
+        "observed_fracture_fraction": 0.0
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "n": 6,
+        "mean_score": 0.3598648061354955,
+        "observed_fracture_fraction": 0.16666666666666666
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "n": 10,
+        "mean_score": 0.4371046036481857,
+        "observed_fracture_fraction": 0.1
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "n": 6,
+        "mean_score": 0.559790829817454,
+        "observed_fracture_fraction": 0.0
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "n": 14,
+        "mean_score": 0.6540146086897168,
+        "observed_fracture_fraction": 0.0
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "n": 17,
+        "mean_score": 0.75154529950198,
+        "observed_fracture_fraction": 0.058823529411764705
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "n": 42,
+        "mean_score": 0.8601808377674648,
+        "observed_fracture_fraction": 0.07142857142857142
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "n": 197,
+        "mean_score": 0.9752094551996531,
+        "observed_fracture_fraction": 0.3197969543147208
+      }
+    ],
+    "score_exactly_one_count": 0,
+    "interpretation": "Uncalibrated review-score diagnostic; no clinical confidence claim"
+  },
+  "subgroups": {
+    "hand": {
+      "classification": {
+        "n": 181,
+        "positive": 63,
+        "normal": 118,
+        "accuracy": 0.5138121546961326,
+        "precision": 0.40875912408759124,
+        "recall_sensitivity": 0.8888888888888888,
+        "specificity": 0.3135593220338983,
+        "f1": 0.56,
+        "false_positive_rate": 0.6864406779661016,
+        "false_negative_rate": 0.1111111111111111,
+        "auroc": 0.7675544794188862,
+        "auprc_average_precision": 0.693441586905863,
+        "confusion_matrix": {
+          "tn": 37,
+          "fp": 81,
+          "fn": 7,
+          "tp": 56
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 63,
+        "mean_positive_dice": 0.4105381281705388,
+        "mean_positive_iou": 0.3053540583550265,
+        "mean_positive_precision_nonempty": 0.4599203346378639,
+        "mean_positive_recall": 0.4997806675193872,
+        "global_dice": 0.3850274349730737,
+        "global_iou": 0.2384111305114673,
+        "global_pixel_precision": 0.2845994600094463,
+        "global_pixel_recall": 0.5949813569396888,
+        "pixel_counts": {
+          "tp": 121115,
+          "fp": 304448,
+          "fn": 82446
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 181,
+        "positive": 63,
+        "normal": 118,
+        "accuracy": 0.5138121546961326,
+        "precision": 0.40875912408759124,
+        "recall_sensitivity": 0.8888888888888888,
+        "specificity": 0.3135593220338983,
+        "f1": 0.56,
+        "false_positive_rate": 0.6864406779661016,
+        "false_negative_rate": 0.1111111111111111,
+        "auroc": 0.7675544794188862,
+        "auprc_average_precision": 0.693441586905863,
+        "confusion_matrix": {
+          "tn": 37,
+          "fp": 81,
+          "fn": 7,
+          "tp": 56
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "leg": {
+      "classification": {
+        "n": 255,
+        "positive": 18,
+        "normal": 237,
+        "accuracy": 0.5058823529411764,
+        "precision": 0.06451612903225806,
+        "recall_sensitivity": 0.4444444444444444,
+        "specificity": 0.510548523206751,
+        "f1": 0.11267605633802817,
+        "false_positive_rate": 0.48945147679324896,
+        "false_negative_rate": 0.5555555555555556,
+        "auroc": 0.5897796530707924,
+        "auprc_average_precision": 0.31421365977873883,
+        "confusion_matrix": {
+          "tn": 121,
+          "fp": 116,
+          "fn": 10,
+          "tp": 8
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 18,
+        "mean_positive_dice": 0.18288781768497245,
+        "mean_positive_iou": 0.1331964804487626,
+        "mean_positive_precision_nonempty": 0.40707279229228543,
+        "mean_positive_recall": 0.20165219674194024,
+        "global_dice": 0.011266172730288621,
+        "global_iou": 0.005664997786936475,
+        "global_pixel_precision": 0.007901937789691182,
+        "global_pixel_recall": 0.01961886862213458,
+        "pixel_counts": {
+          "tp": 2547,
+          "fp": 319779,
+          "fn": 127277
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 255,
+        "positive": 18,
+        "normal": 237,
+        "accuracy": 0.5058823529411764,
+        "precision": 0.06451612903225806,
+        "recall_sensitivity": 0.4444444444444444,
+        "specificity": 0.510548523206751,
+        "f1": 0.11267605633802817,
+        "false_positive_rate": 0.48945147679324896,
+        "false_negative_rate": 0.5555555555555556,
+        "auroc": 0.5897796530707924,
+        "auprc_average_precision": 0.31421365977873883,
+        "confusion_matrix": {
+          "tn": 121,
+          "fp": 116,
+          "fn": 10,
+          "tp": 8
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "hip": {
+      "classification": {
+        "n": 33,
+        "positive": 4,
+        "normal": 29,
+        "accuracy": 0.5151515151515151,
+        "precision": 0.2,
+        "recall_sensitivity": 1.0,
+        "specificity": 0.4482758620689655,
+        "f1": 0.3333333333333333,
+        "false_positive_rate": 0.5517241379310345,
+        "false_negative_rate": 0.0,
+        "auroc": 0.9568965517241379,
+        "auprc_average_precision": 0.8611111111111112,
+        "confusion_matrix": {
+          "tn": 13,
+          "fp": 16,
+          "fn": 0,
+          "tp": 4
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 4,
+        "mean_positive_dice": 0.3826811861249739,
+        "mean_positive_iou": 0.2579585619144777,
+        "mean_positive_precision_nonempty": 0.5531519785938146,
+        "mean_positive_recall": 0.30204145302005103,
+        "global_dice": 0.11422450728363324,
+        "global_iou": 0.06057163629754169,
+        "global_pixel_precision": 0.07463187951402497,
+        "global_pixel_recall": 0.24329257163716006,
+        "pixel_counts": {
+          "tp": 1333,
+          "fp": 16528,
+          "fn": 4146
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 33,
+        "positive": 4,
+        "normal": 29,
+        "accuracy": 0.5151515151515151,
+        "precision": 0.2,
+        "recall_sensitivity": 1.0,
+        "specificity": 0.4482758620689655,
+        "f1": 0.3333333333333333,
+        "false_positive_rate": 0.5517241379310345,
+        "false_negative_rate": 0.0,
+        "auroc": 0.9568965517241379,
+        "auprc_average_precision": 0.8611111111111112,
+        "confusion_matrix": {
+          "tn": 13,
+          "fp": 16,
+          "fn": 0,
+          "tp": 4
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "shoulder": {
+      "classification": {
+        "n": 38,
+        "positive": 7,
+        "normal": 31,
+        "accuracy": 0.5789473684210527,
+        "precision": 0.2631578947368421,
+        "recall_sensitivity": 0.7142857142857143,
+        "specificity": 0.5483870967741935,
+        "f1": 0.38461538461538464,
+        "false_positive_rate": 0.45161290322580644,
+        "false_negative_rate": 0.2857142857142857,
+        "auroc": 0.7880184331797235,
+        "auprc_average_precision": 0.5554421768707483,
+        "confusion_matrix": {
+          "tn": 17,
+          "fp": 14,
+          "fn": 2,
+          "tp": 5
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 7,
+        "mean_positive_dice": 0.18006058431005986,
+        "mean_positive_iou": 0.11770313756450368,
+        "mean_positive_precision_nonempty": 0.20660584500236676,
+        "mean_positive_recall": 0.2465558847324727,
+        "global_dice": 0.23693269158077768,
+        "global_iou": 0.13438663994808744,
+        "global_pixel_precision": 0.17777164336008108,
+        "global_pixel_recall": 0.35511088953347836,
+        "pixel_counts": {
+          "tp": 47011,
+          "fp": 217435,
+          "fn": 85373
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 38,
+        "positive": 7,
+        "normal": 31,
+        "accuracy": 0.5789473684210527,
+        "precision": 0.2631578947368421,
+        "recall_sensitivity": 0.7142857142857143,
+        "specificity": 0.5483870967741935,
+        "f1": 0.38461538461538464,
+        "false_positive_rate": 0.45161290322580644,
+        "false_negative_rate": 0.2857142857142857,
+        "auroc": 0.7880184331797235,
+        "auprc_average_precision": 0.5554421768707483,
+        "confusion_matrix": {
+          "tn": 17,
+          "fp": 14,
+          "fn": 2,
+          "tp": 5
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "mixed": {
+      "classification": {
+        "n": 43,
+        "positive": 9,
+        "normal": 34,
+        "accuracy": 0.5116279069767442,
+        "precision": 0.25,
+        "recall_sensitivity": 0.6666666666666666,
+        "specificity": 0.47058823529411764,
+        "f1": 0.36363636363636365,
+        "false_positive_rate": 0.5294117647058824,
+        "false_negative_rate": 0.3333333333333333,
+        "auroc": 0.6895424836601307,
+        "auprc_average_precision": 0.5174856017036791,
+        "confusion_matrix": {
+          "tn": 16,
+          "fp": 18,
+          "fn": 3,
+          "tp": 6
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 9,
+        "mean_positive_dice": 0.2357351173111216,
+        "mean_positive_iou": 0.1609317731068386,
+        "mean_positive_precision_nonempty": 0.37244233548075695,
+        "mean_positive_recall": 0.2565437130254348,
+        "global_dice": 0.3971997131204573,
+        "global_iou": 0.24781609809526353,
+        "global_pixel_precision": 0.34447673069246265,
+        "global_pixel_recall": 0.46897789461710543,
+        "pixel_counts": {
+          "tp": 37106,
+          "fp": 70611,
+          "fn": 42015
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 43,
+        "positive": 9,
+        "normal": 34,
+        "accuracy": 0.5116279069767442,
+        "precision": 0.25,
+        "recall_sensitivity": 0.6666666666666666,
+        "specificity": 0.47058823529411764,
+        "f1": 0.36363636363636365,
+        "false_positive_rate": 0.5294117647058824,
+        "false_negative_rate": 0.3333333333333333,
+        "auroc": 0.6895424836601307,
+        "auprc_average_precision": 0.5174856017036791,
+        "confusion_matrix": {
+          "tn": 16,
+          "fp": 18,
+          "fn": 3,
+          "tp": 6
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "hardware": {
+      "classification": {
+        "n": 8,
+        "positive": 7,
+        "normal": 1,
+        "accuracy": 0.375,
+        "precision": 0.75,
+        "recall_sensitivity": 0.42857142857142855,
+        "specificity": 0.0,
+        "f1": 0.5454545454545454,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.5714285714285714,
+        "auroc": 0.2857142857142857,
+        "auprc_average_precision": 0.8736394557823131,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 1,
+          "fn": 4,
+          "tp": 3
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 7,
+        "mean_positive_dice": 0.03847171975646342,
+        "mean_positive_iou": 0.022229020087692463,
+        "mean_positive_precision_nonempty": 0.07514650120648052,
+        "mean_positive_recall": 0.047765118317265556,
+        "global_dice": 0.0029632046106376326,
+        "global_iou": 0.0014838007078682275,
+        "global_pixel_precision": 0.008722791293213829,
+        "global_pixel_recall": 0.0017847493982610975,
+        "pixel_counts": {
+          "tp": 218,
+          "fp": 24774,
+          "fn": 121928
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 8,
+        "positive": 7,
+        "normal": 1,
+        "accuracy": 0.375,
+        "precision": 0.75,
+        "recall_sensitivity": 0.42857142857142855,
+        "specificity": 0.0,
+        "f1": 0.5454545454545454,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.5714285714285714,
+        "auroc": 0.2857142857142857,
+        "auprc_average_precision": 0.8736394557823131,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 1,
+          "fn": 4,
+          "tp": 3
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "multiscan": {
+      "classification": {
+        "n": 46,
+        "positive": 9,
+        "normal": 37,
+        "accuracy": 0.3695652173913043,
+        "precision": 0.20588235294117646,
+        "recall_sensitivity": 0.7777777777777778,
+        "specificity": 0.2702702702702703,
+        "f1": 0.32558139534883723,
+        "false_positive_rate": 0.7297297297297297,
+        "false_negative_rate": 0.2222222222222222,
+        "auroc": 0.6576576576576577,
+        "auprc_average_precision": 0.49233658613964215,
+        "confusion_matrix": {
+          "tn": 10,
+          "fp": 27,
+          "fn": 2,
+          "tp": 7
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 9,
+        "mean_positive_dice": 0.217486634050384,
+        "mean_positive_iou": 0.16664052196397902,
+        "mean_positive_precision_nonempty": 0.2817815608754543,
+        "mean_positive_recall": 0.2293954178208397,
+        "global_dice": 0.07509799263570495,
+        "global_iou": 0.03901393024080959,
+        "global_pixel_precision": 0.04253207985065841,
+        "global_pixel_recall": 0.32049169940438477,
+        "pixel_counts": {
+          "tp": 2529,
+          "fp": 56932,
+          "fn": 5362
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 46,
+        "positive": 9,
+        "normal": 37,
+        "accuracy": 0.3695652173913043,
+        "precision": 0.20588235294117646,
+        "recall_sensitivity": 0.7777777777777778,
+        "specificity": 0.2702702702702703,
+        "f1": 0.32558139534883723,
+        "false_positive_rate": 0.7297297297297297,
+        "false_negative_rate": 0.2222222222222222,
+        "auroc": 0.6576576576576577,
+        "auprc_average_precision": 0.49233658613964215,
+        "confusion_matrix": {
+          "tn": 10,
+          "fp": 27,
+          "fn": 2,
+          "tp": 7
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "frontal": {
+      "classification": {
+        "n": 297,
+        "positive": 51,
+        "normal": 246,
+        "accuracy": 0.5218855218855218,
+        "precision": 0.24,
+        "recall_sensitivity": 0.8235294117647058,
+        "specificity": 0.45934959349593496,
+        "f1": 0.37168141592920356,
+        "false_positive_rate": 0.540650406504065,
+        "false_negative_rate": 0.17647058823529413,
+        "auroc": 0.8080663159572772,
+        "auprc_average_precision": 0.6011963957419152,
+        "confusion_matrix": {
+          "tn": 113,
+          "fp": 133,
+          "fn": 9,
+          "tp": 42
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 51,
+        "mean_positive_dice": 0.3477810382969046,
+        "mean_positive_iou": 0.25666212613629064,
+        "mean_positive_precision_nonempty": 0.4337236479208661,
+        "mean_positive_recall": 0.40222348110185774,
+        "global_dice": 0.22899645976205346,
+        "global_iou": 0.12930321964872313,
+        "global_pixel_precision": 0.15645332794939093,
+        "global_pixel_recall": 0.42697145124083513,
+        "pixel_counts": {
+          "tp": 116237,
+          "fp": 626713,
+          "fn": 155999
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 297,
+        "positive": 51,
+        "normal": 246,
+        "accuracy": 0.5218855218855218,
+        "precision": 0.24,
+        "recall_sensitivity": 0.8235294117647058,
+        "specificity": 0.45934959349593496,
+        "f1": 0.37168141592920356,
+        "false_positive_rate": 0.540650406504065,
+        "false_negative_rate": 0.17647058823529413,
+        "auroc": 0.8080663159572772,
+        "auprc_average_precision": 0.6011963957419152,
+        "confusion_matrix": {
+          "tn": 113,
+          "fp": 133,
+          "fn": 9,
+          "tp": 42
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "lateral": {
+      "classification": {
+        "n": 161,
+        "positive": 39,
+        "normal": 122,
+        "accuracy": 0.4409937888198758,
+        "precision": 0.2743362831858407,
+        "recall_sensitivity": 0.7948717948717948,
+        "specificity": 0.32786885245901637,
+        "f1": 0.40789473684210525,
+        "false_positive_rate": 0.6721311475409836,
+        "false_negative_rate": 0.20512820512820512,
+        "auroc": 0.728457335014712,
+        "auprc_average_precision": 0.5967088738833434,
+        "confusion_matrix": {
+          "tn": 40,
+          "fp": 82,
+          "fn": 8,
+          "tp": 31
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 39,
+        "mean_positive_dice": 0.35914350504983833,
+        "mean_positive_iou": 0.2669805094463504,
+        "mean_positive_precision_nonempty": 0.433163790772339,
+        "mean_positive_recall": 0.4541968382374875,
+        "global_dice": 0.20196739903291328,
+        "global_iou": 0.11232688379748146,
+        "global_pixel_precision": 0.16408901622174152,
+        "global_pixel_recall": 0.2625819308612964,
+        "pixel_counts": {
+          "tp": 45590,
+          "fp": 232247,
+          "fn": 128032
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 161,
+        "positive": 39,
+        "normal": 122,
+        "accuracy": 0.4409937888198758,
+        "precision": 0.2743362831858407,
+        "recall_sensitivity": 0.7948717948717948,
+        "specificity": 0.32786885245901637,
+        "f1": 0.40789473684210525,
+        "false_positive_rate": 0.6721311475409836,
+        "false_negative_rate": 0.20512820512820512,
+        "auroc": 0.728457335014712,
+        "auprc_average_precision": 0.5967088738833434,
+        "confusion_matrix": {
+          "tn": 40,
+          "fp": 82,
+          "fn": 8,
+          "tp": 31
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "oblique": {
+      "classification": {
+        "n": 42,
+        "positive": 5,
+        "normal": 37,
+        "accuracy": 0.6666666666666666,
+        "precision": 0.2,
+        "recall_sensitivity": 0.6,
+        "specificity": 0.6756756756756757,
+        "f1": 0.3,
+        "false_positive_rate": 0.32432432432432434,
+        "false_negative_rate": 0.4,
+        "auroc": 0.5945945945945946,
+        "auprc_average_precision": 0.21072708653353814,
+        "confusion_matrix": {
+          "tn": 25,
+          "fp": 12,
+          "fn": 2,
+          "tp": 3
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 5,
+        "mean_positive_dice": 0.12320916905444126,
+        "mean_positive_iou": 0.08902691511387165,
+        "mean_positive_precision_nonempty": 0.255952380952381,
+        "mean_positive_recall": 0.10287081339712918,
+        "global_dice": 0.006699906512932377,
+        "global_iou": 0.003361213163448761,
+        "global_pixel_precision": 0.003479020696127769,
+        "global_pixel_recall": 0.09029819403611927,
+        "pixel_counts": {
+          "tp": 215,
+          "fp": 61584,
+          "fn": 2166
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 42,
+        "positive": 5,
+        "normal": 37,
+        "accuracy": 0.6666666666666666,
+        "precision": 0.2,
+        "recall_sensitivity": 0.6,
+        "specificity": 0.6756756756756757,
+        "f1": 0.3,
+        "false_positive_rate": 0.32432432432432434,
+        "false_negative_rate": 0.4,
+        "auroc": 0.5945945945945946,
+        "auprc_average_precision": 0.21072708653353814,
+        "confusion_matrix": {
+          "tn": 25,
+          "fp": 12,
+          "fn": 2,
+          "tp": 3
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "small_region_proxy": {
+      "classification": {
+        "n": 12,
+        "positive": 12,
+        "normal": 0,
+        "accuracy": 0.9166666666666666,
+        "precision": 1.0,
+        "recall_sensitivity": 0.9166666666666666,
+        "specificity": null,
+        "f1": 0.9565217391304348,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.08333333333333333,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 1,
+          "tp": 11
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 12,
+        "mean_positive_dice": 0.27320563793500013,
+        "mean_positive_iou": 0.1830999075197709,
+        "mean_positive_precision_nonempty": 0.2838902035005213,
+        "mean_positive_recall": 0.45122489134803684,
+        "global_dice": 0.20285261489698891,
+        "global_iou": 0.1128747795414462,
+        "global_pixel_precision": 0.11670258365500746,
+        "global_pixel_recall": 0.7748427672955975,
+        "pixel_counts": {
+          "tp": 9856,
+          "fp": 74598,
+          "fn": 2864
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 12,
+        "positive": 12,
+        "normal": 0,
+        "accuracy": 0.9166666666666666,
+        "precision": 1.0,
+        "recall_sensitivity": 0.9166666666666666,
+        "specificity": null,
+        "f1": 0.9565217391304348,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.08333333333333333,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 1,
+          "tp": 11
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    },
+    "multiple_fractures": {
+      "classification": {
+        "n": 16,
+        "positive": 16,
+        "normal": 0,
+        "accuracy": 0.8125,
+        "precision": 1.0,
+        "recall_sensitivity": 0.8125,
+        "specificity": null,
+        "f1": 0.896551724137931,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.1875,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 3,
+          "tp": 13
+        },
+        "score_definition": "Independent mask presence, maximum pixel proxy"
+      },
+      "segmentation": {
+        "n_positive": 16,
+        "mean_positive_dice": 0.39144418965333794,
+        "mean_positive_iou": 0.2891922214448256,
+        "mean_positive_precision_nonempty": 0.4706674693617036,
+        "mean_positive_recall": 0.44605500498049716,
+        "global_dice": 0.5601128107431688,
+        "global_iou": 0.3889977040717056,
+        "global_pixel_precision": 0.43618460285369365,
+        "global_pixel_recall": 0.7824101854992304,
+        "pixel_counts": {
+          "tp": 29989,
+          "fp": 38764,
+          "fn": 8340
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 16,
+        "positive": 16,
+        "normal": 0,
+        "accuracy": 0.8125,
+        "precision": 1.0,
+        "recall_sensitivity": 0.8125,
+        "specificity": null,
+        "f1": 0.896551724137931,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.1875,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 3,
+          "tp": 13
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": null
+    }
+  },
+  "categories": {
+    "FP": 209,
+    "TP": 67,
+    "TN": 171,
+    "FN": 16
+  },
+  "segmentation_failure_counts": {
+    "complete_empty_miss": 16,
+    "under_segmentation_recall_below_0.5": 19,
+    "over_segmentation_precision_below_0.5": 21,
+    "complete_mislocalization": 11
+  },
+  "practical_classification_targets": {
+    "tp_min": 79,
+    "tn_min": 342,
+    "sensitivity_rounding": "79/83=95.1807%, approximately95.2%; user practical count rule",
+    "classification_counts_pass": false,
+    "promotion_accepted": false,
+    "reason": "Native localization/segmentation comparison, calibration, robustness and freeze still required even if case counts pass"
+  },
+  "timing": {
+    "forward_median_ms": 30.258099992352072,
+    "forward_p95_ms": 68.4662549989298,
+    "pipeline_median_ms": 75.70589999522781,
+    "full_inference_audit_seconds": 56.27549169999838,
+    "peak_process_rss_bytes": 1585954816,
+    "context": "CPU audit may overlap separate GPU training; not an isolated idle latency comparison"
+  },
+  "test_images_read": 0,
+  "unavailable": [
+    "patient/study independence",
+    "clinical subtle/nondisplaced labels",
+    "paired-study fusion",
+    "external generalization",
+    "radiologist adjudication"
+  ],
+  "mask_classification": {
+    "n": 463,
+    "positive": 83,
+    "normal": 380,
+    "accuracy": 0.5140388768898488,
+    "precision": 0.2427536231884058,
+    "recall_sensitivity": 0.8072289156626506,
+    "specificity": 0.45,
+    "f1": 0.3732590529247911,
+    "false_positive_rate": 0.55,
+    "false_negative_rate": 0.1927710843373494,
+    "auroc": 0.7850982878883958,
+    "auprc_average_precision": 0.5926414243099495,
+    "confusion_matrix": {
+      "tn": 171,
+      "fp": 209,
+      "fn": 16,
+      "tp": 67
+    },
+    "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+  },
+  "mask_categories": {
+    "FP": 209,
+    "TP": 67,
+    "TN": 171,
+    "FN": 16
+  },
+  "head_classification": null,
+  "head_calibration": null,
+  "four_groups_by_truth": {
+    "reference_mask_only|normal": 380,
+    "reference_mask_only|fracture": 83
+  },
+  "mask_gated_by_classifier": false,
+  "small_region_definition": {
+    "cutoff_fraction": 0.0020550129324089714,
+    "source": "TRAIN25th percentile; not clinical subtlety"
+  },
+  "trainer_reproduction": {
+    "differing_cases": [],
+    "exact_counts": true,
+    "trainer_device": "cuda",
+    "audit_device": "cuda",
+    "note": "Boundary/device differences retained, never overwrite trainer evidence"
+  }
+}

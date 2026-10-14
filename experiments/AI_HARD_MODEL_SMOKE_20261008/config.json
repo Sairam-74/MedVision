@@ -1,0 +1,25 @@
+{
+  "protocol_sha256": "168f04c50f01dbe72b5339219807e9bdcd78d35817680770c51417c9b0ed7e2e",
+  "initial_snapshot_sha256": "92d813364b69024e74b6b7e2cf294aae630d9f00b04ae4a79934df6801e754df",
+  "sample_ids": [
+    "IMG0000059.jpg",
+    "IMG0000011.jpg",
+    "IMG0000025.jpg",
+    "IMG0000000.jpg"
+  ],
+  "augmentation_global_epoch": 19,
+  "source_hashes": {
+    "tools/smoke_ai_hard_candidate.py": "209a26363975968c0ffd148d1059b2297a91ee166ea3ae5af71ad4ad386e04eb",
+    "tools/train_ai_hard_candidate.py": "82cfd00a2b31d3f69196b2eb6700cff5c8e90cdaaea56991eba0c8d3f3e43370",
+    "tools/ai_hard_example_loss.py": "f99459644ec0c5dba8c09aeda44eb432bb89d48fb9c700785378497bf8870e3a",
+    "tools/ai_bounded_hard_weights.py": "817334e5e441bd89a76a6db0e578604cc0fa4887e97cd2e9049ec2b351cbcc6a",
+    "tools/ai_presence_model.py": "7b6ccadb11f9cd4083e1ac40c97f0311f1454bd31fcb777195447ebf0ede087e",
+    "tools/ai_cached_dataset.py": "0cdf89276b3fae7bd1279712fb37224fa009952e4f261f1400e86d6f73dbf2b9",
+    "tools/ai_atomic_io.py": "5e96df283d717e086ff72a4e19d1d5d6fcc0677fc30728c0187e9fd767f675aa"
+  },
+  "device": "cuda",
+  "scope": "Four real TRAIN cases; two optimizer steps per factor, discarded research smoke only",
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

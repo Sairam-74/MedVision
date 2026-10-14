@@ -1,0 +1,10 @@
+{
+  "status": "completed_retained_segmentation_contact_review",
+  "images_reviewed_here": 44,
+  "earlier_individual_TP_reviewed": 8,
+  "earlier_individual_FN_reviewed": 17,
+  "all_tagged_positive_failures_reviewed": 69,
+  "clinical_adjudication": false,
+  "no_new_inference": true,
+  "limitations": "Coarse panel geometry only; clinical fracture subtype labels unavailable. Tiny boundaries retain numerical counts/full native panels."
+}

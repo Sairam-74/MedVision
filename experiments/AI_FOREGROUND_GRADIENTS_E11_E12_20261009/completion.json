@@ -1,0 +1,13 @@
+{
+  "status": "completed_TRAIN_only_frozen_foreground_gradient_diagnosis",
+  "per_case_sha256": "800c32e2a8ac54d9653172ab730c72b6d43cac077c471aea517a547895f40b41",
+  "summary_sha256": "a7613751078f5c5339a4682f7004930e2d8bfc8be8bbfd9ddf7890bd105a81c0",
+  "config_sha256": "a0b32cc3df630b59e5533e584c1ee4ef1ff1d256fa1b88c17ee466b99bb03bbe",
+  "source_sha256": "78fdb590223d932628a7513a5fc715465fe93e51d377cac6e313d7d5e63352c4",
+  "no_optimizer_steps": true,
+  "model_tensors_unchanged": true,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "promotion": false
+}

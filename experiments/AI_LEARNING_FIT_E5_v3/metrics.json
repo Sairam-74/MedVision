@@ -1,0 +1,96 @@
+{
+  "train": {
+    "classification": {
+      "n": 2808,
+      "positive": 493,
+      "normal": 2315,
+      "accuracy": 0.521011396011396,
+      "precision": 0.21637816245006658,
+      "recall_sensitivity": 0.6592292089249493,
+      "specificity": 0.4915766738660907,
+      "f1": 0.3258145363408521,
+      "false_positive_rate": 0.5084233261339093,
+      "false_negative_rate": 0.3407707910750507,
+      "auroc": 0.6404102357409784,
+      "auprc_average_precision": 0.3284396280197749,
+      "confusion_matrix": {
+        "tn": 1138,
+        "fp": 1177,
+        "fn": 168,
+        "tp": 325
+      },
+      "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+    },
+    "segmentation": {
+      "n_positive": 493,
+      "mean_positive_dice": 0.18440928925183056,
+      "mean_positive_iou": 0.12870929397117994,
+      "mean_positive_precision_nonempty": 0.3374207404723748,
+      "mean_positive_recall": 0.19764867416014506,
+      "global_dice": 0.1285523896816743,
+      "global_iou": 0.06869141779491654,
+      "global_pixel_precision": 0.11038388297607686,
+      "global_pixel_recall": 0.15388010668953472,
+      "pixel_counts": {
+        "tp": 24404,
+        "fp": 196679,
+        "fn": 134187
+      },
+      "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+    },
+    "mean_positive_soft_dice": 0.17286437329402815,
+    "positive_no_target_overlap": 275,
+    "protocol": "256x256 grid threshold0.5/all; nearest projected labels. Diagnostic only, not native acceptance metrics."
+  },
+  "validation": {
+    "classification": {
+      "n": 463,
+      "positive": 83,
+      "normal": 380,
+      "accuracy": 0.5010799136069114,
+      "precision": 0.22592592592592592,
+      "recall_sensitivity": 0.7349397590361446,
+      "specificity": 0.45,
+      "f1": 0.34560906515580736,
+      "false_positive_rate": 0.55,
+      "false_negative_rate": 0.26506024096385544,
+      "auroc": 0.6537095751426759,
+      "auprc_average_precision": 0.34209758247425665,
+      "confusion_matrix": {
+        "tn": 171,
+        "fp": 209,
+        "fn": 22,
+        "tp": 61
+      },
+      "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+    },
+    "segmentation": {
+      "n_positive": 83,
+      "mean_positive_dice": 0.2183152619293144,
+      "mean_positive_iou": 0.15899527604576338,
+      "mean_positive_precision_nonempty": 0.33839260501758917,
+      "mean_positive_recall": 0.23452837325605472,
+      "global_dice": 0.14052780395852968,
+      "global_iou": 0.07557402808049064,
+      "global_pixel_precision": 0.1094820834149207,
+      "global_pixel_recall": 0.19614979828100335,
+      "pixel_counts": {
+        "tp": 4473,
+        "fp": 36383,
+        "fn": 18331
+      },
+      "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+    },
+    "mean_positive_soft_dice": 0.2010504405037968,
+    "positive_no_target_overlap": 48,
+    "protocol": "256x256 grid threshold0.5/all; nearest projected labels. Diagnostic only, not native acceptance metrics."
+  },
+  "selected_epoch": 8,
+  "native_validation_report_unchanged": true,
+  "new_validation_image_inference": false,
+  "interpretation": "Compare matched grid fit only. A train/validation gap alone cannot prove overfitting or clinical generalization; no patient independence is established.",
+  "threshold_tuned": false,
+  "calibration_evaluated": false,
+  "test_evaluated": false,
+  "promotion": false
+}

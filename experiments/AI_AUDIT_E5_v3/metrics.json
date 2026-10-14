@@ -1,0 +1,1040 @@
+{
+  "config": {
+    "scope": "Full frozen463 validation, selected completed candidate; no calibration/test/promotion",
+    "run": "experiments\\AI_E5_v3_BCE_reference",
+    "checkpoint_sha256": "4bf4065a256c412c735895b26b42f3b5c1ef862f89376973236c66f43acb0ba7",
+    "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+    "archive_sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8",
+    "preprocess": {
+      "size": 256,
+      "resize": "stretch",
+      "clahe": true,
+      "clip_limit": 2.0,
+      "tile_grid": 8,
+      "blur_kernel": 3,
+      "normalization": "unit"
+    },
+    "postprocess": {
+      "threshold": 0.5,
+      "policy": "all",
+      "min_pixels": 16
+    },
+    "epoch": 8,
+    "torch": "2.9.1+cu128",
+    "device": "cpu",
+    "source_hashes": {
+      "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc",
+      "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+      "tools/ai_metrics.py": "8008b83db7b8ee2bac1f137e8aa1a0383731320d9e97a330c410c32690476aca",
+      "tools/evaluate_ai_baseline.py": "c44d753e17ced5946c1f292f307ca6cb927865aa0313cbe537ad10837ebca4dd",
+      "tools/ai_validation_audit.py": "273d7364f6ab64553bac36c0f4407d249db1120ce85467dbc3013789332e587b"
+    },
+    "original_checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+    "test_images_read": 0,
+    "model_selection": "Existing frozen checkpoint score; audit does not reselect"
+  },
+  "classification": {
+    "n": 463,
+    "positive": 83,
+    "normal": 380,
+    "accuracy": 0.5075593952483801,
+    "precision": 0.22846441947565543,
+    "recall_sensitivity": 0.7349397590361446,
+    "specificity": 0.45789473684210524,
+    "f1": 0.3485714285714286,
+    "false_positive_rate": 0.5421052631578948,
+    "false_negative_rate": 0.26506024096385544,
+    "auroc": 0.6537729866835764,
+    "auprc_average_precision": 0.34165433296324915,
+    "confusion_matrix": {
+      "tn": 174,
+      "fp": 206,
+      "fn": 22,
+      "tp": 61
+    },
+    "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+  },
+  "segmentation": {
+    "n_positive": 83,
+    "mean_positive_dice": 0.22021043804985097,
+    "mean_positive_iou": 0.16080441645686508,
+    "mean_positive_precision_nonempty": 0.3472931580492903,
+    "mean_positive_recall": 0.2320424706013859,
+    "global_dice": 0.052107512511645845,
+    "global_iou": 0.026750712806965112,
+    "global_pixel_precision": 0.04465618831892439,
+    "global_pixel_recall": 0.06254351268849123,
+    "pixel_counts": {
+      "tp": 24525,
+      "fp": 524671,
+      "fn": 367602
+    },
+    "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+  },
+  "localization": {
+    "component_box_map50": 0.0462876404359214,
+    "component_box_map50_95": 0.01214674319517504,
+    "ground_truth_instances": 99,
+    "predicted_regions": 402,
+    "by_iou": [
+      {
+        "iou": 0.5,
+        "ap101": 0.0462876404359214,
+        "tp": 12,
+        "fp": 390,
+        "fn": 87,
+        "precision": 0.029850746268656716,
+        "recall": 0.12121212121212122
+      },
+      {
+        "iou": 0.55,
+        "ap101": 0.043917682511406285,
+        "tp": 10,
+        "fp": 392,
+        "fn": 89,
+        "precision": 0.024875621890547265,
+        "recall": 0.10101010101010101
+      },
+      {
+        "iou": 0.6,
+        "ap101": 0.016327113480578827,
+        "tp": 6,
+        "fp": 396,
+        "fn": 93,
+        "precision": 0.014925373134328358,
+        "recall": 0.06060606060606061
+      },
+      {
+        "iou": 0.65,
+        "ap101": 0.008377760853008377,
+        "tp": 5,
+        "fp": 397,
+        "fn": 94,
+        "precision": 0.012437810945273632,
+        "recall": 0.050505050505050504
+      },
+      {
+        "iou": 0.7,
+        "ap101": 0.005319610908459267,
+        "tp": 3,
+        "fp": 399,
+        "fn": 96,
+        "precision": 0.007462686567164179,
+        "recall": 0.030303030303030304
+      },
+      {
+        "iou": 0.75,
+        "ap101": 0.0012376237623762376,
+        "tp": 1,
+        "fp": 401,
+        "fn": 98,
+        "precision": 0.0024875621890547263,
+        "recall": 0.010101010101010102
+      },
+      {
+        "iou": 0.8,
+        "ap101": 0.0,
+        "tp": 0,
+        "fp": 402,
+        "fn": 99,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      {
+        "iou": 0.85,
+        "ap101": 0.0,
+        "tp": 0,
+        "fp": 402,
+        "fn": 99,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      {
+        "iou": 0.9,
+        "ap101": 0.0,
+        "tp": 0,
+        "fp": 402,
+        "fn": 99,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      {
+        "iou": 0.95,
+        "ap101": 0.0,
+        "tp": 0,
+        "fp": 402,
+        "fn": 99,
+        "precision": 0.0,
+        "recall": 0.0
+      }
+    ],
+    "method": "Native predicted connected-component enclosing boxes vs enclosing boxes of individual COCO polygon rasterizations; confidence=max pixel output per component; masks gated at native threshold 0.5; one-to-one, equal-score batching, 101-point interpolated AP. Not canonical COCO mAP or a separately trained detection head."
+  },
+  "mask_instance_localization": {
+    "0.1": {
+      "matches": 36,
+      "gt": 99,
+      "predicted": 402,
+      "precision": 0.08955223880597014,
+      "recall": 0.36363636363636365,
+      "false_positive_regions": 366,
+      "missed_regions": 63
+    },
+    "0.5": {
+      "matches": 12,
+      "gt": 99,
+      "predicted": 402,
+      "precision": 0.029850746268656716,
+      "recall": 0.12121212121212122,
+      "false_positive_regions": 390,
+      "missed_regions": 87
+    }
+  },
+  "calibration": {
+    "brier_score": 0.3782743110515753,
+    "expected_calibration_error": 0.4063812043480364,
+    "bins": 10,
+    "binning": "equal-width; final bin includes 1",
+    "reliability_curve": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "n": 127,
+        "mean_score": 0.023137039754734058,
+        "observed_fracture_fraction": 0.10236220472440945
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "n": 26,
+        "mean_score": 0.1383509297783558,
+        "observed_fracture_fraction": 0.15384615384615385
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "n": 10,
+        "mean_score": 0.2523674607276917,
+        "observed_fracture_fraction": 0.2
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "n": 16,
+        "mean_score": 0.3543992191553116,
+        "observed_fracture_fraction": 0.125
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "n": 17,
+        "mean_score": 0.4373245747650371,
+        "observed_fracture_fraction": 0.058823529411764705
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "n": 17,
+        "mean_score": 0.5508889906546649,
+        "observed_fracture_fraction": 0.17647058823529413
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "n": 15,
+        "mean_score": 0.6459757725397746,
+        "observed_fracture_fraction": 0.13333333333333333
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "n": 30,
+        "mean_score": 0.7749758342901866,
+        "observed_fracture_fraction": 0.1
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "n": 85,
+        "mean_score": 0.8552124184720656,
+        "observed_fracture_fraction": 0.18823529411764706
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "n": 120,
+        "mean_score": 0.9422030493617057,
+        "observed_fracture_fraction": 0.30833333333333335
+      }
+    ],
+    "score_exactly_one_count": 0,
+    "interpretation": "Diagnostics of treating maximum pixel output AS IF it were a case probability. The serving model does not expose a calibrated case probability; no clinical confidence claim."
+  },
+  "subgroups": {
+    "hand": {
+      "classification": {
+        "n": 181,
+        "positive": 63,
+        "normal": 118,
+        "accuracy": 0.39226519337016574,
+        "precision": 0.3443708609271523,
+        "recall_sensitivity": 0.8253968253968254,
+        "specificity": 0.16101694915254236,
+        "f1": 0.48598130841121495,
+        "false_positive_rate": 0.8389830508474576,
+        "false_negative_rate": 0.1746031746031746,
+        "auroc": 0.571563088512241,
+        "auprc_average_precision": 0.4600888507087387,
+        "confusion_matrix": {
+          "tn": 19,
+          "fp": 99,
+          "fn": 11,
+          "tp": 52
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 63,
+        "mean_positive_dice": 0.275112414610899,
+        "mean_positive_iou": 0.20051881363617421,
+        "mean_positive_precision_nonempty": 0.3898322840609442,
+        "mean_positive_recall": 0.288391635644442,
+        "global_dice": 0.1211700540070105,
+        "global_iou": 0.0644922944013277,
+        "global_pixel_precision": 0.13269793006665886,
+        "global_pixel_recall": 0.11148500940749947,
+        "pixel_counts": {
+          "tp": 22694,
+          "fp": 148326,
+          "fn": 180867
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "leg": {
+      "classification": {
+        "n": 255,
+        "positive": 18,
+        "normal": 237,
+        "accuracy": 0.5450980392156862,
+        "precision": 0.07758620689655173,
+        "recall_sensitivity": 0.5,
+        "specificity": 0.5485232067510548,
+        "f1": 0.13432835820895522,
+        "false_positive_rate": 0.45147679324894513,
+        "false_negative_rate": 0.5,
+        "auroc": 0.5232067510548524,
+        "auprc_average_precision": 0.08313624833767999,
+        "confusion_matrix": {
+          "tn": 130,
+          "fp": 107,
+          "fn": 9,
+          "tp": 9
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 18,
+        "mean_positive_dice": 0.05252134653616633,
+        "mean_positive_iou": 0.03967118371337923,
+        "mean_positive_precision_nonempty": 0.10151154109306738,
+        "mean_positive_recall": 0.0606028896841765,
+        "global_dice": 0.007363616255454344,
+        "global_iou": 0.0036954139327801984,
+        "global_pixel_precision": 0.004982502734798061,
+        "global_pixel_recall": 0.014103709637663298,
+        "pixel_counts": {
+          "tp": 1831,
+          "fp": 365655,
+          "fn": 127993
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "hip": {
+      "classification": {
+        "n": 33,
+        "positive": 4,
+        "normal": 29,
+        "accuracy": 0.8181818181818182,
+        "precision": 0.25,
+        "recall_sensitivity": 0.25,
+        "specificity": 0.896551724137931,
+        "f1": 0.25,
+        "false_positive_rate": 0.10344827586206896,
+        "false_negative_rate": 0.75,
+        "auroc": 0.6896551724137931,
+        "auprc_average_precision": 0.41500000000000004,
+        "confusion_matrix": {
+          "tn": 26,
+          "fp": 3,
+          "fn": 3,
+          "tp": 1
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 4,
+        "mean_positive_dice": 0.0,
+        "mean_positive_iou": 0.0,
+        "mean_positive_precision_nonempty": 0.0,
+        "mean_positive_recall": 0.0,
+        "global_dice": 0.0,
+        "global_iou": 0.0,
+        "global_pixel_precision": 0.0,
+        "global_pixel_recall": 0.0,
+        "pixel_counts": {
+          "tp": 0,
+          "fp": 415,
+          "fn": 5479
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "shoulder": {
+      "classification": {
+        "n": 38,
+        "positive": 7,
+        "normal": 31,
+        "accuracy": 0.5,
+        "precision": 0.2,
+        "recall_sensitivity": 0.5714285714285714,
+        "specificity": 0.4838709677419355,
+        "f1": 0.2962962962962963,
+        "false_positive_rate": 0.5161290322580645,
+        "false_negative_rate": 0.42857142857142855,
+        "auroc": 0.5944700460829493,
+        "auprc_average_precision": 0.3817595042724413,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 16,
+          "fn": 3,
+          "tp": 4
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 7,
+        "mean_positive_dice": 0.0,
+        "mean_positive_iou": 0.0,
+        "mean_positive_precision_nonempty": 0.0,
+        "mean_positive_recall": 0.0,
+        "global_dice": 0.0,
+        "global_iou": 0.0,
+        "global_pixel_precision": 0.0,
+        "global_pixel_recall": 0.0,
+        "pixel_counts": {
+          "tp": 0,
+          "fp": 43690,
+          "fn": 132384
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "mixed": {
+      "classification": {
+        "n": 43,
+        "positive": 9,
+        "normal": 34,
+        "accuracy": 0.46511627906976744,
+        "precision": 0.20833333333333334,
+        "recall_sensitivity": 0.5555555555555556,
+        "specificity": 0.4411764705882353,
+        "f1": 0.30303030303030304,
+        "false_positive_rate": 0.5588235294117647,
+        "false_negative_rate": 0.4444444444444444,
+        "auroc": 0.565359477124183,
+        "auprc_average_precision": 0.3964958693028869,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 19,
+          "fn": 4,
+          "tp": 5
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 9,
+        "mean_positive_dice": 0.0,
+        "mean_positive_iou": 0.0,
+        "mean_positive_precision_nonempty": 0.0,
+        "mean_positive_recall": 0.0,
+        "global_dice": 0.0,
+        "global_iou": 0.0,
+        "global_pixel_precision": 0.0,
+        "global_pixel_recall": 0.0,
+        "pixel_counts": {
+          "tp": 0,
+          "fp": 33415,
+          "fn": 79121
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "hardware": {
+      "classification": {
+        "n": 8,
+        "positive": 7,
+        "normal": 1,
+        "accuracy": 0.5,
+        "precision": 0.8,
+        "recall_sensitivity": 0.5714285714285714,
+        "specificity": 0.0,
+        "f1": 0.6666666666666666,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.42857142857142855,
+        "auroc": 0.0,
+        "auprc_average_precision": 0.754591836734694,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 1,
+          "fn": 3,
+          "tp": 4
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 7,
+        "mean_positive_dice": 0.004958968937219956,
+        "mean_positive_iou": 0.00252327949483176,
+        "mean_positive_precision_nonempty": 0.009649024601864032,
+        "mean_positive_recall": 0.0045056377650206985,
+        "global_dice": 0.014294969808484723,
+        "global_iou": 0.007198939213598112,
+        "global_pixel_precision": 0.019480427750074164,
+        "global_pixel_recall": 0.011289767982578226,
+        "pixel_counts": {
+          "tp": 1379,
+          "fp": 69410,
+          "fn": 120767
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "multiscan": {
+      "classification": {
+        "n": 46,
+        "positive": 9,
+        "normal": 37,
+        "accuracy": 0.4782608695652174,
+        "precision": 0.25806451612903225,
+        "recall_sensitivity": 0.8888888888888888,
+        "specificity": 0.3783783783783784,
+        "f1": 0.4,
+        "false_positive_rate": 0.6216216216216216,
+        "false_negative_rate": 0.1111111111111111,
+        "auroc": 0.6696696696696697,
+        "auprc_average_precision": 0.39379729191557145,
+        "confusion_matrix": {
+          "tn": 14,
+          "fp": 23,
+          "fn": 1,
+          "tp": 8
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 9,
+        "mean_positive_dice": 0.12263761692964753,
+        "mean_positive_iou": 0.08471867584275383,
+        "mean_positive_precision_nonempty": 0.15624004265806568,
+        "mean_positive_recall": 0.13915905752970764,
+        "global_dice": 0.08314185352454903,
+        "global_iou": 0.04337402518669569,
+        "global_pixel_precision": 0.05251568130254904,
+        "global_pixel_recall": 0.19946774806741857,
+        "pixel_counts": {
+          "tp": 1574,
+          "fp": 28398,
+          "fn": 6317
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "frontal": {
+      "classification": {
+        "n": 297,
+        "positive": 51,
+        "normal": 246,
+        "accuracy": 0.49158249158249157,
+        "precision": 0.21910112359550563,
+        "recall_sensitivity": 0.7647058823529411,
+        "specificity": 0.4349593495934959,
+        "f1": 0.3406113537117904,
+        "false_positive_rate": 0.5650406504065041,
+        "false_negative_rate": 0.23529411764705882,
+        "auroc": 0.6470588235294118,
+        "auprc_average_precision": 0.3347823182196625,
+        "confusion_matrix": {
+          "tn": 107,
+          "fp": 139,
+          "fn": 12,
+          "tp": 39
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 51,
+        "mean_positive_dice": 0.15883102585375447,
+        "mean_positive_iou": 0.10996116304284015,
+        "mean_positive_precision_nonempty": 0.23832611963765196,
+        "mean_positive_recall": 0.16311877906155642,
+        "global_dice": 0.053047133828892784,
+        "global_iou": 0.027246234231245513,
+        "global_pixel_precision": 0.042708183904748245,
+        "global_pixel_recall": 0.06999074332564392,
+        "pixel_counts": {
+          "tp": 19054,
+          "fp": 427090,
+          "fn": 253182
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "lateral": {
+      "classification": {
+        "n": 161,
+        "positive": 39,
+        "normal": 122,
+        "accuracy": 0.5217391304347826,
+        "precision": 0.3020833333333333,
+        "recall_sensitivity": 0.7435897435897436,
+        "specificity": 0.45081967213114754,
+        "f1": 0.42962962962962964,
+        "false_positive_rate": 0.5491803278688525,
+        "false_negative_rate": 0.2564102564102564,
+        "auroc": 0.6563682219419924,
+        "auprc_average_precision": 0.43635816255998716,
+        "confusion_matrix": {
+          "tn": 55,
+          "fp": 67,
+          "fn": 10,
+          "tp": 29
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 39,
+        "mean_positive_dice": 0.2851221769142382,
+        "mean_positive_iou": 0.21573419574290603,
+        "mean_positive_precision_nonempty": 0.4493979370741654,
+        "mean_positive_recall": 0.304418581611887,
+        "global_dice": 0.0499324456132999,
+        "global_iou": 0.025605495307573462,
+        "global_pixel_precision": 0.0669722459105357,
+        "global_pixel_recall": 0.03980486343896511,
+        "pixel_counts": {
+          "tp": 6911,
+          "fp": 96281,
+          "fn": 166711
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "oblique": {
+      "classification": {
+        "n": 42,
+        "positive": 5,
+        "normal": 37,
+        "accuracy": 0.5238095238095238,
+        "precision": 0.14285714285714285,
+        "recall_sensitivity": 0.6,
+        "specificity": 0.5135135135135135,
+        "f1": 0.23076923076923078,
+        "false_positive_rate": 0.4864864864864865,
+        "false_negative_rate": 0.4,
+        "auroc": 0.5405405405405406,
+        "auprc_average_precision": 0.16408721359940873,
+        "confusion_matrix": {
+          "tn": 19,
+          "fp": 18,
+          "fn": 2,
+          "tp": 3
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 5,
+        "mean_positive_dice": 0.032211538461538465,
+        "mean_positive_iou": 0.017516339869281045,
+        "mean_positive_precision_nonempty": 0.03584804708400214,
+        "mean_positive_recall": 0.06411483253588517,
+        "global_dice": 0.005206410879067509,
+        "global_iou": 0.002609999805223895,
+        "global_pixel_precision": 0.0027294577748808407,
+        "global_pixel_recall": 0.05627887442251155,
+        "pixel_counts": {
+          "tp": 134,
+          "fp": 48960,
+          "fn": 2247
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "small_region_proxy": {
+      "classification": {
+        "n": 12,
+        "positive": 12,
+        "normal": 0,
+        "accuracy": 0.5833333333333334,
+        "precision": 1.0,
+        "recall_sensitivity": 0.5833333333333334,
+        "specificity": null,
+        "f1": 0.7368421052631579,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.4166666666666667,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 5,
+          "tp": 7
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 12,
+        "mean_positive_dice": 0.20515537603716458,
+        "mean_positive_iou": 0.14318191697252383,
+        "mean_positive_precision_nonempty": 0.37490787505093354,
+        "mean_positive_recall": 0.2480605140087306,
+        "global_dice": 0.10588235294117647,
+        "global_iou": 0.055900621118012424,
+        "global_pixel_precision": 0.24927113702623907,
+        "global_pixel_recall": 0.06721698113207547,
+        "pixel_counts": {
+          "tp": 855,
+          "fp": 2575,
+          "fn": 11865
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    },
+    "multiple_fractures": {
+      "classification": {
+        "n": 16,
+        "positive": 16,
+        "normal": 0,
+        "accuracy": 0.9375,
+        "precision": 1.0,
+        "recall_sensitivity": 0.9375,
+        "specificity": null,
+        "f1": 0.967741935483871,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.0625,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 1,
+          "tp": 15
+        },
+        "score_definition": "maximum float32 model-grid sigmoid pixel output; uncalibrated proxy, NOT a case probability"
+      },
+      "segmentation": {
+        "n_positive": 16,
+        "mean_positive_dice": 0.22566582617253023,
+        "mean_positive_iou": 0.1530865898179717,
+        "mean_positive_precision_nonempty": 0.2540386275574509,
+        "mean_positive_recall": 0.2609077428653924,
+        "global_dice": 0.1409814541276875,
+        "global_iou": 0.07583649686589565,
+        "global_pixel_precision": 0.32990878540566493,
+        "global_pixel_recall": 0.08964491638185186,
+        "pixel_counts": {
+          "tp": 3436,
+          "fp": 6979,
+          "fn": 34893
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      }
+    }
+  },
+  "categories": {
+    "FP": 206,
+    "FN": 22,
+    "TN": 174,
+    "TP": 61
+  },
+  "segmentation_failure_counts": {
+    "complete_empty_miss": 22,
+    "complete_mislocalization": 26,
+    "under_segmentation_recall_below_0.5": 15,
+    "over_segmentation_precision_below_0.5": 12
+  },
+  "practical_classification_targets": {
+    "tp_min": 79,
+    "tn_min": 342,
+    "sensitivity_rounding": "79/83=95.1807%, approximately95.2%; user practical count rule",
+    "classification_counts_pass": false,
+    "promotion_accepted": false,
+    "reason": "Native localization/segmentation comparison, calibration, robustness and freeze still required even if case counts pass"
+  },
+  "timing": {
+    "forward_median_ms": 764.9251500006358,
+    "forward_p95_ms": 1987.7826399970218,
+    "pipeline_median_ms": 823.3960500001558,
+    "full_audit_seconds": 582.0946732999982,
+    "peak_rss_bytes": 1251028992
+  },
+  "test_images_read": 0,
+  "unavailable": [
+    "patient/study independence",
+    "clinical subtle/nondisplaced labels",
+    "paired-study fusion",
+    "external generalization",
+    "radiologist adjudication"
+  ],
+  "small_region_definition": {
+    "cutoff_fraction": 0.0020550129324089714,
+    "source": "Training25th percentile; not clinical subtle/nondisplaced"
+  },
+  "trainer_reproduction": {
+    "exact_native_case_counts": false,
+    "differing_cases": [
+      {
+        "image_id": "IMG0000008.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 4044,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000038.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 12316,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000071.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 28148,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000081.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 2549,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000086.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 4310,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000113.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 27029,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000144.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 18489,
+        "fn_pixels": 21290,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000179.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 55184,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000190.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 9854,
+        "fn_pixels": 27035,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000201.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 34669,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000208.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 69949,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000214.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 11542,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000216.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 30065,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000260.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 13108,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000267.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 449,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000374.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 110,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000630.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 447,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000963.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 299,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0000990.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 1087,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0001355.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 27,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0001793.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 207,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0001849.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 335,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0001986.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 447,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0002066.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 7,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0002323.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 640,
+        "fn_pixels": 26302,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0002342.jpg",
+        "tp_pixels": 1379,
+        "fp_pixels": 34350,
+        "fn_pixels": 42344,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0002397.jpg",
+        "tp_pixels": 134,
+        "fp_pixels": 1112,
+        "fn_pixels": 284,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0002647.jpg",
+        "tp_pixels": 132,
+        "fp_pixels": 0,
+        "fn_pixels": 723,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0002662.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 770,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0003140.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 947,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0003348.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 290,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0003714.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 134,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0003917.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 618,
+        "fn_pixels": 0,
+        "prediction_present": true
+      },
+      {
+        "image_id": "IMG0004062.jpg",
+        "tp_pixels": 0,
+        "fp_pixels": 770,
+        "fn_pixels": 0,
+        "prediction_present": true
+      }
+    ],
+    "trainer_device": "cuda",
+    "audit_device": "cpu",
+    "note": "CPU/GPU rounding may change near-threshold pixels; discrepancies retained, never overwrite trainer data"
+  }
+}

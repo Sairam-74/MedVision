@@ -1,0 +1,227 @@
+{
+  "samples": [
+    {
+      "image_id": "IMG0002377.jpg",
+      "stratum": "hard_positive",
+      "train_index": 1639
+    },
+    {
+      "image_id": "IMG0002497.jpg",
+      "stratum": "hard_positive",
+      "train_index": 1722
+    },
+    {
+      "image_id": "IMG0000155.jpg",
+      "stratum": "hard_positive",
+      "train_index": 112
+    },
+    {
+      "image_id": "IMG0003312.jpg",
+      "stratum": "hard_positive",
+      "train_index": 2290
+    },
+    {
+      "image_id": "IMG0003077.jpg",
+      "stratum": "hard_positive",
+      "train_index": 2120
+    },
+    {
+      "image_id": "IMG0002568.jpg",
+      "stratum": "hard_positive",
+      "train_index": 1767
+    },
+    {
+      "image_id": "IMG0002566.jpg",
+      "stratum": "hard_positive",
+      "train_index": 1765
+    },
+    {
+      "image_id": "IMG0002391.jpg",
+      "stratum": "hard_positive",
+      "train_index": 1650
+    },
+    {
+      "image_id": "IMG0003628.jpg",
+      "stratum": "ordinary_positive",
+      "train_index": 2501
+    },
+    {
+      "image_id": "IMG0004375.jpg",
+      "stratum": "ordinary_positive",
+      "train_index": 2803
+    },
+    {
+      "image_id": "IMG0002505.jpg",
+      "stratum": "ordinary_positive",
+      "train_index": 1726
+    },
+    {
+      "image_id": "IMG0001350.jpg",
+      "stratum": "ordinary_positive",
+      "train_index": 932
+    },
+    {
+      "image_id": "IMG0002504.jpg",
+      "stratum": "ordinary_positive",
+      "train_index": 1725
+    },
+    {
+      "image_id": "IMG0003112.jpg",
+      "stratum": "ordinary_positive",
+      "train_index": 2141
+    },
+    {
+      "image_id": "IMG0002489.jpg",
+      "stratum": "ordinary_positive",
+      "train_index": 1716
+    },
+    {
+      "image_id": "IMG0003183.jpg",
+      "stratum": "ordinary_positive",
+      "train_index": 2191
+    },
+    {
+      "image_id": "IMG0000371.jpg",
+      "stratum": "hard_negative",
+      "train_index": 257
+    },
+    {
+      "image_id": "IMG0003046.jpg",
+      "stratum": "hard_negative",
+      "train_index": 2095
+    },
+    {
+      "image_id": "IMG0003592.jpg",
+      "stratum": "hard_negative",
+      "train_index": 2474
+    },
+    {
+      "image_id": "IMG0002852.jpg",
+      "stratum": "hard_negative",
+      "train_index": 1968
+    },
+    {
+      "image_id": "IMG0001656.jpg",
+      "stratum": "hard_negative",
+      "train_index": 1149
+    },
+    {
+      "image_id": "IMG0001704.jpg",
+      "stratum": "hard_negative",
+      "train_index": 1177
+    },
+    {
+      "image_id": "IMG0000379.jpg",
+      "stratum": "hard_negative",
+      "train_index": 263
+    },
+    {
+      "image_id": "IMG0003258.jpg",
+      "stratum": "hard_negative",
+      "train_index": 2249
+    },
+    {
+      "image_id": "IMG0001551.jpg",
+      "stratum": "ordinary_negative",
+      "train_index": 1069
+    },
+    {
+      "image_id": "IMG0003065.jpg",
+      "stratum": "ordinary_negative",
+      "train_index": 2110
+    },
+    {
+      "image_id": "IMG0001776.jpg",
+      "stratum": "ordinary_negative",
+      "train_index": 1218
+    },
+    {
+      "image_id": "IMG0001254.jpg",
+      "stratum": "ordinary_negative",
+      "train_index": 863
+    },
+    {
+      "image_id": "IMG0000422.jpg",
+      "stratum": "ordinary_negative",
+      "train_index": 291
+    },
+    {
+      "image_id": "IMG0003316.jpg",
+      "stratum": "ordinary_negative",
+      "train_index": 2293
+    },
+    {
+      "image_id": "IMG0001716.jpg",
+      "stratum": "ordinary_negative",
+      "train_index": 1184
+    },
+    {
+      "image_id": "IMG0000614.jpg",
+      "stratum": "ordinary_negative",
+      "train_index": 417
+    }
+  ],
+  "checkpoint_hashes": {
+    "E11": "c1703d13e5b4cdf35b600c48825ec93c3394570ab1df44d20e9a06b41abc2b84",
+    "E12": "c93ca3b3143cf3a096c72905f211d24ca8bd93fa871c93c15fbd4ce774c4904c"
+  },
+  "selected_epochs": {
+    "E11": {
+      "epoch": 9,
+      "global_epoch": 39
+    },
+    "E12": {
+      "epoch": 3,
+      "global_epoch": 33
+    }
+  },
+  "source_hashes": {
+    "tools/audit_ai_foreground_gradients_completed_pair.py": "78fdb590223d932628a7513a5fc715465fe93e51d377cac6e313d7d5e63352c4",
+    "tools/ai_cached_dataset.py": "0cdf89276b3fae7bd1279712fb37224fa009952e4f261f1400e86d6f73dbf2b9",
+    "tools/ai_presence_model.py": "7b6ccadb11f9cd4083e1ac40c97f0311f1454bd31fcb777195447ebf0ede087e",
+    "tools/ai_bounded_hard_weights.py": "817334e5e441bd89a76a6db0e578604cc0fa4887e97cd2e9049ec2b351cbcc6a",
+    "tools/ai_atomic_io.py": "5e96df283d717e086ff72a4e19d1d5d6fcc0677fc30728c0187e9fd767f675aa",
+    "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc"
+  },
+  "input_hashes": {
+    "experiments\\session_20261007_ai_loop_01\\POSITIVE_DICE_EXPERIMENT_PROTOCOL.json": "4685bbe07f9a9c9b0690645692882198c3ba2f01a5a9482ef30027450618344c",
+    "experiments\\data_v3_reliability_20261007\\manifest.json": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+    "experiments\\AI_TRAIN_CACHE_v3_256_r2\\completion.json": "e50f30c3e4e5768a18c694b6de3e14e5d9064c84d6141191e88e26ca471ffce4",
+    "experiments\\AI_TRAIN_CACHE_v3_256_r2\\rows.json": "40bdbe392616fc1d27656c8c2a5d1ae447c390aeac8c19b4a24a79b3177e88ee",
+    "experiments\\AI_E11_E12_POSITIVE_DICE_PAIR\\comparison.json": "ba7cfe88be4e50e514d89ec5bf5020e6355a95a073b3f98bbceebc49c08c8061",
+    "experiments\\AI_E11_E12_POSITIVE_DICE_PAIR\\completion.json": "18e5342ddc47699237b2684739855d6aad78715280c17419e6ad1295c368596e",
+    "best_model.pt": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+    "experiments\\AI_TRAIN_HARD_REFRESH_E7_E8_v3_r2\\completion.json": "a56a9790674035fbe6c0af80d9e2ae4d5ae81064d7f247a7f7ed9ad03b77d5f5",
+    "experiments\\AI_TRAIN_HARD_REFRESH_E7_E8_v3_r2\\HARD_POSITIVE_SET.json": "47d54c597e090a44b259eb9f167f116a69930a4e197477bdad4f88aff7a82c22",
+    "experiments\\AI_TRAIN_HARD_REFRESH_E7_E8_v3_r2\\HARD_NEGATIVE_SET.json": "e7cc7ae2a43b7b60a170368ba46b59be0b9cd59efc1f9e6300461427dec59771",
+    "experiments\\AI_TRAIN_HARD_REFRESH_E7_E8_v3_r2\\proposed_example_weights.json": "9fec42087cc5e347523193dde2079c17cd7a3f2d9a4b0ea0441ea10ad051bc92",
+    "experiments\\AI_E11_v3_positive_Dice_reference\\config.json": "b3216e1aae682f95f1245236b8b3f0dabc57de06e17257a8026d2cdd98c716a7",
+    "experiments\\AI_E11_v3_positive_Dice_reference\\state.json": "2ee97d19ba23409dc3ddf6dc0254020b319d6c067db4e3c998f322d6c486b0db",
+    "experiments\\AI_E11_v3_positive_Dice_reference\\bundle.json": "2979b80c7774ea92c0312465cd44d048ea43deef85a1f8cf06fd922d33a12443",
+    "experiments\\AI_E12_v3_positive_Dice2\\config.json": "03f98f4633094158030e1c5bcab4479e3470eb6f2fc4dafc2863abb201d17e9c",
+    "experiments\\AI_E12_v3_positive_Dice2\\state.json": "c497363b15d20a0e22742e6448e267426f2f587799c8a4f5b5364d119ca3fe52",
+    "experiments\\AI_E12_v3_positive_Dice2\\bundle.json": "06975ad16da70d3a1ea062cb69cd8b126df27aafe97c1151f55524ef5ffc1749"
+  },
+  "preprocess": {
+    "size": 256,
+    "resize": "stretch",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 3,
+    "normalization": "unit"
+  },
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "cache_completion_sha256": "e50f30c3e4e5768a18c694b6de3e14e5d9064c84d6141191e88e26ca471ffce4",
+  "hard_factor": 2,
+  "augmentation": false,
+  "batch_size": 2,
+  "device": "cuda",
+  "eval_statistics": true,
+  "no_optimizer_steps": true,
+  "scope": "32 TRAIN sources: eight size-spanning hard/ordinary positives plus eight seeded hard/ordinary normals",
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

@@ -1,0 +1,13 @@
+{
+  "status": "completed_diagnostic_only",
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "source_sha256": "15a92ed66134a8ef525e2e1f05b72cd07608eceed2f3802347599cc163d873d0",
+  "image_bytes_read": 0,
+  "train_positive_masks": 493,
+  "validation_positive_masks": 83,
+  "calibration_masks_rasterized": 0,
+  "test_masks_rasterized": 0,
+  "model_inference": false,
+  "model_trained": false,
+  "caveat": "Label roundtrip is a resolution representation diagnostic, neither a measured model score nor a mathematical upper bound. Gradient probes use synthetic uniform logits and actual TRAIN foreground counts, not learned gradients."
+}

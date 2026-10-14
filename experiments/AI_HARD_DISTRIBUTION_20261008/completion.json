@@ -1,0 +1,12 @@
+{
+  "status": "completed_TRAIN_metadata_objective_mass_audit",
+  "distribution_sha256": "8605d158828775d6bd0ca20f092bcc1c86b8daf32483d1f40c0111c4bf2a6636",
+  "subgroup_mass_sha256": "b1bca9a6863b67b399597b6d275023381efac657c9664f9ce7133075876ec99a",
+  "verified_weights_sha256": "e3a3ac047c4fe529982432baadc6b050436b011dffaec47d3c2b522206bb72bf",
+  "new_image_reads": 0,
+  "inference_performed": false,
+  "model_trained": false,
+  "weights_modified": false,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

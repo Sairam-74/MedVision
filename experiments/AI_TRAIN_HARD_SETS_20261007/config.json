@@ -1,0 +1,22 @@
+{
+  "scope": "TRAIN ONLY hard-case catalog; historical original exposure unknown; no sampling or model changes",
+  "samples": 2808,
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "models": {
+    "production_original": {
+      "checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+      "threshold": 0.9
+    },
+    "E2_completed_epoch10": {
+      "checkpoint_sha256": "2c4bb7cad411d0b0d8759efc0b29ca23144cf77962919277a7d07eaa5f0a4a49",
+      "threshold": 0.5
+    }
+  },
+  "positive_rule": "ground truth fracture AND native Dice<.20 in BOTH models at their recorded thresholds; includes empty or wrong-region misses",
+  "negative_rule": "explicit ground truth normal AND nonempty native mask in BOTH models at their recorded thresholds",
+  "scores": "algorithmic difficulty, not clinically adjudicated subtle/nondisplaced labels",
+  "torch": "2.9.1+cu128",
+  "device": "cuda",
+  "source_sha256": "f383340c2f5652f969eba7cbc3c59089034d2b424293a9f3d7274c2e1a885f8a",
+  "test_images_read": 0
+}

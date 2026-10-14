@@ -1,5 +1,11 @@
 # Python
 .venv/
+.venv-phase2/
+.venv-clean/
+.venv-audit/
+.venv-demo/
+.local_demo/
+*.npz
 __pycache__/
 *.py[cod]
 
@@ -28,3 +34,22 @@ medvision_temp/
 .cursor/
 .claude/
 .DS_Store
+
+# Backup safety: local state, binary deliverables and experiment artifacts
+.medvision-backup-staging/
+*.sqlite*
+*.db
+*.tsbuildinfo
+*.docx
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.npy
+*.pkl
+*.pth
+*.safetensors
+*.csv
+deliverables/
+experiments/
+reports/

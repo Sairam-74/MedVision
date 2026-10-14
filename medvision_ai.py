@@ -11,6 +11,8 @@ This single-file script contains:
 from __future__ import annotations
 
 import base64
+import hashlib
+from functools import lru_cache
 import argparse
 import importlib
 import importlib.util
@@ -68,12 +70,7 @@ def preprocess_image(image_path: str) -> np.ndarray:
     if image is None:
         raise FileNotFoundError(f"Could not read image at: {image_path}")
 
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
-    enhanced = clahe.apply(image)
-    denoised = cv2.GaussianBlur(enhanced, (3, 3), 0)
-    resized = cv2.resize(denoised, (IMAGE_SIZE, IMAGE_SIZE), interpolation=cv2.INTER_AREA)
-    normalized = resized.astype(np.float32) / 255.0
-    return normalized
+    return preprocess_image_array(image)
 
 
 def preprocess_image_array(image: np.ndarray) -> np.ndarray:
@@ -147,7 +144,13 @@ class FracAtlasZipDataset(Dataset):
 
         with zipfile.ZipFile(self.zip_path, "r") as zf:
             coco_json = json.loads(zf.read("FracAtlas/Annotations/COCO JSON/COCO_fracture_masks.json"))
-            self.image_records = coco_json["images"]
+            coco_records = {r["file_name"]: r for r in coco_json["images"]}
+            manifest_path = self.zip_path.parent / "experiments" / "data_v1" / "manifest.json"
+            if not manifest_path.exists():
+                raise FileNotFoundError("Run tools/audit_dataset.py first to audit all labels and freeze grouped splits.")
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            self.image_records = [dict(r, file_name=r["image_id"], id=coco_records.get(r["image_id"], {}).get("id", -i-1))
+                                  for i, r in enumerate(manifest["rows"])]
             self.annotations = coco_json.get("annotations", [])
 
             self.image_member_map = {
@@ -163,29 +166,20 @@ class FracAtlasZipDataset(Dataset):
         if max_items is not None:
             self.image_records = self.image_records[:max_items]
 
-        self._cache: List[Tuple[np.ndarray, np.ndarray]] = []
-        with zipfile.ZipFile(self.zip_path, "r") as zf:
-            for record in self.image_records:
-                image_member = self.image_member_map.get(record["file_name"])
-                if image_member is None:
-                    raise FileNotFoundError(f"Could not resolve FracAtlas image in zip: {record['file_name']}")
-
-                image = _decode_image_bytes(zf.read(image_member))
-                height = int(record["height"])
-                width = int(record["width"])
-                mask = np.zeros((height, width), dtype=np.uint8)
-                for annotation in self.annotation_index.get(int(record["id"]), []):
-                    segmentation = annotation.get("segmentation", [])
-                    if segmentation:
-                        mask |= _rasterize_coco_segmentation(segmentation, width, height)
-
-                self._cache.append((image, mask))
+        # Decode on demand; dataset wrappers share immutable metadata rather than
+        # allocating four full-resolution image/mask caches.
 
     def __len__(self) -> int:
         return len(self.image_records)
 
     def __getitem__(self, index: int) -> Tuple[torch.Tensor, torch.Tensor]:
-        image, mask = self._cache[index]
+        record = self.image_records[index]
+        with zipfile.ZipFile(self.zip_path, "r") as zf:
+            image = _decode_image_bytes(zf.read(self.image_member_map[record["file_name"]]))
+        height, width = image.shape
+        mask = np.zeros((height, width), dtype=np.uint8)
+        for annotation in self.annotation_index.get(int(record["id"]), []):
+            mask |= _rasterize_coco_segmentation(annotation.get("segmentation", []), width, height)
 
         preprocessed_image = preprocess_image_array(image)
         resized_mask = cv2.resize(mask, (IMAGE_SIZE, IMAGE_SIZE), interpolation=cv2.INTER_NEAREST).astype(np.float32)
@@ -436,14 +430,9 @@ def combined_dice_bce_loss(
 
 
 def assess_severity(binary_mask: torch.Tensor | np.ndarray, threshold: float = 0.5) -> Tuple[np.ndarray, Dict[str, float], str]:
-    """Extract the largest fracture component and compute severity heuristics.
+    """Preserve all regions and describe geometry in input-mask pixel units.
 
-    The reasoning is simple and review-friendly:
-    - The largest connected component is a robust proxy for the main fracture line.
-    - Area measures spread of fractured pixels.
-    - Perimeter and compactness describe shape complexity and fragmentation.
-    - Aspect ratio tells us whether the component is elongated or compact.
-    - Severity tiers use area thresholds as a transparent heuristic baseline.
+    Tiers are experimental area heuristics, without clinical severity labels.
     """
 
     if isinstance(binary_mask, torch.Tensor):
@@ -459,23 +448,13 @@ def assess_severity(binary_mask: torch.Tensor | np.ndarray, threshold: float = 0
 
     num_labels, labels, stats, _ = cv2.connectedComponentsWithStats(binary, connectivity=8)
     if num_labels <= 1:
-        features = {"area": 0.0, "perimeter": 0.0, "compactness": 0.0, "aspect_ratio": 0.0}
-        return binary, features, "Mild"
+        features = {"area": 0.0, "perimeter": 0.0, "compactness": 0.0, "aspect_ratio": 0.0, "component_count": 0}
+        return binary, features, "Not applicable"
 
-    largest_label = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
-    largest_component = (labels == largest_label).astype(np.uint8)
-
-    contours, _ = cv2.findContours(largest_component, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    if not contours:
-        area = float(largest_component.sum())
-        perimeter = 0.0
-        x = y = 0
-        w = h = 1
-    else:
-        contour = max(contours, key=cv2.contourArea)
-        area = float(cv2.contourArea(contour))
-        perimeter = float(cv2.arcLength(contour, True))
-        x, y, w, h = cv2.boundingRect(contour)
+    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    area = float(np.count_nonzero(binary))
+    perimeter = float(sum(cv2.arcLength(c, True) for c in contours))
+    x, y, w, h = cv2.boundingRect(cv2.findNonZero(binary))
 
     compactness = float((4.0 * math.pi * area) / (perimeter ** 2 + 1e-6))
     aspect_ratio = float(w / (h + 1e-6))
@@ -493,8 +472,9 @@ def assess_severity(binary_mask: torch.Tensor | np.ndarray, threshold: float = 0
         "perimeter": perimeter,
         "compactness": compactness,
         "aspect_ratio": aspect_ratio,
+        "component_count": int(num_labels - 1),
     }
-    return largest_component.astype(np.uint8), features, severity
+    return binary, features, severity
 
 
 def _ensure_4d_tensor(image: np.ndarray | torch.Tensor) -> torch.Tensor:
@@ -521,7 +501,9 @@ def run_medvision_inference(
     input_tensor = _ensure_4d_tensor(processed).to(DEVICE)
 
     if model is None:
-        model = AttentionUNet().to(DEVICE)
+        checkpoint_file = Path(__file__).resolve().parent / "best_model.pt"
+        stat = checkpoint_file.stat()
+        model, _ = _cached_inference_model(str(checkpoint_file), stat.st_size, stat.st_mtime_ns)
 
     model.eval()
 
@@ -559,7 +541,7 @@ def generate_mock_fracture_mask(size: int = IMAGE_SIZE) -> np.ndarray:
 def _apply_elastic_warp(image: np.ndarray, mask: np.ndarray, alpha: float = 8.0, sigma: float = 12.0) -> Tuple[np.ndarray, np.ndarray]:
     """Apply the same elastic warp to an image/mask pair."""
 
-    random_state = np.random.RandomState()
+    random_state = np.random
     height, width = image.shape[:2]
     dx = cv2.GaussianBlur((random_state.rand(height, width).astype(np.float32) * 2.0 - 1.0), (0, 0), sigma) * alpha
     dy = cv2.GaussianBlur((random_state.rand(height, width).astype(np.float32) * 2.0 - 1.0), (0, 0), sigma) * alpha
@@ -609,7 +591,7 @@ class _FallbackTrainingTransform:
         return {"image": transformed_image.astype(np.float32), "mask": transformed_mask.astype(np.float32)}
 
 
-def _build_training_transform() -> Optional[object]:
+def _build_training_transform(seed: int = 42) -> Optional[object]:
     """Build Albumentations augmentation for the training split only."""
 
     if A is None:
@@ -621,7 +603,7 @@ def _build_training_transform() -> Optional[object]:
             A.HorizontalFlip(p=0.5),
             A.Rotate(limit=15, border_mode=cv2.BORDER_REFLECT_101, p=0.5),
             A.ElasticTransform(alpha=1.0, sigma=50.0, border_mode=cv2.BORDER_REFLECT_101, p=0.3),
-        ]
+        ], seed=seed,
     )
 
 
@@ -704,33 +686,37 @@ def _build_dataset_splits(
 
     if dataset_zip.exists():
         base_dataset = FracAtlasZipDataset(str(dataset_zip), max_items=max_items)
-        train_dataset = FracAtlasZipDataset(str(dataset_zip), max_items=max_items, transform=_build_training_transform())
+        train_dataset = FracAtlasZipDataset(str(dataset_zip), max_items=max_items, transform=_build_training_transform(seed))
         val_dataset = FracAtlasZipDataset(str(dataset_zip), max_items=max_items)
         test_dataset = FracAtlasZipDataset(str(dataset_zip), max_items=max_items)
         source_label = "real FracAtlas"
         if verbose:
             print(f"Using real FracAtlas zip at: {dataset_zip}")
     else:
-        fallback_length = max_items if max_items is not None else 60
-        base_dataset = MockFractureDataset(length=fallback_length)
-        train_dataset = base_dataset
-        val_dataset = base_dataset
-        test_dataset = base_dataset
-        source_label = "synthetic fallback"
-        if verbose:
-            print(f"FracAtlas.zip not found at {dataset_zip}; using synthetic fallback dataset.")
+        raise FileNotFoundError(f"Research requires real FracAtlas data: {dataset_zip}")
 
     positive_indices: List[int] = []
     negative_indices: List[int] = []
     for idx in range(len(base_dataset)):
-        _, mask_tensor = base_dataset[idx]
-        if _is_positive_mask(mask_tensor):
+        if isinstance(base_dataset, FracAtlasZipDataset):
+            positive = bool(int(base_dataset.image_records[idx]["fractured"]))
+        else:
+            _, mask_tensor = base_dataset[idx]
+            positive = _is_positive_mask(mask_tensor)
+        if positive:
             positive_indices.append(idx)
         else:
             negative_indices.append(idx)
 
-    pos_train, pos_val, pos_test = _split_indices(positive_indices, seed)
-    neg_train, neg_val, neg_test = _split_indices(negative_indices, seed + 1)
+    if isinstance(base_dataset, FracAtlasZipDataset):
+        def frozen_indices(split, positive):
+            return [i for i, r in enumerate(base_dataset.image_records)
+                    if r["split"] == split and bool(int(r["fractured"])) == positive]
+        pos_train, pos_val, pos_test = [frozen_indices(s, True) for s in ["train", "val", "test"]]
+        neg_train, neg_val, neg_test = [frozen_indices(s, False) for s in ["train", "val", "test"]]
+    else:
+        pos_train, pos_val, pos_test = _split_indices(positive_indices, seed)
+        neg_train, neg_val, neg_test = _split_indices(negative_indices, seed + 1)
 
     train_indices = pos_train + neg_train
     val_indices = pos_val + neg_val
@@ -935,11 +921,14 @@ def _load_calibrated_threshold(checkpoint_path: str | Path, default: float = 0.5
         return default
 
     payload = json.loads(metadata_path.read_text(encoding="utf-8"))
-    return float(payload.get("calibrated_threshold", default))
+    threshold = float(payload.get("calibrated_threshold", default))
+    if not math.isfinite(threshold) or not 0.0 < threshold < 1.0:
+        raise ValueError("Threshold metadata must contain a finite value strictly between 0 and 1")
+    return threshold
 
 
 def _load_model_weights(model: nn.Module, checkpoint_path: str | Path) -> None:
-    checkpoint = torch.load(checkpoint_path, map_location=DEVICE)
+    checkpoint = torch.load(checkpoint_path, map_location=DEVICE, weights_only=True)
     if isinstance(checkpoint, dict) and "model_state_dict" in checkpoint:
         model.load_state_dict(checkpoint["model_state_dict"])
     else:
@@ -1057,9 +1046,8 @@ def create_overlay(image_path: str, binary_mask: np.ndarray, output_path: str, m
     if normalized_mode not in {"prediction", "ground_truth"}:
         raise ValueError("mode must be either 'prediction' or 'ground_truth'")
 
-    original = cv2.resize(original, (IMAGE_SIZE, IMAGE_SIZE), interpolation=cv2.INTER_AREA)
     if binary_mask.shape != original.shape:
-        binary_mask = cv2.resize(binary_mask.astype(np.uint8), (IMAGE_SIZE, IMAGE_SIZE), interpolation=cv2.INTER_NEAREST)
+        binary_mask = cv2.resize(binary_mask.astype(np.uint8), (original.shape[1], original.shape[0]), interpolation=cv2.INTER_NEAREST)
 
     overlay = cv2.cvtColor(original, cv2.COLOR_GRAY2BGR)
     overlay_color = (0, 0, 255) if normalized_mode == "prediction" else (0, 255, 0)
@@ -1182,7 +1170,10 @@ def train_model(
     val_loader = DataLoader(val_subset, batch_size=batch_size, shuffle=False)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=5)
-    checkpoint_file = Path(checkpoint_path) if checkpoint_path is not None else base_dir / "best_model.pt"
+    checkpoint_file = Path(checkpoint_path) if checkpoint_path is not None else base_dir / "experiments" / "legacy_training" / "best_model.pt"
+    if checkpoint_file.resolve() == (base_dir / "best_model.pt").resolve() or checkpoint_file.exists():
+        raise ValueError("Refusing to overwrite an existing checkpoint; use a new experiment path.")
+    checkpoint_file.parent.mkdir(parents=True, exist_ok=True)
 
     if hasattr(train_subset, "indices"):
         pos_ratio, pos_pixels, total_pixels = _estimate_positive_pixel_ratio(
@@ -1352,18 +1343,27 @@ def load_first_image_from_zip(zip_path: str) -> Optional[str]:
     return str(extracted_path)
 
 
-def predict_from_checkpoint(image_path: str, checkpoint_path: str = "best_model.pt") -> Dict[str, Any]:
-    """Load a trained checkpoint and return a JSON-serializable prediction payload."""
-
+@lru_cache(maxsize=2)
+def _cached_inference_model(checkpoint_path: str, size: int, mtime_ns: int):
+    """Cache by file identity; a replaced checkpoint causes a strict reload."""
     model = AttentionUNet().to(DEVICE)
+    _load_model_weights(model, checkpoint_path)
+    model.eval()
+    with open(checkpoint_path, "rb") as stream:
+        sha256 = hashlib.file_digest(stream, "sha256").hexdigest()
+    return model, sha256
+
+
+def predict_from_checkpoint(image_path: str, checkpoint_path: str = "best_model.pt") -> Dict[str, Any]:
+    """Run real inference; return a mask mapped back to original image coordinates."""
     checkpoint_file = Path(checkpoint_path)
     if not checkpoint_file.exists() and not checkpoint_file.is_absolute():
         checkpoint_file = Path(__file__).resolve().parent / checkpoint_file
     if not checkpoint_file.exists():
         raise FileNotFoundError(f"Checkpoint not found: {checkpoint_file}")
 
-    _load_model_weights(model, checkpoint_file)
-    model.eval()
+    stat = checkpoint_file.stat()
+    model, model_hash = _cached_inference_model(str(checkpoint_file.resolve()), stat.st_size, stat.st_mtime_ns)
     threshold = _load_calibrated_threshold(checkpoint_file)
 
     processed = preprocess_image(image_path)
@@ -1375,6 +1375,13 @@ def predict_from_checkpoint(image_path: str, checkpoint_path: str = "best_model.
     binary_mask = (prob_mask >= threshold).astype(np.uint8)
     mask_np, feature_dict, severity = assess_severity(binary_mask, threshold=threshold)
 
+    original = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+    if original is None:
+        raise ValueError("Image could not be decoded")
+    mask_np = cv2.resize(mask_np, (original.shape[1], original.shape[0]), interpolation=cv2.INTER_NEAREST)
+    if not mask_np.any():
+        _, feature_dict, severity = assess_severity(np.zeros((IMAGE_SIZE, IMAGE_SIZE), dtype=np.uint8))
+
     _, encoded_image = cv2.imencode(".png", (mask_np * 255).astype(np.uint8))
     png_b64 = base64.b64encode(encoded_image.tobytes()).decode("ascii")
     return {
@@ -1383,6 +1390,11 @@ def predict_from_checkpoint(image_path: str, checkpoint_path: str = "best_model.
         "calibrated_threshold": float(threshold),
         "severity_features": feature_dict,
         "severity_tier": severity,
+        "mask_present": bool(mask_np.any()),
+        "model_sha256": model_hash,
+        "postprocessing": "all-components-v1",
+        "geometry_units": "pixels on stretched 256x256 model grid; heuristic tier, not clinical severity",
+        "threshold_provenance": "legacy metadata; historical validation split and checkpoint association unverified",
     }
 
 
@@ -1408,12 +1420,17 @@ def main() -> None:
         help="Class-imbalance-aware loss term to combine with Dice; focal_tversky is the default for FracAtlas sparsity.",
     )
     parser.add_argument("--seed", type=int, default=42, help="Random seed for deterministic splitting/training.")
+    parser.add_argument("--checkpoint", default="experiments/legacy_training/best_model.pt", help="New output path; original root checkpoint is protected.")
     args = parser.parse_args()
 
     set_seed(args.seed)
     base_dir = Path(__file__).resolve().parent
     dataset_zip = str(Path(args.dataset_zip)) if args.dataset_zip is not None else str(base_dir / "FracAtlas.zip")
 
+    output_checkpoint = Path(args.checkpoint).resolve()
+    if output_checkpoint == (base_dir / "best_model.pt").resolve() or output_checkpoint.exists():
+        raise ValueError("Refusing to overwrite a checkpoint. Use a new experiment output path.")
+    output_checkpoint.parent.mkdir(parents=True, exist_ok=True)
     diagnose_dataset(dataset_zip)
 
     model = AttentionUNet().to(DEVICE)
@@ -1422,7 +1439,7 @@ def main() -> None:
         epochs=args.max_epochs,
         batch_size=args.batch_size,
         dataset_zip=dataset_zip,
-        checkpoint_path=str(base_dir / "best_model.pt"),
+        checkpoint_path=str(output_checkpoint),
         patience=args.patience,
         loss_mode=args.loss_mode,
         seed=args.seed,

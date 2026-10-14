@@ -1,0 +1,46 @@
+{
+  "status": "completed_exact_train_cache",
+  "train_images": 2808,
+  "train_positive_images": 493,
+  "preprocess": {
+    "size": 256,
+    "resize": "stretch",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 3,
+    "normalization": "unit"
+  },
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "archive_sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8",
+  "original_checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+  "source_hashes": {
+    "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc",
+    "tools/cache_ai_training_inputs.py": "2e4610efc6b7b1277ecce6ea99ba2c10d1e4bd63fba6a69ac641819f6d4ca0cd"
+  },
+  "cache_hashes": {
+    "image": "79ab8b7ffd01093dd099d2dc9c89dd112fbfbb59c4277c0a3cacf433e1499497",
+    "target": "fad161bcbd50258268d0d76c21f75b3bc09e16487bdfb7087bf8fcbaacf43b66",
+    "valid": "2c56afbf66f23eda857ffb5ac4ad23f710f4b21e5cccd48006ff64f830e15e1e"
+  },
+  "rows_sha256": "40bdbe392616fc1d27656c8c2a5d1ae447c390aeac8c19b4a24a79b3177e88ee",
+  "shape": [
+    2808,
+    256,
+    256
+  ],
+  "image_dtype": "float32",
+  "target_dtype": "uint8",
+  "valid_dtype": "uint8",
+  "contract": "Convert binary target/valid to float32 before online augmentation; image bytes already exact float32. Do not augment the cache itself.",
+  "stored_bytes": 1104150912,
+  "elapsed_seconds": 194.56497279999894,
+  "all_written_tensors_bit_exact": true,
+  "independent_redecode_cases": 16,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "current_trainer_modified": false,
+  "model_trained": false
+}

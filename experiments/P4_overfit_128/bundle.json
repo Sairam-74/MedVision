@@ -1,0 +1,21 @@
+{
+  "output_contract": "binary-logits-v2",
+  "architecture": "AttentionUNet64",
+  "checkpoint": "model.pt",
+  "checkpoint_sha256": "858be6d8d5fa76c894b1c1f99ba975a2b010f36ca6919095145c1101d0876863",
+  "preprocess": {
+    "size": 128,
+    "resize": "letterbox",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 0,
+    "normalization": "unit"
+  },
+  "postprocess": {
+    "threshold": 0.5,
+    "policy": "all",
+    "min_pixels": 16
+  },
+  "calibration_status": "MEMORIZATION SANITY ONLY; not a selected or calibrated model"
+}

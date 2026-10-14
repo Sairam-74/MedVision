@@ -1,0 +1,9 @@
+{
+  "status": "completed",
+  "epochs_finished": 1,
+  "best_validation_dice": 0.0,
+  "smoke": true,
+  "elapsed_seconds": 11.050121600041166,
+  "test_evaluated": false,
+  "next": "validation-only threshold/policy calibration, bundle freeze, then final test"
+}

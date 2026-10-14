@@ -1,0 +1,23 @@
+{
+  "output_contract": "binary-logits-v2",
+  "architecture": "AttentionUNet64",
+  "checkpoint": "best_model.pt",
+  "checkpoint_sha256": "4bf4065a256c412c735895b26b42f3b5c1ef862f89376973236c66f43acb0ba7",
+  "preprocess": {
+    "size": 256,
+    "resize": "stretch",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 3,
+    "normalization": "unit"
+  },
+  "postprocess": {
+    "threshold": 0.5,
+    "policy": "all",
+    "min_pixels": 16
+  },
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "epoch": 8,
+  "calibration_status": "UNSELECTED validation checkpoint; calibration and bundle freeze pending"
+}

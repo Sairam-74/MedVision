@@ -1,18 +1,21 @@
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useNavigate } from 'react-router-dom';
-import { signup } from '@/api/auth';
+import { signup, authErrorMessage } from '@/api/auth';
+import { useRegistrationReceiptStore } from '@/store/registrationReceiptStore';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useMockMode } from '@/utils/env';
 
 const schema = z.object({
   name: z.string().min(2, 'Name is required'),
   email: z.string().email('Enter a valid email'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-  confirmPassword: z.string().min(8, 'Confirm your password'),
+  password: z.string().min(12, 'Password must be at least 12 characters').max(256),
+  confirmPassword: z.string().min(12, 'Confirm your password'),
 }).refine((values) => values.password === values.confirmPassword, {
   message: 'Passwords must match',
   path: ['confirmPassword'],
@@ -23,6 +26,8 @@ type FormValues = z.infer<typeof schema>;
 export function RequestAccessPage() {
   const navigate = useNavigate();
   const mockMode = useMockMode();
+  const [genericError, setGenericError] = useState<string | null>(null);
+  const setReceipt = useRegistrationReceiptStore((state) => state.setReceipt);
   const {
     register,
     handleSubmit,
@@ -33,21 +38,29 @@ export function RequestAccessPage() {
   });
 
   const onSubmit = handleSubmit(async (values) => {
-    if (!mockMode) {
-      await signup({
-        name: values.name,
-        email: values.email,
-        password: values.password,
-      });
+    setGenericError(null);
+    useRegistrationReceiptStore.getState().clear();
+    try {
+      const email = values.email.trim().toLowerCase();
+      let recoveryCode: string;
+      if (!mockMode) {
+        const response = await signup({
+          name: values.name,
+          email,
+          password: values.password,
+        });
+        recoveryCode = response.recoveryCode;
+      } else {
+        recoveryCode = 'test-only-recovery-code-not-a-real-account';
+      }
+      setReceipt({ email, recoveryCode });
+      navigate('/login', { replace: true, state: { accountCreated: true, identifier: email } });
+    } catch (error) {
+      setGenericError(authErrorMessage(error, 'Could not create your account. Please try again.'));
+      return;
     }
-    navigate('/login', {
-      replace: true,
-      state: {
-        accountCreated: true,
-        identifier: values.email,
-      },
-    });
   });
+
 
   return (
     <div className="space-y-6">
@@ -57,6 +70,7 @@ export function RequestAccessPage() {
         <p className="mt-1 text-sm text-muted-foreground">Create your account to start using MedVision AI.</p>
       </div>
       <form className="space-y-4" onSubmit={onSubmit} noValidate>
+        {genericError ? <Alert className="border-amber-200 bg-amber-50 text-amber-950"><AlertDescription>{genericError}</AlertDescription></Alert> : null}
         <div className="space-y-2">
           <Label htmlFor="name">Full name</Label>
           <Input id="name" {...register('name')} />

@@ -1,0 +1,9 @@
+{
+  "status": "completed_training_catalog",
+  "images": 2808,
+  "hard_positive": 127,
+  "hard_negative": 1641,
+  "test_images_read": 0,
+  "training_distribution_modified": false,
+  "elapsed_seconds": 365.8065306999997
+}

@@ -9,9 +9,10 @@ function readBooleanEnv(value: string | undefined, defaultValue: boolean) {
 }
 
 export function useMockMode() {
-  return readBooleanEnv(import.meta.env.VITE_USE_MOCKS, true);
+  if (import.meta.env.PROD) return false;
+  return readBooleanEnv(import.meta.env.VITE_USE_MOCKS, false);
 }
 
 export function useMfaMode() {
-  return readBooleanEnv(import.meta.env.VITE_FEATURE_MFA, false);
+  return useMockMode() && readBooleanEnv(import.meta.env.VITE_FEATURE_MFA, false);
 }

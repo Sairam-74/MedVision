@@ -1,0 +1,53 @@
+{
+  "status": "completed_exact_train_cache",
+  "train_images": 2808,
+  "train_positive_images": 493,
+  "preprocess": {
+    "size": 512,
+    "resize": "stretch",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 3,
+    "normalization": "unit"
+  },
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "archive_sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8",
+  "original_checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+  "source_hashes": {
+    "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc",
+    "tools/cache_ai_training_inputs.py": "2e4610efc6b7b1277ecce6ea99ba2c10d1e4bd63fba6a69ac641819f6d4ca0cd",
+    "tools/cache_ai_resolution_inputs.py": "3c630aa7bc9168ae7cd6c223f44c0aacd2803e672f0a29663818b85079d4d332",
+    "tools/ai_atomic_io.py": "5e96df283d717e086ff72a4e19d1d5d6fcc0677fc30728c0187e9fd767f675aa"
+  },
+  "builder": "tools/cache_ai_resolution_inputs.py",
+  "canonical_cache_format_dependency": "tools/cache_ai_training_inputs.py",
+  "input_source": "Original native TRAIN X-rays and annotations; never rescale cached256 inputs",
+  "cache_hashes": {
+    "image": "4a956090f279cb2c2a96d4e6c37904b5f6e243cda3e94ba7c0cc123b3deab832",
+    "target": "6f27e6c87e443bac610b6680126d3b07188b0da8092063705f445d89494104ba",
+    "valid": "0211029d3c1657fb69939dc9f6176d5e6e41e8b62e78cc7c4a7a92ce141d7d1f"
+  },
+  "rows_sha256": "40bdbe392616fc1d27656c8c2a5d1ae447c390aeac8c19b4a24a79b3177e88ee",
+  "target_representation_sha256": "b8a4c8be0d6a31a077ea596f9b6166cf2adfa256dd47d9745f2a72be53329a91",
+  "verification_sha256": "0a1889ee3e336216832aa6359fd54322bd7b9798e7d05212acb326866a776e5c",
+  "shape": [
+    2808,
+    512,
+    512
+  ],
+  "image_dtype": "float32",
+  "target_dtype": "uint8",
+  "valid_dtype": "uint8",
+  "contract": "Convert binary target/valid to float32 before unchanged online augmentation; exact float32 image bytes.",
+  "stored_bytes": 4416602496,
+  "elapsed_seconds": 529.2376377999899,
+  "all_written_tensors_bit_exact": true,
+  "independent_redecode_cases": 16,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "current_trainer_modified": false,
+  "model_trained": false
+}

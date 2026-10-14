@@ -14,11 +14,15 @@ export async function fetchAnalysisById(analysisId: string) {
 export async function createAnalysis(file: File) {
   const formData = new FormData();
   formData.append('image', file);
-  const { data } = await apiClient.post<CreateAnalysisResponse>('/analyses', formData);
+  const { data } = await apiClient.post<CreateAnalysisResponse>('/analyses', formData, { timeout: 30000 });
   return data;
 }
 
 export async function fetchAnalysisStatus(analysisId: string) {
   const { data } = await apiClient.get<AnalysisStatusResponse>(`/analyses/${analysisId}/status`);
   return data;
+}
+
+export async function deleteAnalysis(analysisId: string) {
+  await apiClient.delete(`/analyses/${analysisId}`);
 }

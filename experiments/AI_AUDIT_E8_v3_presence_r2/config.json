@@ -1,0 +1,48 @@
+{
+  "run": "experiments\\AI_E8_v3_presence_supervision_r2",
+  "epoch": 7,
+  "global_epoch": 15,
+  "output_contract": "medvision.shared_unet_presence_logits.v1",
+  "architecture": "AttentionUNet64PresenceGAP",
+  "presence_weight": 1,
+  "checkpoint_sha256": "e9c1af3d9e3199735bfbb89438191bf42e60831205c4741664603bc7884eb9d0",
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "archive_sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8",
+  "preprocess": {
+    "size": 256,
+    "resize": "stretch",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 3,
+    "normalization": "unit"
+  },
+  "postprocess": {
+    "threshold": 0.5,
+    "policy": "all",
+    "min_pixels": 16
+  },
+  "device": "cpu",
+  "torch": "2.9.1+cu128",
+  "original_checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+  "source_hashes": {
+    "tools/ai_atomic_io.py": "5e96df283d717e086ff72a4e19d1d5d6fcc0677fc30728c0187e9fd767f675aa",
+    "tools/train_ai_presence_candidate.py": "cbfe78ab7c87dc5268d1111dffdfa13a6801987f4557f6160b58a27c1be43b41",
+    "tools/ai_presence_model.py": "7b6ccadb11f9cd4083e1ac40c97f0311f1454bd31fcb777195447ebf0ede087e",
+    "tools/ai_cached_dataset.py": "0cdf89276b3fae7bd1279712fb37224fa009952e4f261f1400e86d6f73dbf2b9",
+    "tools/cache_ai_training_inputs.py": "2e4610efc6b7b1277ecce6ea99ba2c10d1e4bd63fba6a69ac641819f6d4ca0cd",
+    "tools/train_reliability_candidate.py": "48d006df19115111e081ae899c0fccd1e5a7d657705bea40aeef5739929a7b36",
+    "tools/ai_metrics.py": "8008b83db7b8ee2bac1f137e8aa1a0383731320d9e97a330c410c32690476aca",
+    "tools/run_experiment.py": "8fce35cf96fd9cda11a40370c3df05ceedb9691cc5c2c120b7bb40eacb2251ef",
+    "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc",
+    "tools/audit_ai_presence_candidate.py": "1a7bf51d31e42d729452b983d9db64123560088f406059477c88ea6fb087b562",
+    "tools/ai_validation_audit.py": "273d7364f6ab64553bac36c0f4407d249db1120ce85467dbc3013789332e587b",
+    "tools/evaluate_ai_baseline.py": "c44d753e17ced5946c1f292f307ca6cb927865aa0313cbe537ad10837ebca4dd"
+  },
+  "scope": "Full frozen463 VAL: independent masks, supervised head when enabled, conservative review union; no CAL/test/selection change",
+  "timing_context": "CPU audit may overlap separate GPU training; not an isolated idle latency comparison",
+  "test_images_read": 0,
+  "calibration_fit": false,
+  "promotion": false
+}

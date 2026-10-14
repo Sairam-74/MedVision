@@ -1,0 +1,69 @@
+{
+  "status": "passed_TRAIN_only_smoke",
+  "cpu_mask_forward_parity": {
+    "exact_tensor_equal": true,
+    "max_absolute_difference": 0.0,
+    "mask_shape": [
+      2,
+      1,
+      256,
+      256
+    ],
+    "presence_shape": [
+      2
+    ],
+    "original_shared_tensors_equal": true,
+    "added_parameters": 1025
+  },
+  "cuda_steps": [
+    {
+      "batch": 1,
+      "segmentation_loss": 0.9342708587646484,
+      "presence_loss": 2.401860237121582,
+      "total_gradient_norm_before_clip": 11.496821403503418,
+      "presence_to_encoder_grad_norm": 0.815999448299408,
+      "presence_head_grad_norm": 11.306737899780273,
+      "segmentation_to_encoder_grad_norm": 2.1239590644836426,
+      "segmentation_decoder_grad_norm": 0.11642702668905258,
+      "presence_to_decoder_gradient": null,
+      "mask_to_presence_gradient": null,
+      "all_required_gradients_finite_nonzero": true
+    },
+    {
+      "batch": 2,
+      "segmentation_loss": 1.0049631595611572,
+      "presence_loss": 2.180891752243042,
+      "total_gradient_norm_before_clip": 19.31760025024414,
+      "presence_to_encoder_grad_norm": 0.5522807240486145,
+      "presence_head_grad_norm": 19.266454696655273,
+      "segmentation_to_encoder_grad_norm": 0.04118921607732773,
+      "segmentation_decoder_grad_norm": 0.008093242533504963,
+      "presence_to_decoder_gradient": null,
+      "mask_to_presence_gradient": null,
+      "all_required_gradients_finite_nonzero": true
+    }
+  ],
+  "class_BCE_fixture": {
+    "actual": 1.1971863508224487,
+    "expected": 1.1971863652032588,
+    "passed": true
+  },
+  "four_groups": [
+    "classifier+/mask+",
+    "classifier+/mask-",
+    "classifier-/mask+",
+    "classifier-/mask-"
+  ],
+  "all_normal_fixture_rejected": true,
+  "feasible_fixture_recognized": true,
+  "strict_weights_only_model_optimizer_restore": true,
+  "model_checkpoint_sha256": "ec17d185f77b7716dc2c7d11ae7468d57f905ccfdde0573e06f7bf60a3e6be7e",
+  "elapsed_cuda_and_restore_seconds": 5.32544179999968,
+  "cuda_peak_allocated_bytes": 1499423232,
+  "cuda_peak_reserved_bytes": 1665138688,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "performance_improvement_claim": false,
+  "promotion": false
+}

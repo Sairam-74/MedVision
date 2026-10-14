@@ -1,0 +1,9 @@
+{
+  "status": "training",
+  "latest_epoch": 10,
+  "current_epoch": 11,
+  "batch": 300,
+  "batches": 1408,
+  "mean_train_loss": 0.9743704558412234,
+  "smoke": false
+}

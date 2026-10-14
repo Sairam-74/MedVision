@@ -3,43 +3,51 @@ import { Link, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Activity, Download, FileClock, ScanLine } from 'lucide-react';
 import { fetchAnalysisById } from '@/api/analyses';
+import { imageUrl } from '@/api/client';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { formatPercent } from '@/utils/format';
 
 export function ResultsPage() {
   const { analysisId = '' } = useParams();
-  const { data, isLoading } = useQuery({ queryKey: ['analysis', analysisId], queryFn: () => fetchAnalysisById(analysisId), enabled: Boolean(analysisId) });
-  const canApprove = true;
+  const { data, isLoading, isError, refetch } = useQuery({ queryKey: ['analysis', analysisId], queryFn: () => fetchAnalysisById(analysisId), enabled: Boolean(analysisId) });
+  const canApprove = false;
   const logAction = useMutation({ mutationFn: async (action: string) => ({ action }) });
   const statusColor = useMemo(() => {
     if (!data) return 'secondary';
-    return data.fractureStatus === 'fracture' ? 'destructive' : data.fractureStatus === 'no_fracture' ? 'success' : 'warning';
+    return data.fractureStatus === 'fracture' ? 'destructive' : data.fractureStatus === 'no_fracture' ? 'secondary' : 'warning';
   }, [data]);
-  const originalImage = data?.originalImageUrl ?? data?.imageUrl;
-  const overlayImage = data?.overlayUrl ?? (data?.maskPngBase64 ? `data:image/png;base64,${data.maskPngBase64}` : data?.imageUrl);
+  const originalImage = imageUrl(data?.originalImageUrl ?? data?.imageUrl);
+  const overlayImage = imageUrl(data?.overlayUrl ?? (data?.maskPngBase64 ? `data:image/png;base64,${data.maskPngBase64}` : data?.imageUrl));
 
   if (isLoading) {
     return <p className="text-sm text-muted-foreground">Loading result…</p>;
   }
 
   if (!data) {
-    return <p className="text-sm text-muted-foreground">Result not found.</p>;
+    return <div><p>{isError ? 'Could not load this result. Check your connection and access to this case.' : 'Result not found.'}</p><Button onClick={() => refetch()}>Retry</Button></div>;
   }
 
   return (
     <div className="space-y-6">
       <PageHeader
         title="Prediction result"
-        description="Review the model output, compare the original and overlay views, and capture clinician approval where required."
+        description="Compare the original X-ray and predicted regions from this research prototype."
         actions={
           <>
             <Button variant="outline" asChild>
               <Link to="/upload">New analysis</Link>
             </Button>
+            <Button variant="outline" onClick={() => {
+              const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = `${data?.analysisId ?? 'medvision'}-result.json`;
+              link.click();
+              URL.revokeObjectURL(url);
+            }}>Export result JSON</Button>
             {data.reportUrl ? (
               <Button asChild>
                 <a href={data.reportUrl} aria-label="Download report as PDF">
@@ -54,6 +62,11 @@ export function ResultsPage() {
         <AlertTitle>AI-assisted result</AlertTitle>
         <AlertDescription>{data.disclaimer}</AlertDescription>
       </Alert>
+      <section className="workspace-hero grid gap-4 p-5 sm:grid-cols-3">
+        <div><p className="eyebrow text-cyan-300">Prediction output</p><p className="mt-2 text-lg font-bold">{data.fractureStatus === 'no_fracture' ? 'No region highlighted' : data.fractureStatus === 'fracture' ? 'Region highlighted' : 'Review required'}</p><p className="mt-1 text-xs leading-5 text-slate-300">Model output, not a confirmed diagnosis.</p></div>
+        <div><p className="eyebrow text-cyan-300">Image dimensions</p><p className="mt-2 text-lg font-bold">{data.maskShape ? `${data.maskShape[1]} × ${data.maskShape[0]} px` : 'Not recorded'}</p><p className="mt-1 text-xs leading-5 text-slate-300">Native-size mask · original aspect ratio.</p></div>
+        <div><p className="eyebrow text-cyan-300">Decision threshold</p><p className="mt-2 text-lg font-bold">{data.calibratedThreshold === undefined ? 'Not recorded' : data.calibratedThreshold.toFixed(2)}</p><p className="mt-1 text-xs leading-5 text-slate-300">Probability cutoff; validation provenance determines calibration.</p></div>
+      </section>
       <div className="grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
         <Card className="overflow-hidden border-slate-200 shadow-soft">
           <CardHeader className="border-b border-border bg-slate-950 text-slate-50">
@@ -63,15 +76,15 @@ export function ResultsPage() {
               </CardTitle>
             </div>
           </CardHeader>
-          <CardContent className="bg-slate-100 p-4">
+          <CardContent className="bg-muted p-4">
             <div className="grid gap-4 md:grid-cols-2">
             <figure className="overflow-hidden rounded-lg border border-slate-300 bg-black">
               <figcaption className="border-b border-slate-700 bg-slate-950 px-4 py-2 text-center text-sm font-semibold uppercase tracking-[0.18em] text-slate-100">Before</figcaption>
-              <img src={originalImage} alt="Original X-ray study" className="aspect-square w-full object-cover" />
+              <img src={originalImage} alt="Original X-ray study" className="h-auto w-full object-contain" />
             </figure>
             <figure className="overflow-hidden rounded-lg border border-slate-300 bg-black">
               <figcaption className="border-b border-slate-700 bg-slate-950 px-4 py-2 text-center text-sm font-semibold uppercase tracking-[0.18em] text-cyan-100">After</figcaption>
-              <img src={overlayImage} alt="Prediction overlay highlighting suspected fracture region" className="aspect-square w-full object-cover" />
+              <img src={overlayImage} alt="Prediction overlay highlighting suspected fracture region" className="h-auto w-full object-contain" />
             </figure>
             </div>
           </CardContent>
@@ -83,18 +96,15 @@ export function ResultsPage() {
                 <CardTitle className="flex items-center gap-2"><Activity className="h-5 w-5" /> Result summary</CardTitle>
                 <p className="text-sm text-muted-foreground">Case {data.analysisId}</p>
               </div>
-              <Badge variant={statusColor as never} className="capitalize">{data.fractureStatus.replace('_', ' ')}</Badge>
+              <Badge variant={statusColor as never}>{data.fractureStatus === 'no_fracture' ? 'No predicted region' : data.fractureStatus === 'fracture' ? 'Predicted region' : 'Needs review'}</Badge>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <p className="text-sm text-muted-foreground">Confidence</p>
-              <p className="text-3xl font-semibold">{formatPercent(data.confidence)}</p>
-            </div>
             <div className="grid gap-3 text-sm">
               <div>
-                <p className="text-muted-foreground">Severity</p>
-                <p className="font-medium capitalize">{data.severity}</p>
+                <p className="text-muted-foreground">Experimental geometry tier</p>
+                <p className="font-medium capitalize">{data.severity.replace('_', ' ')}</p>
+                <p className="text-xs text-muted-foreground">Based on predicted pixel area; not clinical severity.</p>
               </div>
               <div>
                 <p className="text-muted-foreground">Region</p>
@@ -122,6 +132,7 @@ export function ResultsPage() {
           </CardContent>
         </Card>
       </div>
+      <Card><CardHeader><p className="section-kicker">Provenance & interpretation</p><CardTitle>Read the evidence behind this case</CardTitle></CardHeader><CardContent className="grid gap-5 md:grid-cols-2"><div><p className="text-sm font-semibold">Recorded model identity</p><p className="mt-2 break-all rounded-lg bg-muted p-3 font-mono text-xs leading-6">{data.modelSha256 ?? 'Not recorded for this historical case'}</p><p className="mt-2 text-xs text-muted-foreground">Checkpoint SHA-256 identifies the weights used for this result.</p></div><div><p className="text-sm font-semibold">What the overlay can establish</p><p className="mt-2 text-sm leading-7 text-muted-foreground">Highlighted pixels are predicted regions. A normal image may receive highlights, and a fractured image may receive none. No reference annotation is available for this upload, so overlap and accuracy are unmeasured.</p><Link className="mt-3 inline-block text-sm font-semibold text-primary" to="/research">Read validation results & methodology →</Link></div></CardContent></Card>
     </div>
   );
 }

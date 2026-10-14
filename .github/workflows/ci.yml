@@ -20,6 +20,10 @@ jobs:
       - run: npm run typecheck
       - run: npm run test
       - run: npm run build
+        env:
+          VITE_API_BASE_URL: /
+          VITE_USE_MOCKS: 'false'
+      - run: npm audit --audit-level=moderate
 
   backend:
     runs-on: ubuntu-latest
@@ -27,7 +31,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.13'
       - run: python -m pip install --upgrade pip
-      - run: python -m pip install -r requirements.txt
-      - run: python -m py_compile medvision_ai.py
+      - run: python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -r requirements-demo.lock.txt
+      - run: python -m pip check
+      - run: python -m py_compile medvision_ai.py medvision_pipeline.py medvision_serving.py backend_service.py app_store.py
+      - run: python tools/verify_secure_api.py --out test-results/backend-security.json
+      - run: python tools/verify_auth.py

@@ -1,0 +1,23 @@
+{
+  "status": "failed_before_validation",
+  "epoch": 1,
+  "global_epoch": 9,
+  "batch": 1404,
+  "batches": 1404,
+  "loss_components": {
+    "segmentation_total": 0.9789913006742456,
+    "bce": 0.010111337177702684,
+    "dice": 0.9688799656142196,
+    "presence_bce": 0.9152488040491047,
+    "total": 0.9789913006742456
+  },
+  "gradient_norm": 0.12410634756088257,
+  "elapsed_seconds": 268.5196078000008,
+  "smoke": false,
+  "test_evaluated": false,
+  "promotion": false,
+  "failure": "WinError5 replacing state.json",
+  "validated_epochs": 0,
+  "epoch1_weights_retained": false,
+  "recovery": "AI_E7_v3_presence_reference_r2"
+}

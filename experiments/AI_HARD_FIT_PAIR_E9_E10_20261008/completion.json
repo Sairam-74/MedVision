@@ -1,0 +1,15 @@
+{
+  "status": "completed_saved_TRAIN_grid_hard_fit_pair_comparison",
+  "analysis_sha256": "aa899af0e6ffd3b4c0d8772c6dd8c33f5227b40aef7852fe67562180640ef4fe",
+  "report_sha256": "c9334815fc9abf8aca13cc92cdbdfbe01641cbea1cca013ee9abe29fa8d14333",
+  "per_case_sha256": "8057acee6e3b4e98ead300c4f79f0084b37452a56dc4e07e2a623e01c0dec4fa",
+  "source_sha256": "53628dccdec6e60ac20365e9447d030c9fb85c62fbba36fe9a7984b49aca19f0",
+  "new_image_reads": 0,
+  "new_mask_array_reads": 0,
+  "new_model_reads": 0,
+  "inference_performed": false,
+  "GPU_work_performed": false,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "promotion": false
+}

@@ -1,0 +1,103 @@
+{
+  "status": "passed_TRAIN_only_hard_smoke",
+  "arms": [
+    {
+      "factor": 1,
+      "initial_parameter_sha256": "ea6b2f208c964acdda5988021aff382a5a45537195a7be5eeb6ebbc55a4c729e",
+      "final_parameter_sha256": "898bca269b10446e5b7db701cd55b38f8a06eabc08ae59fe0b7455fd21244a89",
+      "initial_optimizer_state_sha256": "896379d4f61e3d176b90aa0eedf884e8e7931e2505c8e0bb26f14b7708f5b1f1",
+      "final_optimizer_state_sha256": "319b12aecd1b78854f3a23f77f10a0a1c86e58dadc3a54adb137ceb6993d8f4b",
+      "measurements": [
+        {
+          "image_ids": [
+            "IMG0000059.jpg",
+            "IMG0000011.jpg"
+          ],
+          "weights": [
+            1.0,
+            1.0
+          ],
+          "loss": 0.9293378591537476,
+          "encoder_gradient_L2": 1.3990474939346313,
+          "decoder_gradient_L2": 0.04734250530600548,
+          "gradient_norm_before_clip": 1.8745832443237305,
+          "neutral_cuda_parity": {
+            "exact_scalar": true,
+            "exact_output_gradients": true
+          }
+        },
+        {
+          "image_ids": [
+            "IMG0000025.jpg",
+            "IMG0000000.jpg"
+          ],
+          "weights": [
+            1.0,
+            1.0
+          ],
+          "loss": 0.8643951416015625,
+          "encoder_gradient_L2": 3.002014398574829,
+          "decoder_gradient_L2": 0.10150470584630966,
+          "gradient_norm_before_clip": 3.3700101375579834,
+          "neutral_cuda_parity": {
+            "exact_scalar": true,
+            "exact_output_gradients": true
+          }
+        }
+      ],
+      "full_restore_passed": true,
+      "checkpoint_sha256": "61bbfb36a563e9a1acad2ee82d602ffad02d2ec3a00d7092249002ccfc2f5bc0",
+      "cuda_peak_allocated_bytes": 1332824576,
+      "cuda_peak_reserved_bytes": 1616904192
+    },
+    {
+      "factor": 2,
+      "initial_parameter_sha256": "ea6b2f208c964acdda5988021aff382a5a45537195a7be5eeb6ebbc55a4c729e",
+      "final_parameter_sha256": "40b7be1eac54427d584a5a82cdd54ca1045fa3fb910c52070f83935d4c5ed15e",
+      "initial_optimizer_state_sha256": "896379d4f61e3d176b90aa0eedf884e8e7931e2505c8e0bb26f14b7708f5b1f1",
+      "final_optimizer_state_sha256": "eb1c7d97f1ba9953905f0c4be114b9e78f2727fc2aab439b9aa2e480530220cd",
+      "measurements": [
+        {
+          "image_ids": [
+            "IMG0000059.jpg",
+            "IMG0000011.jpg"
+          ],
+          "weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "loss": 1.466958999633789,
+          "encoder_gradient_L2": 2.2922203540802,
+          "decoder_gradient_L2": 0.08279888331890106,
+          "gradient_norm_before_clip": 3.070265054702759,
+          "neutral_cuda_parity": null
+        },
+        {
+          "image_ids": [
+            "IMG0000025.jpg",
+            "IMG0000000.jpg"
+          ],
+          "weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "loss": 0.6802942752838135,
+          "encoder_gradient_L2": 2.451321840286255,
+          "decoder_gradient_L2": 0.08108318597078323,
+          "gradient_norm_before_clip": 2.7507753372192383,
+          "neutral_cuda_parity": null
+        }
+      ],
+      "full_restore_passed": true,
+      "checkpoint_sha256": "4fa84c4d9d9d1d9b09d7360dc5953ebfb3f69a419ea76fdb8cccc749f03808a7",
+      "cuda_peak_allocated_bytes": 1589574144,
+      "cuda_peak_reserved_bytes": 1866465280
+    }
+  ],
+  "full_matched_initialization": true,
+  "model_improvement_claim": false,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "promotion": false
+}

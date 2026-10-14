@@ -1,0 +1,31 @@
+{
+  "checkpoint": "experiments\\AI_E5_v3_BCE_reference\\best_model.pt",
+  "checkpoint_sha256": "4bf4065a256c412c735895b26b42f3b5c1ef862f89376973236c66f43acb0ba7",
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "sampling": "8 TRAIN positives spanning native annotation-area ranks plus8 seeded TRAIN normals; no outcome selection",
+  "ids": [
+    "IMG0002377.jpg",
+    "IMG0000297.jpg",
+    "IMG0002456.jpg",
+    "IMG0002819.jpg",
+    "IMG0003813.jpg",
+    "IMG0003460.jpg",
+    "IMG0002394.jpg",
+    "IMG0002669.jpg",
+    "IMG0002579.jpg",
+    "IMG0001545.jpg",
+    "IMG0002417.jpg",
+    "IMG0001567.jpg",
+    "IMG0003924.jpg",
+    "IMG0000308.jpg",
+    "IMG0003183.jpg",
+    "IMG0003114.jpg"
+  ],
+  "augmentation": false,
+  "device": "cpu",
+  "scope": "Sampled learned gradient magnitudes, not proof of causal optimization failure or whole-dataset estimates",
+  "no_optimizer_steps": true,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

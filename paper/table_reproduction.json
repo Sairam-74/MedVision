@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "source": "per_case.json",
+  "metrics": {
+    "n_positive": 110,
+    "n_normal": 502,
+    "mean_positive_dice": 0.482325982035374,
+    "median_positive_dice": 0.5707524466951832,
+    "positive_dice_group_bootstrap95": [
+      0.42268476771992836,
+      0.5375382684351614
+    ],
+    "mean_positive_iou": 0.36181753631180613,
+    "case_sensitivity": 0.9818181818181818,
+    "normal_false_positive_rate": 0.9023904382470119,
+    "case_true_positive": 108,
+    "case_false_negative": 2,
+    "case_false_positive": 453,
+    "case_true_negative": 49,
+    "global_dice": 0.1826135249607624,
+    "global_iou": 0.10048139318128235,
+    "pixel_precision": 0.10459527206972884,
+    "pixel_recall": 0.7186852369882983,
+    "mean_regions_per_normal": 1.8864541832669324
+  }
+}

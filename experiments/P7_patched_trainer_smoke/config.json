@@ -1,0 +1,58 @@
+{
+  "out": "experiments/P7_patched_trainer_smoke",
+  "manifest": "experiments/data_v2/manifest.json",
+  "archive": "FracAtlas.zip",
+  "epochs": 1,
+  "batch_size": 2,
+  "lr": 0.0001,
+  "size": 128,
+  "resize": "letterbox",
+  "no_clahe": false,
+  "blur": 0,
+  "normalization": "unit",
+  "loss": "bce_dice",
+  "positive_fraction": 0.5,
+  "elastic": false,
+  "seed": 42,
+  "patience": 5,
+  "device": "cpu",
+  "smoke": true,
+  "resume": false,
+  "preprocess": {
+    "size": 128,
+    "resize": "letterbox",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 0,
+    "normalization": "unit"
+  },
+  "loss_config": {
+    "mode": "bce_dice",
+    "delta": 0.7,
+    "focal_exponent": 0.75,
+    "unified_gamma": 0.5,
+    "unified_weight": 0.5,
+    "smooth": 1e-06
+  },
+  "postprocess": {
+    "threshold": 0.5,
+    "policy": "all",
+    "min_pixels": 16
+  },
+  "output_contract": "binary-logits-v2",
+  "architecture": "AttentionUNet64",
+  "manifest_sha256": "19a950c34d96c0fc076fbb75bdeffbf2f0b262626817d61018eff31e907544bb",
+  "archive_sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8",
+  "original_checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+  "source_hashes": {
+    "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc",
+    "tools/train_pipeline.py": "8fa071efd503e49dd4483ae1ccbabb09b791e393d67f44ef9dd66194e57f7311",
+    "tools/run_experiment.py": "8fce35cf96fd9cda11a40370c3df05ceedb9691cc5c2c120b7bb40eacb2251ef"
+  },
+  "torch": "2.14.1+cpu",
+  "sampling": "weighted replacement, training only",
+  "selection": "native positive delivered Dice on validation; threshold .5/all; earlier ties",
+  "determinism": "strict torch algorithms; epoch-seeded shuffle/sampler; local per-epoch/per-index augmentation RNG; no cross-version/device identity guarantee"
+}

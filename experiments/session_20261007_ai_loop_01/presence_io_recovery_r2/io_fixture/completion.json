@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "actual_Windows_sharing_error_reproduced": true,
+  "recovered_after_lock_release_seconds": 0.6106941000034567,
+  "persistent_error_preserves_old_and_pending": true,
+  "weights_only_checkpoint_restore": true,
+  "dataset_images_read": 0,
+  "model_performance_claim": false
+}

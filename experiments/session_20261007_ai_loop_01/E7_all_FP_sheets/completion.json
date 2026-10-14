@@ -1,0 +1,12 @@
+{
+  "status": "completed_actual_contact_sheet_visual_review",
+  "images_reviewed": 165,
+  "sheets_reviewed": 19,
+  "individual_notes": 165,
+  "source_sha256": "3df96d42168a323f71fcb848fe385bdd42ac8258a15336c881bc54fea5cd1f6d",
+  "index_sha256": "9710004f7014c3ded3d6907e9dd2318c0433041ea9ffadee337584ed311c05f7",
+  "no_new_inference": true,
+  "no_label_changes": true,
+  "clinical_adjudication": false,
+  "limitations": "Some tiny masks unresolved at contact scale; actual full native panels and pixel counts retained. Anatomy and visible hardware association are not cause proof."
+}

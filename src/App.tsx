@@ -1,4 +1,6 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { refreshSession } from './api/auth';
+import { useMockMode } from './utils/env';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useSessionExpiry } from './hooks/useSessionExpiry';
 import { useAuthStore } from './store/authStore';
@@ -13,12 +15,13 @@ const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage').then(
 const HistoryPage = lazy(() => import('./pages/HistoryPage').then((module) => ({ default: module.HistoryPage })));
 const LoginPage = lazy(() => import('./pages/LoginPage').then((module) => ({ default: module.LoginPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })));
-const ProfilePage = lazy(() => import('./pages/ProfilePage').then((module) => ({ default: module.ProfilePage })));
+const ProfilePage = lazy(() => import('./pages/LocalProfilePage').then((module) => ({ default: module.LocalProfilePage })));
 const RequestAccessPage = lazy(() => import('./pages/RequestAccessPage').then((module) => ({ default: module.RequestAccessPage })));
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage').then((module) => ({ default: module.ResetPasswordPage })));
 const ResultsPage = lazy(() => import('./pages/ResultsPage').then((module) => ({ default: module.ResultsPage })));
 const SessionExpiredPage = lazy(() => import('./pages/SessionExpiredPage').then((module) => ({ default: module.SessionExpiredPage })));
 const UploadPage = lazy(() => import('./pages/UploadPage').then((module) => ({ default: module.UploadPage })));
+const ResearchPage = lazy(() => import('./pages/ResearchPage').then((module) => ({ default: module.ResearchPage })));
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -48,6 +51,17 @@ function DefaultLanding() {
 
 export default function App() {
   useSessionExpiry();
+  const mockMode = useMockMode();
+  const [restoring, setRestoring] = useState(!mockMode && !useAuthStore.getState().isAuthenticated);
+  useEffect(() => {
+    if (!restoring) return;
+    let mounted = true;
+    refreshSession().then((session) => {
+      if (mounted) useAuthStore.getState().login(session);
+    }).catch(() => {}).finally(() => { if (mounted) setRestoring(false); });
+    return () => { mounted = false; };
+  }, [restoring]);
+  if (restoring) return <p className="p-6">Restoring session…</p>;
 
   return (
     <Suspense fallback={<div className="p-6 text-sm text-muted-foreground">Loading workspace…</div>}>
@@ -71,6 +85,7 @@ export default function App() {
         >
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/upload" element={<UploadPage />} />
+          <Route path="/research" element={<ResearchPage />} />
           <Route path="/results/:analysisId" element={<ResultsPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/profile" element={<ProfilePage />} />
@@ -78,7 +93,7 @@ export default function App() {
             path="/admin/users"
             element={
               <RoleGate allowedRoles={['admin']}>
-                <AdminUsersPage />
+                {mockMode ? <AdminUsersPage /> : <NotFoundPage />}
               </RoleGate>
             }
           />
@@ -86,7 +101,7 @@ export default function App() {
             path="/audit-log"
             element={
               <RoleGate allowedRoles={['admin', 'clinician', 'technician']}>
-                <AuditLogPage />
+                {mockMode ? <AuditLogPage /> : <NotFoundPage />}
               </RoleGate>
             }
           />

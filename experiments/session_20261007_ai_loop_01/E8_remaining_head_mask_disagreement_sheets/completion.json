@@ -1,0 +1,15 @@
+{
+  "status": "completed_actual_native_head_mask_disagreements_review",
+  "audit": "experiments\\AI_AUDIT_E8_v3_presence_r2",
+  "selection": "head_mask_disagreements",
+  "actual_new_case_reviews": 9,
+  "previously_reviewed_selected_cases": 216,
+  "total_selected_cases": 225,
+  "actual_sheets_reviewed": 2,
+  "per_case_review_sha256": "26beffff832fb7452c142307147820d4ed237b55ee5038f218687ab1718a0a70",
+  "index_sha256": "bf7656ebf1cb768d75039bde3cd93ef5feb948e98c5c6ab969c7d1f3f3e8e33d",
+  "notes_sha256": "22a6ab2119e4af44e008b1e68f48058954cdce38ce4c443d6f9775ceff873507",
+  "new_inference": false,
+  "no_label_changes": true,
+  "clinical_adjudication": false
+}

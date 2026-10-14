@@ -1,0 +1,206 @@
+{
+  "status": "passed_TRAIN_only_foreground_bce_smoke",
+  "arms": [
+    {
+      "name": "original_hard_loss",
+      "coefficient": null,
+      "initial_parameter_sha256": "58c618eb4e1d8b1c35d89f80d1b9462a0250c409e0fd5222c6192a209a92c77b",
+      "initial_optimizer_state_sha256": "54d445bcbcfbc847ee3b663563dcdf0e764d5c7caebf9106093a76c4b8583bd3",
+      "final_parameter_sha256": "4f9f6971a0ace0e6116d4de670c71e8290da94dbe53ea6744d0731df7edf675b",
+      "final_optimizer_state_sha256": "b0bd8a1e249bc5463c5fb5fc4264eb8e156209b29e8087ec7ca7b9b63e632cbd",
+      "full_restore_passed": true,
+      "smoke_checkpoint_sha256": "4c0dc9a34cd28941999435333254d69155f71282286d424bb1784fb068d9b4c6",
+      "measurements": [
+        {
+          "image_ids": [
+            "IMG0000059.jpg",
+            "IMG0000011.jpg"
+          ],
+          "frozen_example_weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "losses": {
+            "total": 1.4817111492156982,
+            "segmentation_total": 1.4817111492156982,
+            "bce": 0.012534457258880138,
+            "dice": 1.4691767692565918,
+            "presence_bce": 3.8175034523010254
+          },
+          "parity": null,
+          "encoder_gradient_L2": 1.8932597637176514,
+          "decoder_gradient_L2": 0.2849810719490051,
+          "gradient_norm_before_clip": 2.729336977005005
+        },
+        {
+          "image_ids": [
+            "IMG0000025.jpg",
+            "IMG0000000.jpg"
+          ],
+          "frozen_example_weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "losses": {
+            "total": 0.702674150466919,
+            "segmentation_total": 0.702674150466919,
+            "bce": 0.007302129175513983,
+            "dice": 0.6953720450401306,
+            "presence_bce": 1.9847086668014526
+          },
+          "parity": null,
+          "encoder_gradient_L2": 1.188463807106018,
+          "decoder_gradient_L2": 0.24725839495658875,
+          "gradient_norm_before_clip": 1.6267685890197754
+        }
+      ],
+      "cuda_peak_allocated_bytes": 1330724352,
+      "cuda_peak_reserved_bytes": 1614807040
+    },
+    {
+      "name": "coefficient1",
+      "coefficient": 1,
+      "initial_parameter_sha256": "58c618eb4e1d8b1c35d89f80d1b9462a0250c409e0fd5222c6192a209a92c77b",
+      "initial_optimizer_state_sha256": "54d445bcbcfbc847ee3b663563dcdf0e764d5c7caebf9106093a76c4b8583bd3",
+      "final_parameter_sha256": "4f9f6971a0ace0e6116d4de670c71e8290da94dbe53ea6744d0731df7edf675b",
+      "final_optimizer_state_sha256": "b0bd8a1e249bc5463c5fb5fc4264eb8e156209b29e8087ec7ca7b9b63e632cbd",
+      "full_restore_passed": true,
+      "smoke_checkpoint_sha256": "a555b96bbba8c71ec6a66181420a85e0ae337d7ba98b8a6593e5abe795ca6836",
+      "measurements": [
+        {
+          "image_ids": [
+            "IMG0000059.jpg",
+            "IMG0000011.jpg"
+          ],
+          "frozen_example_weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "losses": {
+            "total": 1.4817111492156982,
+            "segmentation_total": 1.4817111492156982,
+            "bce": 0.012534457258880138,
+            "dice": 1.4691767692565918,
+            "presence_bce": 3.8175034523010254,
+            "foreground_bce_offset": 0.0
+          },
+          "parity": {
+            "exact_scalar_components": true,
+            "exact_output_gradients": true
+          },
+          "encoder_gradient_L2": 1.8932597637176514,
+          "decoder_gradient_L2": 0.2849810719490051,
+          "gradient_norm_before_clip": 2.729336977005005
+        },
+        {
+          "image_ids": [
+            "IMG0000025.jpg",
+            "IMG0000000.jpg"
+          ],
+          "frozen_example_weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "losses": {
+            "total": 0.702674150466919,
+            "segmentation_total": 0.702674150466919,
+            "bce": 0.007302129175513983,
+            "dice": 0.6953720450401306,
+            "presence_bce": 1.9847086668014526,
+            "foreground_bce_offset": 0.0
+          },
+          "parity": {
+            "exact_scalar_components": true,
+            "exact_output_gradients": true
+          },
+          "encoder_gradient_L2": 1.188463807106018,
+          "decoder_gradient_L2": 0.24725839495658875,
+          "gradient_norm_before_clip": 1.6267685890197754
+        }
+      ],
+      "cuda_peak_allocated_bytes": 1714691072,
+      "cuda_peak_reserved_bytes": 1981808640
+    },
+    {
+      "name": "coefficient5",
+      "coefficient": 5,
+      "initial_parameter_sha256": "58c618eb4e1d8b1c35d89f80d1b9462a0250c409e0fd5222c6192a209a92c77b",
+      "initial_optimizer_state_sha256": "54d445bcbcfbc847ee3b663563dcdf0e764d5c7caebf9106093a76c4b8583bd3",
+      "final_parameter_sha256": "8e18db5433679be7a5ae4e99c353d0778e4f1ecb767d20d56a58fbaa5de58665",
+      "final_optimizer_state_sha256": "85a4db83f11c0ff2e494a4adf94547ac3dab143f36d947f25977da9d7bb319de",
+      "full_restore_passed": true,
+      "smoke_checkpoint_sha256": "082822f0c06658230ee5a52e6dc3bb7171ff05a1ae42b3449c689a8a61cd3d41",
+      "measurements": [
+        {
+          "image_ids": [
+            "IMG0000059.jpg",
+            "IMG0000011.jpg"
+          ],
+          "frozen_example_weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "losses": {
+            "total": 1.5006697177886963,
+            "segmentation_total": 1.5006697177886963,
+            "bce": 0.03149301931262016,
+            "dice": 1.4691767692565918,
+            "presence_bce": 3.8175034523010254,
+            "foreground_bce_offset": 0.01895856112241745
+          },
+          "parity": {
+            "Dice_and_presence_unchanged": true,
+            "normal_output_gradients_unchanged": true,
+            "positive_background_output_gradients_unchanged": true,
+            "analytic_foreground_offset_gradient_parity": true,
+            "foreground_pixels": 64
+          },
+          "encoder_gradient_L2": 2.001112699508667,
+          "decoder_gradient_L2": 0.30471017956733704,
+          "gradient_norm_before_clip": 2.877133846282959
+        },
+        {
+          "image_ids": [
+            "IMG0000025.jpg",
+            "IMG0000000.jpg"
+          ],
+          "frozen_example_weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "losses": {
+            "total": 0.7253235578536987,
+            "segmentation_total": 0.7253235578536987,
+            "bce": 0.030244695022702217,
+            "dice": 0.69507896900177,
+            "presence_bce": 1.9846608638763428,
+            "foreground_bce_offset": 0.022950071841478348
+          },
+          "parity": {
+            "Dice_and_presence_unchanged": true,
+            "normal_output_gradients_unchanged": true,
+            "positive_background_output_gradients_unchanged": true,
+            "analytic_foreground_offset_gradient_parity": true,
+            "foreground_pixels": 151
+          },
+          "encoder_gradient_L2": 1.3289076089859009,
+          "decoder_gradient_L2": 0.263484388589859,
+          "gradient_norm_before_clip": 1.783257246017456
+        }
+      ],
+      "cuda_peak_allocated_bytes": 1335192576,
+      "cuda_peak_reserved_bytes": 1614807040
+    }
+  ],
+  "full_matched_initialization": true,
+  "coefficient1_exact_model_optimizer_parity": true,
+  "coefficient5_finite_updates": true,
+  "normal_and_positive_background_output_gradients_preserved": true,
+  "Dice_and_presence_preserved": true,
+  "coefficient5_analytic_offset_gradient_parity": true,
+  "model_improvement_claim": false,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "promotion": false
+}

@@ -1,0 +1,60 @@
+{
+  "status": "completed_read_only_TRAIN_shared_gradient_diagnostic",
+  "images": 16,
+  "groups": {
+    "fracture": {
+      "n": 8,
+      "encoder_gradients": {
+        "first_encoder_conv": {
+          "segmentation_L2": 10.757115602493286,
+          "presence_L2": 68.08460998535156,
+          "presence_to_segmentation_norm_ratio": 17.893549520826717,
+          "cosine": 0.2872565686702728
+        },
+        "last_encoder_conv": {
+          "segmentation_L2": 0.030389378778636456,
+          "presence_L2": 0.7076170444488525,
+          "presence_to_segmentation_norm_ratio": 13.486634340849333,
+          "cosine": -0.017603527754545212
+        },
+        "bottleneck_conv": {
+          "segmentation_L2": 0.027493325993418694,
+          "presence_L2": 1.0121027529239655,
+          "presence_to_segmentation_norm_ratio": 19.57334830701338,
+          "cosine": -0.019582107663154602
+        }
+      }
+    },
+    "normal": {
+      "n": 8,
+      "encoder_gradients": {
+        "first_encoder_conv": {
+          "segmentation_L2": 0.2956085205078125,
+          "presence_L2": 13.84320068359375,
+          "presence_to_segmentation_norm_ratio": 45.02013762102206,
+          "cosine": -0.36447250843048096
+        },
+        "last_encoder_conv": {
+          "segmentation_L2": 0.0039294627495110035,
+          "presence_L2": 0.1075572706758976,
+          "presence_to_segmentation_norm_ratio": 29.047111474931505,
+          "cosine": 0.5514984428882599
+        },
+        "bottleneck_conv": {
+          "segmentation_L2": 0.004250464029610157,
+          "presence_L2": 0.24664712697267532,
+          "presence_to_segmentation_norm_ratio": 62.58567323604072,
+          "cosine": 0.18679288029670715
+        }
+      }
+    }
+  },
+  "elapsed_seconds": 30.93474779999815,
+  "model_tensors_unchanged": true,
+  "no_optimizer_steps": true,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "model_improvement_claim": false,
+  "limitations": "Sampled eval-mode local gradients; not training-mode dynamics, whole-TRAIN gradient estimates, or proof of causation. Negative cosine alone does not establish harmful task interference."
+}

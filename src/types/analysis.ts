@@ -17,8 +17,10 @@ export interface PredictionResult {
   id: string;
   analysisId: string;
   fractureStatus: PredictionStatus;
-  severity: 'low' | 'moderate' | 'high' | 'critical';
-  confidence: number;
+  severity: 'low' | 'moderate' | 'high' | 'critical' | 'not_applicable';
+  confidence?: number;
+  modelSha256?: string;
+  geometryUnits?: string;
   region: string;
   type: string;
   recommendation: string;
@@ -33,6 +35,7 @@ export interface PredictionResult {
     perimeter: number;
     compactness: number;
     aspectRatio: number;
+    componentCount?: number;
   };
   metrics?: {
     dice?: number | null;

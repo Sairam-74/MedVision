@@ -1,0 +1,43 @@
+{
+  "status": "completed_read_only_TRAIN_diagnostic",
+  "images": 16,
+  "groups": {
+    "fracture": {
+      "n": 8,
+      "median_soft_dice": 0.0008520185947418213,
+      "mean_losses": {
+        "bce": 0.04936512606218457,
+        "dice": 0.882208526134491,
+        "total": 0.9315736293792725
+      },
+      "median_logit_gradient_L2": {
+        "bce": 0.0002625639463076368,
+        "dice": 5.513020369107835e-05,
+        "total": 0.0003282215620856732
+      }
+    },
+    "normal": {
+      "n": 8,
+      "median_soft_dice": 0.0,
+      "mean_losses": {
+        "bce": 0.0037684331255150028,
+        "dice": 0.9999999776482582,
+        "total": 1.003768429160118
+      },
+      "median_logit_gradient_L2": {
+        "bce": 0.00011577870463952422,
+        "dice": 2.2415033718026223e-10,
+        "total": 0.00011577890472835861
+      }
+    }
+  },
+  "analytic_derivative_fixtures_passed": true,
+  "elapsed_seconds": 47.11414199999854,
+  "checkpoint_sha256": "4bf4065a256c412c735895b26b42f3b5c1ef862f89376973236c66f43acb0ba7",
+  "no_optimizer_steps": true,
+  "model_improvement_claim": false,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "limitations": "One checkpoint and16 explicitly sampled cases. These norms are not a full TRAIN population estimate, SGD trajectory, or proof of architecture/loss causation."
+}

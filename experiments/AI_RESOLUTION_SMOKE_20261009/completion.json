@@ -1,0 +1,354 @@
+{
+  "status": "passed_TRAIN_only_resolution_smoke",
+  "arms": [
+    {
+      "name": "legacy_cached256",
+      "size": 256,
+      "initial_parameter_sha256": "56d3d964dc5d6b2284fce42138c0d8f6a96c3984db4ecb862e5a4de0d5b02baa",
+      "initial_optimizer_sha256": "008937450fcd6dc05311959410db3f104f3ac760d96832d46b99f6154053be82",
+      "final_parameter_sha256": "e63345c3b90a6b3d89fc1a0a0970e8e7a9b60283af4c6346cf78151dee553858",
+      "final_optimizer_sha256": "5759b0c0a4e4807561b7c809882cc168bd3b446edca656c4113af6953a4d57e5",
+      "steps": [
+        {
+          "step": 1,
+          "image_ids": [
+            "IMG0002377.jpg",
+            "IMG0000371.jpg"
+          ],
+          "train_indices": [
+            1639,
+            257
+          ],
+          "losses": {
+            "total": 1.6117135286331177,
+            "segmentation_total": 1.6117135286331177,
+            "bce": 0.028538282960653305,
+            "dice": 1.5831751823425293,
+            "presence_bce": 3.9903931617736816,
+            "foreground_bce_offset": 0.01745242066681385
+          },
+          "input_tensor_sha256": "f634aae97433aed2758dc49912ca9b1578b3ff9a13634cb70890bff561b4f0ea",
+          "output_tensor_sha256": "e6f2b2da0f44cb9ded3f9268a509276fd7ff21993b45daaff4a4eb300fa9bfe3",
+          "output_gradient_sha256": "724f04fe819154b2aea1436d81a377107a4e4782078db89eb352b1b2e51fb61d",
+          "parameter_gradient_sha256": "0cf554d423b59e827eef69af363b401074b70bcebcc83841f9c669ea97ff807e",
+          "encoder_gradient_L2": 0.14558736979961395,
+          "decoder_gradient_L2": 0.04774149879813194,
+          "gradient_norm_before_clip": 0.1702498346567154,
+          "valid_pixels": 127732,
+          "foreground_pixels": 39,
+          "example_weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "source_preparation_and_transfer_seconds": 0.016804699989734218,
+          "measured_cuda_interval_milliseconds": 4138.89111328125,
+          "measured_step_wall_seconds": 4.13907589999144,
+          "cuda_peak_allocated_bytes": 1330724864,
+          "cuda_peak_reserved_bytes": 1606418432,
+          "model_parameter_sha256": "2adb40dfe2c5d1c3b00e6485bf9cb657e79f4f9b79b7a881f8d460e623657b8d",
+          "optimizer_state_sha256": "bd6f8aee6a2df0d594e61789667b3cae5bf126971a86fcea4d9f0a11f84644aa",
+          "mask_invalid_pixel_derivatives_zero": true,
+          "supervised_head_gradients_absent": true
+        },
+        {
+          "step": 2,
+          "image_ids": [
+            "IMG0003628.jpg",
+            "IMG0001551.jpg"
+          ],
+          "train_indices": [
+            2501,
+            1069
+          ],
+          "losses": {
+            "total": 0.588654100894928,
+            "segmentation_total": 0.588654100894928,
+            "bce": 0.0037485326174646616,
+            "dice": 0.5849055051803589,
+            "presence_bce": 1.925206184387207,
+            "foreground_bce_offset": 0.0007872143178246915
+          },
+          "input_tensor_sha256": "86ebdc101345214bdda8d77581472a27a452b7afc7ced6709bd4081e031742a6",
+          "output_tensor_sha256": "a1ce985f142c4b22bbe9415844fa063ed5fc61a2deb438ebfc5bbfc0c9af9722",
+          "output_gradient_sha256": "aa021f59a78071f3fd268fe1b78e2e427f1d1f2db4ef9d7669783f09e7d1cc21",
+          "parameter_gradient_sha256": "b609ef9c0678f1d58bc306638c5274d6baa45ae8f06135d03900030c6e35ba95",
+          "encoder_gradient_L2": 1.9332997798919678,
+          "decoder_gradient_L2": 0.29207026958465576,
+          "gradient_norm_before_clip": 2.0330913066864014,
+          "valid_pixels": 128772,
+          "foreground_pixels": 48,
+          "example_weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "source_preparation_and_transfer_seconds": 0.00867490001837723,
+          "measured_cuda_interval_milliseconds": 469.5316467285156,
+          "measured_step_wall_seconds": 0.469649800012121,
+          "cuda_peak_allocated_bytes": 1330725376,
+          "cuda_peak_reserved_bytes": 1608515584,
+          "model_parameter_sha256": "e63345c3b90a6b3d89fc1a0a0970e8e7a9b60283af4c6346cf78151dee553858",
+          "optimizer_state_sha256": "5759b0c0a4e4807561b7c809882cc168bd3b446edca656c4113af6953a4d57e5",
+          "mask_invalid_pixel_derivatives_zero": true,
+          "supervised_head_gradients_absent": true
+        }
+      ],
+      "finite_two_steps": true,
+      "full_model_optimizer_save_restore": true,
+      "smoke_checkpoint_sha256": "7006040075c07686432fb05b71cf02574fd1d822a9d9ad3bc41316c9e2d150ea",
+      "measured_two_step_elapsed_seconds": 6.251929500023834,
+      "two_step_peak_allocated_bytes": 1330725376,
+      "two_step_peak_reserved_bytes": 1608515584,
+      "timing_scope": "Bounded two-step run includes diagnostics/CPU digests; CUDA intervals also include parity diagnostic transfers. Not isolated inference throughput.",
+      "model_improvement_claim": false,
+      "reusable_training_state": false
+    },
+    {
+      "name": "raw256",
+      "size": 256,
+      "initial_parameter_sha256": "56d3d964dc5d6b2284fce42138c0d8f6a96c3984db4ecb862e5a4de0d5b02baa",
+      "initial_optimizer_sha256": "008937450fcd6dc05311959410db3f104f3ac760d96832d46b99f6154053be82",
+      "final_parameter_sha256": "e63345c3b90a6b3d89fc1a0a0970e8e7a9b60283af4c6346cf78151dee553858",
+      "final_optimizer_sha256": "5759b0c0a4e4807561b7c809882cc168bd3b446edca656c4113af6953a4d57e5",
+      "steps": [
+        {
+          "step": 1,
+          "image_ids": [
+            "IMG0002377.jpg",
+            "IMG0000371.jpg"
+          ],
+          "train_indices": [
+            1639,
+            257
+          ],
+          "losses": {
+            "total": 1.6117135286331177,
+            "segmentation_total": 1.6117135286331177,
+            "bce": 0.028538282960653305,
+            "dice": 1.5831751823425293,
+            "presence_bce": 3.9903931617736816,
+            "foreground_bce_offset": 0.01745242066681385
+          },
+          "input_tensor_sha256": "f634aae97433aed2758dc49912ca9b1578b3ff9a13634cb70890bff561b4f0ea",
+          "output_tensor_sha256": "e6f2b2da0f44cb9ded3f9268a509276fd7ff21993b45daaff4a4eb300fa9bfe3",
+          "output_gradient_sha256": "724f04fe819154b2aea1436d81a377107a4e4782078db89eb352b1b2e51fb61d",
+          "parameter_gradient_sha256": "0cf554d423b59e827eef69af363b401074b70bcebcc83841f9c669ea97ff807e",
+          "encoder_gradient_L2": 0.14558736979961395,
+          "decoder_gradient_L2": 0.04774149879813194,
+          "gradient_norm_before_clip": 0.1702498346567154,
+          "valid_pixels": 127732,
+          "foreground_pixels": 39,
+          "example_weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "source_preparation_and_transfer_seconds": 0.4800503000151366,
+          "measured_cuda_interval_milliseconds": 463.320068359375,
+          "measured_step_wall_seconds": 0.4634807000111323,
+          "cuda_peak_allocated_bytes": 1330724864,
+          "cuda_peak_reserved_bytes": 1602224128,
+          "model_parameter_sha256": "2adb40dfe2c5d1c3b00e6485bf9cb657e79f4f9b79b7a881f8d460e623657b8d",
+          "optimizer_state_sha256": "bd6f8aee6a2df0d594e61789667b3cae5bf126971a86fcea4d9f0a11f84644aa",
+          "mask_invalid_pixel_derivatives_zero": true,
+          "supervised_head_gradients_absent": true
+        },
+        {
+          "step": 2,
+          "image_ids": [
+            "IMG0003628.jpg",
+            "IMG0001551.jpg"
+          ],
+          "train_indices": [
+            2501,
+            1069
+          ],
+          "losses": {
+            "total": 0.588654100894928,
+            "segmentation_total": 0.588654100894928,
+            "bce": 0.0037485326174646616,
+            "dice": 0.5849055051803589,
+            "presence_bce": 1.925206184387207,
+            "foreground_bce_offset": 0.0007872143178246915
+          },
+          "input_tensor_sha256": "86ebdc101345214bdda8d77581472a27a452b7afc7ced6709bd4081e031742a6",
+          "output_tensor_sha256": "a1ce985f142c4b22bbe9415844fa063ed5fc61a2deb438ebfc5bbfc0c9af9722",
+          "output_gradient_sha256": "aa021f59a78071f3fd268fe1b78e2e427f1d1f2db4ef9d7669783f09e7d1cc21",
+          "parameter_gradient_sha256": "b609ef9c0678f1d58bc306638c5274d6baa45ae8f06135d03900030c6e35ba95",
+          "encoder_gradient_L2": 1.9332997798919678,
+          "decoder_gradient_L2": 0.29207026958465576,
+          "gradient_norm_before_clip": 2.0330913066864014,
+          "valid_pixels": 128772,
+          "foreground_pixels": 48,
+          "example_weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "source_preparation_and_transfer_seconds": 0.1968981999962125,
+          "measured_cuda_interval_milliseconds": 423.59808349609375,
+          "measured_step_wall_seconds": 0.42373249999945983,
+          "cuda_peak_allocated_bytes": 1330725376,
+          "cuda_peak_reserved_bytes": 1604321280,
+          "model_parameter_sha256": "e63345c3b90a6b3d89fc1a0a0970e8e7a9b60283af4c6346cf78151dee553858",
+          "optimizer_state_sha256": "5759b0c0a4e4807561b7c809882cc168bd3b446edca656c4113af6953a4d57e5",
+          "mask_invalid_pixel_derivatives_zero": true,
+          "supervised_head_gradients_absent": true
+        }
+      ],
+      "finite_two_steps": true,
+      "full_model_optimizer_save_restore": true,
+      "smoke_checkpoint_sha256": "7006040075c07686432fb05b71cf02574fd1d822a9d9ad3bc41316c9e2d150ea",
+      "measured_two_step_elapsed_seconds": 3.0459132000105456,
+      "two_step_peak_allocated_bytes": 1330725376,
+      "two_step_peak_reserved_bytes": 1604321280,
+      "timing_scope": "Bounded two-step run includes diagnostics/CPU digests; CUDA intervals also include parity diagnostic transfers. Not isolated inference throughput.",
+      "model_improvement_claim": false,
+      "reusable_training_state": false
+    },
+    {
+      "name": "raw512",
+      "size": 512,
+      "initial_parameter_sha256": "56d3d964dc5d6b2284fce42138c0d8f6a96c3984db4ecb862e5a4de0d5b02baa",
+      "initial_optimizer_sha256": "008937450fcd6dc05311959410db3f104f3ac760d96832d46b99f6154053be82",
+      "final_parameter_sha256": "abec3e516c0f22633d0abe417885db860180aae4a90918aefb71a5e706e0f39f",
+      "final_optimizer_sha256": "b2fbfec619100d9de84faabd785bdda4cd5013bc35a6ec73fd9b2231d25988ef",
+      "steps": [
+        {
+          "step": 1,
+          "image_ids": [
+            "IMG0002377.jpg",
+            "IMG0000371.jpg"
+          ],
+          "train_indices": [
+            1639,
+            257
+          ],
+          "losses": {
+            "total": 1.4638521671295166,
+            "segmentation_total": 1.4638521671295166,
+            "bce": 0.011359276250004768,
+            "dice": 1.4524929523468018,
+            "presence_bce": 3.9173333644866943,
+            "foreground_bce_offset": 0.007325576152652502
+          },
+          "input_tensor_sha256": "006d8ecdb6e2fe74426b6b23483ccfe0374e53a694a85cd652ef80d2e41475ac",
+          "output_tensor_sha256": "49e6488f773df050cfbcc4b38a2786d916b0e25ca01be608892daec17eee45c6",
+          "output_gradient_sha256": "f774be1483aab1b5bdcbe0bbc23a84f413a22dbc2629b6864b95a8b75c30f847",
+          "parameter_gradient_sha256": "29415dceca1c308451f973194effa53a16d2b6b8e2d081e8c7465589a79095c0",
+          "encoder_gradient_L2": 16.17995834350586,
+          "decoder_gradient_L2": 0.571628212928772,
+          "gradient_norm_before_clip": 19.709962844848633,
+          "valid_pixels": 510931,
+          "foreground_pixels": 172,
+          "example_weights": [
+            1.6378737688064575,
+            1.529062032699585
+          ],
+          "source_preparation_and_transfer_seconds": 0.7315798999916296,
+          "measured_cuda_interval_milliseconds": 1514.5062255859375,
+          "measured_step_wall_seconds": 1.5147732000041287,
+          "cuda_peak_allocated_bytes": 4066451456,
+          "cuda_peak_reserved_bytes": 5070913536,
+          "model_parameter_sha256": "11e21c0db08f3244fbdac4b1fbcfe17682469ad5a0d385904db344a5efd83bbd",
+          "optimizer_state_sha256": "076883eef64d35395a6352dad077da8c90735c466c67d55a96366cd693fe5924",
+          "mask_invalid_pixel_derivatives_zero": true,
+          "supervised_head_gradients_absent": true
+        },
+        {
+          "step": 2,
+          "image_ids": [
+            "IMG0003628.jpg",
+            "IMG0001551.jpg"
+          ],
+          "train_indices": [
+            2501,
+            1069
+          ],
+          "losses": {
+            "total": 0.63239985704422,
+            "segmentation_total": 0.63239985704422,
+            "bce": 0.004058290272951126,
+            "dice": 0.628341555595398,
+            "presence_bce": 1.9062771797180176,
+            "foreground_bce_offset": 0.0017686898354440928
+          },
+          "input_tensor_sha256": "3a858cec50774939d9e74664b6af62618adf406d919713d97d644ab41677ac09",
+          "output_tensor_sha256": "afd972db84499d452aee902c62239cf862d6f76e464df4300e46d78c02075589",
+          "output_gradient_sha256": "dd55891ee6c34ff98422489fc874840b0ed7f12b92faf0e94ea4b70fbaa3eeec",
+          "parameter_gradient_sha256": "a22ac4657f948823577262faef9ab89663f11b7f7eb2a73ecec7cc2c3d3258ef",
+          "encoder_gradient_L2": 10.491435050964355,
+          "decoder_gradient_L2": 0.3557853400707245,
+          "gradient_norm_before_clip": 10.821310997009277,
+          "valid_pixels": 515072,
+          "foreground_pixels": 186,
+          "example_weights": [
+            0.8189368844032288,
+            0.7645310163497925
+          ],
+          "source_preparation_and_transfer_seconds": 0.2184539000154473,
+          "measured_cuda_interval_milliseconds": 938.6978149414062,
+          "measured_step_wall_seconds": 0.9388179999950808,
+          "cuda_peak_allocated_bytes": 4066451968,
+          "cuda_peak_reserved_bytes": 5070913536,
+          "model_parameter_sha256": "abec3e516c0f22633d0abe417885db860180aae4a90918aefb71a5e706e0f39f",
+          "optimizer_state_sha256": "b2fbfec619100d9de84faabd785bdda4cd5013bc35a6ec73fd9b2231d25988ef",
+          "mask_invalid_pixel_derivatives_zero": true,
+          "supervised_head_gradients_absent": true
+        }
+      ],
+      "finite_two_steps": true,
+      "full_model_optimizer_save_restore": true,
+      "smoke_checkpoint_sha256": "74f3a59e56833ce56f1ec53e34c08d5c05ab58aadc7732f1a84afd88bc9bb5dc",
+      "measured_two_step_elapsed_seconds": 4.889090600016061,
+      "two_step_peak_allocated_bytes": 4066451968,
+      "two_step_peak_reserved_bytes": 5070913536,
+      "timing_scope": "Bounded two-step run includes diagnostics/CPU digests; CUDA intervals also include parity diagnostic transfers. Not isolated inference throughput.",
+      "model_improvement_claim": false,
+      "reusable_training_state": false
+    }
+  ],
+  "exact256_cached_raw_training_parity": {
+    "per_step_exact": true,
+    "final_model_exact": true,
+    "final_optimizer_exact": true
+  },
+  "actual_unique_TRAIN_sources": 4,
+  "full_matched_initialization": true,
+  "cached256_vs_native256_exact": true,
+  "input512_batch2_fp32_feasible": true,
+  "actual_TRAIN_native_reads": {
+    "raw256": [
+      "IMG0002377.jpg",
+      "IMG0002377.jpg",
+      "IMG0000371.jpg",
+      "IMG0000371.jpg",
+      "IMG0003628.jpg",
+      "IMG0003628.jpg",
+      "IMG0001551.jpg",
+      "IMG0001551.jpg",
+      "IMG0002377.jpg",
+      "IMG0000371.jpg",
+      "IMG0003628.jpg",
+      "IMG0001551.jpg"
+    ],
+    "raw512": [
+      "IMG0002377.jpg",
+      "IMG0000371.jpg",
+      "IMG0003628.jpg",
+      "IMG0001551.jpg"
+    ]
+  },
+  "original_guard_count_verified": 229,
+  "source_sha256": "10b9a1c3c257ff0e201f250c405d3e6ba57bb0be9a32ca12abe0fe25108161a9",
+  "guards_unchanged": true,
+  "raw512_from_native_sources": true,
+  "batch_size": 2,
+  "fp32": true,
+  "additional_factors_changed": false,
+  "fixed_model_optimizer_initialization": true,
+  "registered_experiment": false,
+  "smoke_states_disposable": true,
+  "model_improvement_claim": false,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "promotion": false
+}

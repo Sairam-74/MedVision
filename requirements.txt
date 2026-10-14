@@ -1,8 +1,15 @@
-# Python 3.13.7 (.venv metadata check: all listed packages not installed)
-numpy>=1.26,<2.0
-opencv-python>=4.8,<5.0
-scikit-learn>=1.3,<2.0
-torch>=2.2,<3.0
-albumentations>=1.4,<2.0
-fastapi>=0.115,<1.0
-uvicorn>=0.30,<1.0
+# Legacy E2 training reproduction only; preserve its active environment.
+# Use requirements-demo.lock.txt for patched serving (see DEMO.md).
+# Verified on Python 3.13.7; choose CPU/CUDA torch wheel as described in DEMO.md.
+numpy==2.3.2
+opencv-python-headless==4.13.0.92
+scikit-learn==1.8.0
+torch==2.9.1
+fastapi==0.136.1
+uvicorn==0.47.0
+httpx==0.28.1
+python-multipart==0.0.32
+psutil==7.0.0
+pillow==12.0.0
+# Optional augmentation; seeded local fallback works without this package.
+albumentations==2.0.8

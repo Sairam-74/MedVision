@@ -1,0 +1,37 @@
+{
+  "protocol_sha256": "4685bbe07f9a9c9b0690645692882198c3ba2f01a5a9482ef30027450618344c",
+  "initial_snapshot_sha256": "655c2ddf756989e30bf1cdb070076af05cb544c88a435b4bd93909e85edbc7b6",
+  "selected_checkpoint_sha256": "bfbba05a924f75ed3a4261977b31bf7d7c2af9c940cfdbfc4ec2d153324c2348",
+  "sample_ids": [
+    "IMG0000059.jpg",
+    "IMG0000011.jpg",
+    "IMG0000025.jpg",
+    "IMG0000000.jpg"
+  ],
+  "hard_factor": 2,
+  "coefficients": [
+    1,
+    2
+  ],
+  "augmentation_global_epoch": 31,
+  "source_hashes": {
+    "tools/smoke_ai_positive_dice.py": "9372c9cd2336a2dc79ee575b69114892de34fcb700758d4815f046699c819f2b",
+    "tools/ai_positive_dice_loss.py": "5987dd74ff7ebea6008f1682f85d21b2e90ff3b2b40e09d48658aa9cc9e80d1e",
+    "tools/ai_hard_example_loss.py": "f99459644ec0c5dba8c09aeda44eb432bb89d48fb9c700785378497bf8870e3a",
+    "tools/ai_bounded_hard_weights.py": "817334e5e441bd89a76a6db0e578604cc0fa4887e97cd2e9049ec2b351cbcc6a",
+    "tools/ai_presence_model.py": "7b6ccadb11f9cd4083e1ac40c97f0311f1454bd31fcb777195447ebf0ede087e",
+    "tools/ai_cached_dataset.py": "0cdf89276b3fae7bd1279712fb37224fa009952e4f261f1400e86d6f73dbf2b9",
+    "tools/ai_atomic_io.py": "5e96df283d717e086ff72a4e19d1d5d6fcc0677fc30728c0187e9fd767f675aa",
+    "tools/smoke_ai_hard_candidate.py": "209a26363975968c0ffd148d1059b2297a91ee166ea3ae5af71ad4ad386e04eb",
+    "tools/train_reliability_candidate.py": "48d006df19115111e081ae899c0fccd1e5a7d657705bea40aeef5739929a7b36",
+    "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc"
+  },
+  "device": "cuda",
+  "batch_size": 2,
+  "seed": 42,
+  "scope": "Four actual TRAIN sources; two discarded optimizer steps in each of three independent arms",
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

@@ -1,0 +1,16 @@
+{
+  "status": "completed_actual_native_normal_alerts_review",
+  "audit": "experiments\\AI_AUDIT_E13_v3_foreground_BCE_reference",
+  "selection": "normal_alerts",
+  "actual_new_case_reviews": 176,
+  "previously_reviewed_selected_cases": 0,
+  "total_selected_cases": 176,
+  "actual_sheets_reviewed": 20,
+  "per_case_review_sha256": "217546615b3435e16ef217665f3f05ebd9503cdceb421cb7c90357d5dc6afa02",
+  "index_sha256": "8431967dbcd6a899b7b25173b1684b422664080f5c247e5c0debbb425c90f48e",
+  "notes_sha256": "babb00d01569fb87d8d493fccf01bd57bcc8a79e53ef3c32f6d7768c164754cf",
+  "recorder_sha256": "e4d873893298f6ba94cf2bc2bc50189f4a02c3cd354f208ef2414b648aa2abc2",
+  "new_inference": false,
+  "no_label_changes": true,
+  "clinical_adjudication": false
+}

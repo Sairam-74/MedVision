@@ -1,0 +1,5 @@
+# Presence TRAIN-fit interpretation correction
+
+The completed E8 TRAIN-fit `uncalibrated_head_diagnostic` uses the actual supervised presence sigmoid (`head_score`) and explicit TRAIN source labels. Its Brier/ECE calculations are correct for those scores. The generic calibration helper left its original default prose describing a maximum-pixel score, which is incorrect for this particular field. Interpret it as an **uncalibrated supervised presence score**, influenced by balanced TRAIN class weights. This is a training-fit diagnostic, not clinical confidence or a calibration fit.
+
+Completed outputs and their source hashes remain unchanged. The completed helper source was preserved as `audit_ai_presence_train_fit_completed_r2_source.py` before correcting only this prose for future diagnostics, after the TRAIN-fit watcher finished both runs. Training settings, model tensors, dataset, numerical metrics and native validation acceptance were unaffected. The native presence audit already supplies the correct score interpretation.

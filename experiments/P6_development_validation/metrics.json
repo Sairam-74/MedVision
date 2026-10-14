@@ -1,0 +1,277 @@
+{
+  "selection": {
+    "threshold": 0.1,
+    "policy": "all"
+  },
+  "metrics": {
+    "n_positive": 110,
+    "n_normal": 502,
+    "mean_positive_dice": 0.0,
+    "median_positive_dice": 0.0,
+    "positive_dice_group_bootstrap95": [
+      0.0,
+      0.0
+    ],
+    "mean_positive_iou": 0.0,
+    "case_sensitivity": 0.0,
+    "normal_false_positive_rate": 0.0,
+    "case_true_positive": 0,
+    "case_false_negative": 110,
+    "case_false_positive": 0,
+    "case_true_negative": 502,
+    "global_dice": 0.0,
+    "global_iou": 0.0,
+    "pixel_precision": null,
+    "pixel_recall": 0.0,
+    "mean_regions_per_normal": 0.0,
+    "specificity": 1.0,
+    "case_precision": null
+  },
+  "regions": {
+    "0.1": {
+      "matches": 0,
+      "ground_truth_instances": 137,
+      "false_positive_regions": 0,
+      "recall": 0.0
+    },
+    "0.5": {
+      "matches": 0,
+      "ground_truth_instances": 137,
+      "false_positive_regions": 0,
+      "recall": 0.0
+    }
+  },
+  "subgroups": {
+    "hand": {
+      "n_positive": 77,
+      "n_normal": 160,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 77,
+      "case_false_positive": 0,
+      "case_true_negative": 160,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    },
+    "leg": {
+      "n_positive": 30,
+      "n_normal": 310,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 30,
+      "case_false_positive": 0,
+      "case_true_negative": 310,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    },
+    "hip": {
+      "n_positive": 7,
+      "n_normal": 34,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 7,
+      "case_false_positive": 0,
+      "case_true_negative": 34,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    },
+    "shoulder": {
+      "n_positive": 12,
+      "n_normal": 42,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 12,
+      "case_false_positive": 0,
+      "case_true_negative": 42,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    },
+    "mixed": {
+      "n_positive": 15,
+      "n_normal": 43,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 15,
+      "case_false_positive": 0,
+      "case_true_negative": 43,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    },
+    "hardware": {
+      "n_positive": 10,
+      "n_normal": 1,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 10,
+      "case_false_positive": 0,
+      "case_true_negative": 1,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    },
+    "multiscan": {
+      "n_positive": 12,
+      "n_normal": 50,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 12,
+      "case_false_positive": 0,
+      "case_true_negative": 50,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    },
+    "frontal": {
+      "n_positive": 69,
+      "n_normal": 315,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 69,
+      "case_false_positive": 0,
+      "case_true_negative": 315,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    },
+    "lateral": {
+      "n_positive": 52,
+      "n_normal": 166,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 52,
+      "case_false_positive": 0,
+      "case_true_negative": 166,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    },
+    "oblique": {
+      "n_positive": 6,
+      "n_normal": 55,
+      "mean_positive_dice": 0.0,
+      "median_positive_dice": 0.0,
+      "positive_dice_group_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "mean_positive_iou": 0.0,
+      "case_sensitivity": 0.0,
+      "normal_false_positive_rate": 0.0,
+      "case_true_positive": 0,
+      "case_false_negative": 6,
+      "case_false_positive": 0,
+      "case_true_negative": 55,
+      "global_dice": 0.0,
+      "global_iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "mean_regions_per_normal": 0.0
+    }
+  },
+  "timing": {
+    "forward_median_ms": 763.2143000373617,
+    "forward_p95_ms": 924.546200025361,
+    "first_forward_ms": 907.5504000065848,
+    "elapsed_seconds": 26454.21818840003,
+    "peak_process_rss_bytes": 1114009600,
+    "device": "CPU; i5-13500HX; torch threads2; concurrent E2 training; NOT isolated final benchmark"
+  },
+  "final_test_evaluated": false,
+  "final_bundle_frozen": false,
+  "limitation": "Full E2 training still running; v1 contradictory training labels; final v2 comparisons pending"
+}

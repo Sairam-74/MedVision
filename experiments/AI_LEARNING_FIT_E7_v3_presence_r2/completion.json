@@ -1,0 +1,10 @@
+{
+  "status": "completed_read_only_TRAIN_fit",
+  "train_cases": 2808,
+  "elapsed_seconds": 82.64162360000046,
+  "model_tensors_unchanged": true,
+  "no_optimizer_steps": true,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

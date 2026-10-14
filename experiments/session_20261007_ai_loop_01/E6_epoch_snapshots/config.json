@@ -1,0 +1,8 @@
+{
+  "run": "experiments\\AI_E6_v3_normal_BCE2",
+  "source_config_sha256": "13f0abb2294d3bc45636cf6208db25a0c6e17139d6bb12b5299a8b489bac7011",
+  "helper_source_sha256": "8154494fcf2e307752ea1c8085028c641ca94cdb286f6ec2ed2c07fb16555146",
+  "purpose": "Preserve completed epochs only; registered checkpoint selection unchanged",
+  "original_checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+  "first_observation_utc": "2026-10-07T05:41:58Z"
+}

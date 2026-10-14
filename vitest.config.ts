@@ -10,9 +10,11 @@ export default defineConfig({
     },
   },
   test: {
+    include: ['src/**/*.test.{ts,tsx}'],
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     globals: true,
+    env: { VITE_USE_MOCKS: 'true' },
     css: true,
   },
 });

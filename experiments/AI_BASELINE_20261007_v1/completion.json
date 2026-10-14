@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "baseline_immutable": true,
+  "test_images_read": 0,
+  "report_sha256": "3d5e5e6149882d23cb5a145665f534d5f810e3815c913ba6bc66ccb2699dd12b",
+  "metrics_sha256": "35abc614922b4078e0b9969e0b18d0117e909abfe0b6e401139358ae5916772f",
+  "cases_sha256": "c9e5cb4e6493cfe6290f957e1d2760044ec385f220f1841ae09fac09ded6c22e",
+  "postprocessing_recovery": "Saved exact measurements retained after missing matplotlib; figures/report only completed in existing research runtime",
+  "finalizer_sha256": "a49b0bb2c8374aa0dac5e3f9c13c4cd040eb402b6618e86d28a62c22408b573b"
+}

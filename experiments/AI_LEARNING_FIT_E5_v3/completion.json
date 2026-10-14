@@ -1,0 +1,9 @@
+{
+  "status": "completed_grid_fit_diagnostic",
+  "train_images": 2808,
+  "validation_cached_grids": 463,
+  "elapsed_seconds": 4372.126915600002,
+  "model_trained": false,
+  "test_images_read": 0,
+  "promotion": false
+}

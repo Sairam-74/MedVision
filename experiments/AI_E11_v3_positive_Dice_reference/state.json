@@ -1,0 +1,13 @@
+{
+  "status": "completed",
+  "epochs_finished": 12,
+  "elapsed_seconds": 12445.526082000011,
+  "best_selection_key": [
+    0,
+    0.7046783625730995,
+    0.7553882757111025
+  ],
+  "smoke": false,
+  "test_evaluated": false,
+  "promotion": false
+}

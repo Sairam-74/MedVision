@@ -1,0 +1,48 @@
+{
+  "scope": "validation only; completed-epoch development snapshot, NOT final selected model",
+  "epoch": 1,
+  "checkpoint_sha256": "87ba501958afc8c80c31040b0b961acabaed548fc128155b28a1a4c9050e1f0f",
+  "manifest_sha256": "e931cd3d3dce044f7d8f43fefeda596d39d9dc8529453f5262441c1a64e20227",
+  "split": "val",
+  "output_contract": "sigmoid-probabilities-v1",
+  "preprocess": "CLAHE2/8x8+Gaussian3x3; stretch256; /255",
+  "thresholds": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95
+  ],
+  "policies": [
+    "all",
+    "largest",
+    "min16"
+  ],
+  "selection": "agreed validation Dice rank with sensitivity/FPR within 2 points of .5/all; <.005 Dice tie prefers simpler all policy",
+  "region_iou_thresholds": [
+    0.1,
+    0.5
+  ],
+  "empty_gt": "exclude from positive Dice; undefined precision null; normals separate",
+  "final_test_authorized": false,
+  "gate": "Full training/controlled finalist selection unfinished; preserve test",
+  "source_sha256": {
+    "tools/phase6_evidence.py": "212de4ed50cf5be0fa59580b8d5f20d5bf486939bb870bbd5d4fae1c4794ff46",
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc",
+    "tools/run_experiment.py": "8fce35cf96fd9cda11a40370c3df05ceedb9691cc5c2c120b7bb40eacb2251ef"
+  }
+}

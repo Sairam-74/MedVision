@@ -1,0 +1,17 @@
+{
+  "input_hashes": {
+    "experiments\\data_v3_reliability_20261007\\manifest.json": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+    "experiments\\AI_TRAIN_HARD_SETS_20261007\\HARD_POSITIVE_SET.json": "c5655c4d3a178adfa81d08ddaad08f31b0af5e20b6c567910889fcb87ada7d1b",
+    "experiments\\AI_TRAIN_HARD_SETS_20261007\\HARD_NEGATIVE_SET.json": "e2b24896ed376331f3969ed6aaa8a9b62035d079f146e5d8190c7bfac74f7422",
+    "experiments\\AI_LEARNING_FIT_E7_v3_presence_r2\\train_cases.jsonl": "b237026351100b85dcb33f4bdd44fbe8cdc258b2d781b0fb6258fa98612a9065",
+    "experiments\\AI_LEARNING_FIT_E8_v3_presence_r2\\train_cases.jsonl": "9f0e19ae39da8f1362d67effcabba6df9b0446374b3d172b82c47e3c2db3c530",
+    "experiments\\AI_LEARNING_FIT_E7_v3_presence_r2\\config.json": "f031bac9d92a247ab077e01be8a03830bb99079f2d92035ba9521ef5ba28e282",
+    "experiments\\AI_LEARNING_FIT_E8_v3_presence_r2\\config.json": "1eec9884b89e90755dbb826bd4c0b194be90f4485a6fd0e564336a68dc3dc92f",
+    "tools\\refresh_ai_training_hard_catalogs.py": "40764bc298e5211b5be02108e844ed1a185fd88a82727b027a0a9ecb7a7cce1e",
+    "tools\\ai_bounded_hard_weights.py": "817334e5e441bd89a76a6db0e578604cc0fa4887e97cd2e9049ec2b351cbcc6a"
+  },
+  "positive_dice_cutoff": 0.2,
+  "normal_mask_threshold": 0.5,
+  "hard_factor": 2.0,
+  "classifier_gating": false
+}

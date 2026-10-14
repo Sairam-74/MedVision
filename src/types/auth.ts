@@ -29,6 +29,7 @@ export interface SignupRequest {
 
 export interface PasswordResetRequest {
   email: string;
+  recoveryCode: string;
 }
 
 export interface ResetPasswordRequest {

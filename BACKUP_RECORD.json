@@ -1,0 +1,28 @@
+{
+  "repository": "https://github.com/Sairam-74/MedVision",
+  "date": "2026-10-14",
+  "original_path": "C:\\Users\\K SAIRAM\\OneDrive\\Desktop\\MedVision",
+  "starting_commit": "1e310c280450f3efc8fbb123ed9815332119170b",
+  "backup_branch": "backup/pre-feature-development-2026-10-14",
+  "baseline": {
+    "frontend_tests": 9,
+    "authentication_checks": 31
+  },
+  "research_evidence_files": 355,
+  "excluded": [
+    "Local .env files, credentials, SQLite databases and uploaded cases: private writable state",
+    "Virtual environments, node_modules, build output and caches: reproducible dependencies",
+    "FracAtlas.zip, checkpoints, large training caches and generated review images: existing private/local artifact strategy",
+    "Binary reports, deliverable copies and historical source snapshots: retained locally; current source and research records preserved"
+  ],
+  "required_local_artifacts": {
+    "best_model.pt": {
+      "bytes": 125659839,
+      "sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81"
+    },
+    "FracAtlas.zip": {
+      "bytes": 338412750,
+      "sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8"
+    }
+  }
+}

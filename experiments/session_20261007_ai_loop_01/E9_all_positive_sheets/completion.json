@@ -1,0 +1,15 @@
+{
+  "status": "completed_actual_native_positive_segmentation_errors_review",
+  "audit": "experiments\\AI_AUDIT_E9_v3_hard_reference",
+  "selection": "positive_segmentation_errors",
+  "actual_new_case_reviews": 56,
+  "previously_reviewed_selected_cases": 0,
+  "total_selected_cases": 56,
+  "actual_sheets_reviewed": 10,
+  "per_case_review_sha256": "a0ef28e9e7c1c04959e57a83eec1b81934e0337ac98db617c7548099eab73b53",
+  "index_sha256": "9755d25035a49db88876c030fafdd44cde8d241f000e07e0981e06352ba156ce",
+  "notes_sha256": "b83cb929e601597d93f9d34650f26dc2e59d9e0c0e98778d2b7d253cb02f1138",
+  "new_inference": false,
+  "no_label_changes": true,
+  "clinical_adjudication": false
+}

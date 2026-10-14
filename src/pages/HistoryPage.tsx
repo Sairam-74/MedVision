@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { fetchAnalyses } from '@/api/analyses';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { deleteAnalysis, fetchAnalyses } from '@/api/analyses';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { EmptyState } from '@/components/layout/EmptyState';
 import { Badge } from '@/components/ui/badge';
@@ -13,7 +13,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { formatRelative } from '@/utils/format';
 
 export function HistoryPage() {
-  const { data: analyses = [] } = useQuery({ queryKey: ['analyses'], queryFn: fetchAnalyses });
+  const { data: analyses = [], isLoading, isError, refetch } = useQuery({ queryKey: ['analyses'], queryFn: fetchAnalyses, refetchInterval: 5000 });
+  const queryClient = useQueryClient();
+  const deletion = useMutation({ mutationFn: deleteAnalysis, onSuccess: () => queryClient.invalidateQueries({ queryKey: ['analyses'] }) });
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('all');
   const [uploader, setUploader] = useState('all');
@@ -25,10 +27,13 @@ export function HistoryPage() {
     const matchesUploader = uploader === 'all' || analysis.uploader === uploader;
     return matchesQuery && matchesStatus && matchesUploader;
   });
+  if (isLoading) return <p>Loading history…</p>;
+  if (isError) return <div><p>Could not load history.</p><Button onClick={() => refetch()}>Retry</Button></div>;
 
   return (
     <div className="space-y-6">
       <PageHeader title="History" description="Search, filter, and review past analyses." />
+      {deletion.isError ? <p role="alert">Could not delete this analysis. Retry after any active job finishes.</p> : null}
       <Card>
         <CardContent className="grid gap-3 p-4 md:grid-cols-3">
           <Input placeholder="Search analyses" value={query} onChange={(event) => setQuery(event.target.value)} />
@@ -38,6 +43,7 @@ export function HistoryPage() {
             <option value="processing">Processing</option>
             <option value="completed">Completed</option>
             <option value="failed">Failed</option>
+            <option value="timed_out">Timed out</option>
           </Select>
           <Select value={uploader} onChange={(event) => setUploader(event.target.value)}>
             {uploaders.map((value) => (
@@ -77,9 +83,12 @@ export function HistoryPage() {
                     </TableCell>
                     <TableCell>{formatRelative(analysis.createdAt)}</TableCell>
                     <TableCell>
-                      <Button variant="outline" size="sm" asChild>
+                      {analysis.status === 'completed' ? <Button variant="outline" size="sm" asChild>
                         <Link to={`/results/${analysis.id}`}>Open</Link>
-                      </Button>
+                      </Button> : null}
+                      {['completed', 'failed', 'timed_out'].includes(analysis.status) ? <Button variant="ghost" size="sm" disabled={deletion.isPending} onClick={() => {
+                        if (window.confirm('Delete this analysis and its saved images? This cannot be undone.')) deletion.mutate(analysis.id);
+                      }}>Delete</Button> : null}
                     </TableCell>
                   </TableRow>
                 ))}

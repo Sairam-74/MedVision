@@ -1,0 +1,2828 @@
+{
+  "config": {
+    "run": "experiments\\AI_E8_v3_presence_supervision_r2",
+    "epoch": 7,
+    "global_epoch": 15,
+    "output_contract": "medvision.shared_unet_presence_logits.v1",
+    "architecture": "AttentionUNet64PresenceGAP",
+    "presence_weight": 1,
+    "checkpoint_sha256": "e9c1af3d9e3199735bfbb89438191bf42e60831205c4741664603bc7884eb9d0",
+    "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+    "archive_sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8",
+    "preprocess": {
+      "size": 256,
+      "resize": "stretch",
+      "clahe": true,
+      "clip_limit": 2.0,
+      "tile_grid": 8,
+      "blur_kernel": 3,
+      "normalization": "unit"
+    },
+    "postprocess": {
+      "threshold": 0.5,
+      "policy": "all",
+      "min_pixels": 16
+    },
+    "device": "cpu",
+    "torch": "2.9.1+cu128",
+    "original_checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+    "source_hashes": {
+      "tools/ai_atomic_io.py": "5e96df283d717e086ff72a4e19d1d5d6fcc0677fc30728c0187e9fd767f675aa",
+      "tools/train_ai_presence_candidate.py": "cbfe78ab7c87dc5268d1111dffdfa13a6801987f4557f6160b58a27c1be43b41",
+      "tools/ai_presence_model.py": "7b6ccadb11f9cd4083e1ac40c97f0311f1454bd31fcb777195447ebf0ede087e",
+      "tools/ai_cached_dataset.py": "0cdf89276b3fae7bd1279712fb37224fa009952e4f261f1400e86d6f73dbf2b9",
+      "tools/cache_ai_training_inputs.py": "2e4610efc6b7b1277ecce6ea99ba2c10d1e4bd63fba6a69ac641819f6d4ca0cd",
+      "tools/train_reliability_candidate.py": "48d006df19115111e081ae899c0fccd1e5a7d657705bea40aeef5739929a7b36",
+      "tools/ai_metrics.py": "8008b83db7b8ee2bac1f137e8aa1a0383731320d9e97a330c410c32690476aca",
+      "tools/run_experiment.py": "8fce35cf96fd9cda11a40370c3df05ceedb9691cc5c2c120b7bb40eacb2251ef",
+      "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+      "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc",
+      "tools/audit_ai_presence_candidate.py": "1a7bf51d31e42d729452b983d9db64123560088f406059477c88ea6fb087b562",
+      "tools/ai_validation_audit.py": "273d7364f6ab64553bac36c0f4407d249db1120ce85467dbc3013789332e587b",
+      "tools/evaluate_ai_baseline.py": "c44d753e17ced5946c1f292f307ca6cb927865aa0313cbe537ad10837ebca4dd"
+    },
+    "scope": "Full frozen463 VAL: independent masks, supervised head when enabled, conservative review union; no CAL/test/selection change",
+    "timing_context": "CPU audit may overlap separate GPU training; not an isolated idle latency comparison",
+    "test_images_read": 0,
+    "calibration_fit": false,
+    "promotion": false
+  },
+  "classification": {
+    "n": 463,
+    "positive": 83,
+    "normal": 380,
+    "accuracy": 0.42116630669546434,
+    "precision": 0.2222222222222222,
+    "recall_sensitivity": 0.891566265060241,
+    "specificity": 0.31842105263157894,
+    "f1": 0.3557692307692308,
+    "false_positive_rate": 0.6815789473684211,
+    "false_negative_rate": 0.10843373493975904,
+    "auroc": 0.7135383639822447,
+    "auprc_average_precision": 0.3723248816813759,
+    "confusion_matrix": {
+      "tn": 121,
+      "fp": 259,
+      "fn": 9,
+      "tp": 74
+    },
+    "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+  },
+  "segmentation": {
+    "n_positive": 83,
+    "mean_positive_dice": 0.2805503402535848,
+    "mean_positive_iou": 0.20802211426133904,
+    "mean_positive_precision_nonempty": 0.3763587566497341,
+    "mean_positive_recall": 0.3197335352626986,
+    "global_dice": 0.11304596604997139,
+    "global_iou": 0.05990923150010613,
+    "global_pixel_precision": 0.08563532646030055,
+    "global_pixel_recall": 0.1662650110805938,
+    "pixel_counts": {
+      "tp": 65197,
+      "fp": 696136,
+      "fn": 326930
+    },
+    "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+  },
+  "localization": {
+    "component_box_map50": 0.08361538359718325,
+    "component_box_map50_95": 0.018747347020997965,
+    "ground_truth_instances": 99,
+    "predicted_regions": 530,
+    "by_iou": [
+      {
+        "iou": 0.5,
+        "ap101": 0.08361538359718325,
+        "tp": 22,
+        "fp": 508,
+        "fn": 77,
+        "precision": 0.04150943396226415,
+        "recall": 0.2222222222222222
+      },
+      {
+        "iou": 0.55,
+        "ap101": 0.0477985298529853,
+        "tp": 18,
+        "fp": 512,
+        "fn": 81,
+        "precision": 0.033962264150943396,
+        "recall": 0.18181818181818182
+      },
+      {
+        "iou": 0.6,
+        "ap101": 0.023903704145924798,
+        "tp": 13,
+        "fp": 517,
+        "fn": 86,
+        "precision": 0.024528301886792454,
+        "recall": 0.13131313131313133
+      },
+      {
+        "iou": 0.65,
+        "ap101": 0.01397054599076929,
+        "tp": 9,
+        "fp": 521,
+        "fn": 90,
+        "precision": 0.016981132075471698,
+        "recall": 0.09090909090909091
+      },
+      {
+        "iou": 0.7,
+        "ap101": 0.011563922349681776,
+        "tp": 8,
+        "fp": 522,
+        "fn": 91,
+        "precision": 0.01509433962264151,
+        "recall": 0.08080808080808081
+      },
+      {
+        "iou": 0.75,
+        "ap101": 0.006015201206148872,
+        "tp": 3,
+        "fp": 527,
+        "fn": 96,
+        "precision": 0.005660377358490566,
+        "recall": 0.030303030303030304
+      },
+      {
+        "iou": 0.8,
+        "ap101": 0.00020206102242877348,
+        "tp": 1,
+        "fp": 529,
+        "fn": 98,
+        "precision": 0.0018867924528301887,
+        "recall": 0.010101010101010102
+      },
+      {
+        "iou": 0.85,
+        "ap101": 0.00020206102242877348,
+        "tp": 1,
+        "fp": 529,
+        "fn": 98,
+        "precision": 0.0018867924528301887,
+        "recall": 0.010101010101010102
+      },
+      {
+        "iou": 0.9,
+        "ap101": 0.00020206102242877348,
+        "tp": 1,
+        "fp": 529,
+        "fn": 98,
+        "precision": 0.0018867924528301887,
+        "recall": 0.010101010101010102
+      },
+      {
+        "iou": 0.95,
+        "ap101": 0.0,
+        "tp": 0,
+        "fp": 530,
+        "fn": 99,
+        "precision": 0.0,
+        "recall": 0.0
+      }
+    ],
+    "method": "Native predicted connected-component enclosing boxes vs enclosing boxes of individual COCO polygon rasterizations; confidence=max pixel output per component; masks gated at native threshold 0.5; one-to-one, equal-score batching, 101-point interpolated AP. Not canonical COCO mAP or a separately trained detection head."
+  },
+  "mask_instance_localization": {
+    "0.1": {
+      "matches": 43,
+      "gt": 99,
+      "predicted": 530,
+      "precision": 0.08113207547169811,
+      "recall": 0.43434343434343436,
+      "false_positive_regions": 487,
+      "missed_regions": 56
+    },
+    "0.5": {
+      "matches": 19,
+      "gt": 99,
+      "predicted": 530,
+      "precision": 0.035849056603773584,
+      "recall": 0.1919191919191919,
+      "false_positive_regions": 511,
+      "missed_regions": 80
+    }
+  },
+  "calibration": {
+    "brier_score": 0.45384086740768775,
+    "expected_calibration_error": 0.5142444424234637,
+    "bins": 10,
+    "binning": "equal-width; final bin includes 1",
+    "reliability_curve": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "n": 17,
+        "mean_score": 0.06281037036986913,
+        "observed_fracture_fraction": 0.0
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "n": 50,
+        "mean_score": 0.15325654938817024,
+        "observed_fracture_fraction": 0.06
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "n": 24,
+        "mean_score": 0.2445466909557581,
+        "observed_fracture_fraction": 0.125
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "n": 19,
+        "mean_score": 0.34658826495471756,
+        "observed_fracture_fraction": 0.05263157894736842
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "n": 20,
+        "mean_score": 0.43880934417247774,
+        "observed_fracture_fraction": 0.1
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "n": 15,
+        "mean_score": 0.5511021534601848,
+        "observed_fracture_fraction": 0.06666666666666667
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "n": 23,
+        "mean_score": 0.6488781778708749,
+        "observed_fracture_fraction": 0.13043478260869565
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "n": 43,
+        "mean_score": 0.755035052465838,
+        "observed_fracture_fraction": 0.06976744186046512
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "n": 70,
+        "mean_score": 0.8523234077862331,
+        "observed_fracture_fraction": 0.18571428571428572
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "n": 182,
+        "mean_score": 0.9660121559441744,
+        "observed_fracture_fraction": 0.2967032967032967
+      }
+    ],
+    "score_exactly_one_count": 0,
+    "interpretation": "Uncalibrated review-score diagnostic; no clinical confidence claim"
+  },
+  "subgroups": {
+    "hand": {
+      "classification": {
+        "n": 181,
+        "positive": 63,
+        "normal": 118,
+        "accuracy": 0.39779005524861877,
+        "precision": 0.3597560975609756,
+        "recall_sensitivity": 0.9365079365079365,
+        "specificity": 0.11016949152542373,
+        "f1": 0.5198237885462555,
+        "false_positive_rate": 0.8898305084745762,
+        "false_negative_rate": 0.06349206349206349,
+        "auroc": 0.6580575733118106,
+        "auprc_average_precision": 0.5037829548497509,
+        "confusion_matrix": {
+          "tn": 13,
+          "fp": 105,
+          "fn": 4,
+          "tp": 59
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 63,
+        "mean_positive_dice": 0.3350441434480162,
+        "mean_positive_iou": 0.24922058485308551,
+        "mean_positive_precision_nonempty": 0.3831245223267782,
+        "mean_positive_recall": 0.3801151474636038,
+        "global_dice": 0.23645826212747403,
+        "global_iou": 0.13408146631830153,
+        "global_pixel_precision": 0.18949394450860205,
+        "global_pixel_recall": 0.3143725959294757,
+        "pixel_counts": {
+          "tp": 63994,
+          "fp": 273716,
+          "fn": 139567
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 181,
+        "positive": 63,
+        "normal": 118,
+        "accuracy": 0.4088397790055249,
+        "precision": 0.35526315789473684,
+        "recall_sensitivity": 0.8571428571428571,
+        "specificity": 0.1694915254237288,
+        "f1": 0.5023255813953489,
+        "false_positive_rate": 0.8305084745762712,
+        "false_negative_rate": 0.14285714285714285,
+        "auroc": 0.6275221953188054,
+        "auprc_average_precision": 0.4902777643010728,
+        "confusion_matrix": {
+          "tn": 20,
+          "fp": 98,
+          "fn": 9,
+          "tp": 54
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 181,
+        "positive": 63,
+        "normal": 118,
+        "accuracy": 0.6298342541436464,
+        "precision": 0.4777777777777778,
+        "recall_sensitivity": 0.6825396825396826,
+        "specificity": 0.6016949152542372,
+        "f1": 0.5620915032679739,
+        "false_positive_rate": 0.3983050847457627,
+        "false_negative_rate": 0.31746031746031744,
+        "auroc": 0.6892655367231639,
+        "auprc_average_precision": 0.5965362608679735,
+        "confusion_matrix": {
+          "tn": 71,
+          "fp": 47,
+          "fn": 20,
+          "tp": 43
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "leg": {
+      "classification": {
+        "n": 255,
+        "positive": 18,
+        "normal": 237,
+        "accuracy": 0.41568627450980394,
+        "precision": 0.08280254777070063,
+        "recall_sensitivity": 0.7222222222222222,
+        "specificity": 0.3924050632911392,
+        "f1": 0.14857142857142858,
+        "false_positive_rate": 0.6075949367088608,
+        "false_negative_rate": 0.2777777777777778,
+        "auroc": 0.6364275668073136,
+        "auprc_average_precision": 0.12959809092389923,
+        "confusion_matrix": {
+          "tn": 93,
+          "fp": 144,
+          "fn": 5,
+          "tp": 13
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 18,
+        "mean_positive_dice": 0.11958974140357033,
+        "mean_positive_iou": 0.0862297705433701,
+        "mean_positive_precision_nonempty": 0.2535419403652476,
+        "mean_positive_recall": 0.14320936210538368,
+        "global_dice": 0.004244823663253698,
+        "global_iou": 0.0021269260446289645,
+        "global_pixel_precision": 0.0027791615322094333,
+        "global_pixel_recall": 0.008981390189795416,
+        "pixel_counts": {
+          "tp": 1166,
+          "fp": 418385,
+          "fn": 128658
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 255,
+        "positive": 18,
+        "normal": 237,
+        "accuracy": 0.42745098039215684,
+        "precision": 0.06164383561643835,
+        "recall_sensitivity": 0.5,
+        "specificity": 0.4219409282700422,
+        "f1": 0.10975609756097561,
+        "false_positive_rate": 0.5780590717299579,
+        "false_negative_rate": 0.5,
+        "auroc": 0.5414908579465542,
+        "auprc_average_precision": 0.09879895115980782,
+        "confusion_matrix": {
+          "tn": 100,
+          "fp": 137,
+          "fn": 9,
+          "tp": 9
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 255,
+        "positive": 18,
+        "normal": 237,
+        "accuracy": 0.8274509803921568,
+        "precision": 0.175,
+        "recall_sensitivity": 0.3888888888888889,
+        "specificity": 0.8607594936708861,
+        "f1": 0.2413793103448276,
+        "false_positive_rate": 0.13924050632911392,
+        "false_negative_rate": 0.6111111111111112,
+        "auroc": 0.7292545710267229,
+        "auprc_average_precision": 0.28834391047828756,
+        "confusion_matrix": {
+          "tn": 204,
+          "fp": 33,
+          "fn": 11,
+          "tp": 7
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "hip": {
+      "classification": {
+        "n": 33,
+        "positive": 4,
+        "normal": 29,
+        "accuracy": 0.5454545454545454,
+        "precision": 0.17647058823529413,
+        "recall_sensitivity": 0.75,
+        "specificity": 0.5172413793103449,
+        "f1": 0.2857142857142857,
+        "false_positive_rate": 0.4827586206896552,
+        "false_negative_rate": 0.25,
+        "auroc": 0.6379310344827586,
+        "auprc_average_precision": 0.22673992673992674,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 14,
+          "fn": 1,
+          "tp": 3
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 4,
+        "mean_positive_dice": 0.13313208680347688,
+        "mean_positive_iou": 0.08076566237405135,
+        "mean_positive_precision_nonempty": 0.37437068984882177,
+        "mean_positive_recall": 0.2291084379009691,
+        "global_dice": 0.02631578947368421,
+        "global_iou": 0.013333333333333334,
+        "global_pixel_precision": 0.01636355551603006,
+        "global_pixel_recall": 0.06716554115714546,
+        "pixel_counts": {
+          "tp": 368,
+          "fp": 22121,
+          "fn": 5111
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 33,
+        "positive": 4,
+        "normal": 29,
+        "accuracy": 0.6060606060606061,
+        "precision": 0.2,
+        "recall_sensitivity": 0.75,
+        "specificity": 0.5862068965517241,
+        "f1": 0.3157894736842105,
+        "false_positive_rate": 0.41379310344827586,
+        "false_negative_rate": 0.25,
+        "auroc": 0.6982758620689655,
+        "auprc_average_precision": 0.23864468864468863,
+        "confusion_matrix": {
+          "tn": 17,
+          "fp": 12,
+          "fn": 1,
+          "tp": 3
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 33,
+        "positive": 4,
+        "normal": 29,
+        "accuracy": 0.7575757575757576,
+        "precision": 0.0,
+        "recall_sensitivity": 0.0,
+        "specificity": 0.8620689655172413,
+        "f1": 0.0,
+        "false_positive_rate": 0.13793103448275862,
+        "false_negative_rate": 1.0,
+        "auroc": 0.5172413793103449,
+        "auprc_average_precision": 0.14315333789017998,
+        "confusion_matrix": {
+          "tn": 25,
+          "fp": 4,
+          "fn": 4,
+          "tp": 0
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "shoulder": {
+      "classification": {
+        "n": 38,
+        "positive": 7,
+        "normal": 31,
+        "accuracy": 0.42105263157894735,
+        "precision": 0.2413793103448276,
+        "recall_sensitivity": 1.0,
+        "specificity": 0.2903225806451613,
+        "f1": 0.3888888888888889,
+        "false_positive_rate": 0.7096774193548387,
+        "false_negative_rate": 0.0,
+        "auroc": 0.7373271889400922,
+        "auprc_average_precision": 0.47119565217391307,
+        "confusion_matrix": {
+          "tn": 9,
+          "fp": 22,
+          "fn": 0,
+          "tp": 7
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 7,
+        "mean_positive_dice": 0.01884147598433313,
+        "mean_positive_iou": 0.010085851117830108,
+        "mean_positive_precision_nonempty": 0.06842956396741734,
+        "mean_positive_recall": 0.012410788967704792,
+        "global_dice": 0.027738325017905484,
+        "global_iou": 0.014064221482251999,
+        "global_pixel_precision": 0.07059005251776336,
+        "global_pixel_recall": 0.017260394005317863,
+        "pixel_counts": {
+          "tp": 2285,
+          "fp": 30085,
+          "fn": 130099
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 38,
+        "positive": 7,
+        "normal": 31,
+        "accuracy": 0.47368421052631576,
+        "precision": 0.19047619047619047,
+        "recall_sensitivity": 0.5714285714285714,
+        "specificity": 0.45161290322580644,
+        "f1": 0.2857142857142857,
+        "false_positive_rate": 0.5483870967741935,
+        "false_negative_rate": 0.42857142857142855,
+        "auroc": 0.6129032258064516,
+        "auprc_average_precision": 0.35076518604468915,
+        "confusion_matrix": {
+          "tn": 14,
+          "fp": 17,
+          "fn": 3,
+          "tp": 4
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 38,
+        "positive": 7,
+        "normal": 31,
+        "accuracy": 0.7105263157894737,
+        "precision": 0.375,
+        "recall_sensitivity": 0.8571428571428571,
+        "specificity": 0.6774193548387096,
+        "f1": 0.5217391304347826,
+        "false_positive_rate": 0.3225806451612903,
+        "false_negative_rate": 0.14285714285714285,
+        "auroc": 0.8755760368663594,
+        "auprc_average_precision": 0.730128205128205,
+        "confusion_matrix": {
+          "tn": 21,
+          "fp": 10,
+          "fn": 1,
+          "tp": 6
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "mixed": {
+      "classification": {
+        "n": 43,
+        "positive": 9,
+        "normal": 34,
+        "accuracy": 0.3953488372093023,
+        "precision": 0.24242424242424243,
+        "recall_sensitivity": 0.8888888888888888,
+        "specificity": 0.2647058823529412,
+        "f1": 0.38095238095238093,
+        "false_positive_rate": 0.7352941176470589,
+        "false_negative_rate": 0.1111111111111111,
+        "auroc": 0.7091503267973857,
+        "auprc_average_precision": 0.3908449575116242,
+        "confusion_matrix": {
+          "tn": 9,
+          "fp": 25,
+          "fn": 1,
+          "tp": 8
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 9,
+        "mean_positive_dice": 0.07101520228288763,
+        "mean_positive_iou": 0.04231787101721402,
+        "mean_positive_precision_nonempty": 0.09383290363087639,
+        "mean_positive_recall": 0.11004985063086391,
+        "global_dice": 0.04027465591033655,
+        "global_iou": 0.02055117367941426,
+        "global_pixel_precision": 0.051509244491700634,
+        "global_pixel_recall": 0.03306328281998458,
+        "pixel_counts": {
+          "tp": 2616,
+          "fp": 48171,
+          "fn": 76505
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 43,
+        "positive": 9,
+        "normal": 34,
+        "accuracy": 0.4883720930232558,
+        "precision": 0.25925925925925924,
+        "recall_sensitivity": 0.7777777777777778,
+        "specificity": 0.4117647058823529,
+        "f1": 0.3888888888888889,
+        "false_positive_rate": 0.5882352941176471,
+        "false_negative_rate": 0.2222222222222222,
+        "auroc": 0.6470588235294118,
+        "auprc_average_precision": 0.33209541068324655,
+        "confusion_matrix": {
+          "tn": 14,
+          "fp": 20,
+          "fn": 2,
+          "tp": 7
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 43,
+        "positive": 9,
+        "normal": 34,
+        "accuracy": 0.627906976744186,
+        "precision": 0.26666666666666666,
+        "recall_sensitivity": 0.4444444444444444,
+        "specificity": 0.6764705882352942,
+        "f1": 0.3333333333333333,
+        "false_positive_rate": 0.3235294117647059,
+        "false_negative_rate": 0.5555555555555556,
+        "auroc": 0.6045751633986928,
+        "auprc_average_precision": 0.5685206129878531,
+        "confusion_matrix": {
+          "tn": 23,
+          "fp": 11,
+          "fn": 5,
+          "tp": 4
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "hardware": {
+      "classification": {
+        "n": 8,
+        "positive": 7,
+        "normal": 1,
+        "accuracy": 0.75,
+        "precision": 0.8571428571428571,
+        "recall_sensitivity": 0.8571428571428571,
+        "specificity": 0.0,
+        "f1": 0.8571428571428571,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.14285714285714285,
+        "auroc": 0.0,
+        "auprc_average_precision": 0.754591836734694,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 1,
+          "fn": 1,
+          "tp": 6
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 7,
+        "mean_positive_dice": 0.0,
+        "mean_positive_iou": 0.0,
+        "mean_positive_precision_nonempty": 0.0,
+        "mean_positive_recall": 0.0,
+        "global_dice": 0.0,
+        "global_iou": 0.0,
+        "global_pixel_precision": 0.0,
+        "global_pixel_recall": 0.0,
+        "pixel_counts": {
+          "tp": 0,
+          "fp": 20836,
+          "fn": 122146
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 8,
+        "positive": 7,
+        "normal": 1,
+        "accuracy": 0.125,
+        "precision": 0.5,
+        "recall_sensitivity": 0.14285714285714285,
+        "specificity": 0.0,
+        "f1": 0.2222222222222222,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.8571428571428571,
+        "auroc": 0.0,
+        "auprc_average_precision": 0.754591836734694,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 1,
+          "fn": 6,
+          "tp": 1
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 8,
+        "positive": 7,
+        "normal": 1,
+        "accuracy": 0.625,
+        "precision": 0.8333333333333334,
+        "recall_sensitivity": 0.7142857142857143,
+        "specificity": 0.0,
+        "f1": 0.7692307692307693,
+        "false_positive_rate": 1.0,
+        "false_negative_rate": 0.2857142857142857,
+        "auroc": 0.5714285714285714,
+        "auprc_average_precision": 0.9379251700680272,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 1,
+          "fn": 2,
+          "tp": 5
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "multiscan": {
+      "classification": {
+        "n": 46,
+        "positive": 9,
+        "normal": 37,
+        "accuracy": 0.30434782608695654,
+        "precision": 0.20512820512820512,
+        "recall_sensitivity": 0.8888888888888888,
+        "specificity": 0.16216216216216217,
+        "f1": 0.3333333333333333,
+        "false_positive_rate": 0.8378378378378378,
+        "false_negative_rate": 0.1111111111111111,
+        "auroc": 0.5525525525525525,
+        "auprc_average_precision": 0.2489714038346426,
+        "confusion_matrix": {
+          "tn": 6,
+          "fp": 31,
+          "fn": 1,
+          "tp": 8
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 9,
+        "mean_positive_dice": 0.16993577479362942,
+        "mean_positive_iou": 0.1371341691246646,
+        "mean_positive_precision_nonempty": 0.2358178072524356,
+        "mean_positive_recall": 0.19178622144769605,
+        "global_dice": 0.03487034672039471,
+        "global_iou": 0.017744552712946744,
+        "global_pixel_precision": 0.018599377200108312,
+        "global_pixel_recall": 0.2785451780509441,
+        "pixel_counts": {
+          "tp": 2198,
+          "fp": 115978,
+          "fn": 5693
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 46,
+        "positive": 9,
+        "normal": 37,
+        "accuracy": 0.2608695652173913,
+        "precision": 0.16216216216216217,
+        "recall_sensitivity": 0.6666666666666666,
+        "specificity": 0.16216216216216217,
+        "f1": 0.2608695652173913,
+        "false_positive_rate": 0.8378378378378378,
+        "false_negative_rate": 0.3333333333333333,
+        "auroc": 0.4294294294294294,
+        "auprc_average_precision": 0.21574063636519253,
+        "confusion_matrix": {
+          "tn": 6,
+          "fp": 31,
+          "fn": 3,
+          "tp": 6
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 46,
+        "positive": 9,
+        "normal": 37,
+        "accuracy": 0.717391304347826,
+        "precision": 0.375,
+        "recall_sensitivity": 0.6666666666666666,
+        "specificity": 0.7297297297297297,
+        "f1": 0.48,
+        "false_positive_rate": 0.2702702702702703,
+        "false_negative_rate": 0.3333333333333333,
+        "auroc": 0.8198198198198198,
+        "auprc_average_precision": 0.5534738380478049,
+        "confusion_matrix": {
+          "tn": 27,
+          "fp": 10,
+          "fn": 3,
+          "tp": 6
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "frontal": {
+      "classification": {
+        "n": 297,
+        "positive": 51,
+        "normal": 246,
+        "accuracy": 0.43097643097643096,
+        "precision": 0.22169811320754718,
+        "recall_sensitivity": 0.9215686274509803,
+        "specificity": 0.32926829268292684,
+        "f1": 0.3574144486692015,
+        "false_positive_rate": 0.6707317073170732,
+        "false_negative_rate": 0.0784313725490196,
+        "auroc": 0.7319464371114299,
+        "auprc_average_precision": 0.372692116335005,
+        "confusion_matrix": {
+          "tn": 81,
+          "fp": 165,
+          "fn": 4,
+          "tp": 47
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 51,
+        "mean_positive_dice": 0.24721826103610545,
+        "mean_positive_iou": 0.180222909491264,
+        "mean_positive_precision_nonempty": 0.330491960097215,
+        "mean_positive_recall": 0.2686182301197509,
+        "global_dice": 0.15418921634161428,
+        "global_iou": 0.08353468172724193,
+        "global_pixel_precision": 0.11999444025419485,
+        "global_pixel_recall": 0.21564010637828943,
+        "pixel_counts": {
+          "tp": 58705,
+          "fp": 430526,
+          "fn": 213531
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 297,
+        "positive": 51,
+        "normal": 246,
+        "accuracy": 0.4612794612794613,
+        "precision": 0.21761658031088082,
+        "recall_sensitivity": 0.8235294117647058,
+        "specificity": 0.3861788617886179,
+        "f1": 0.3442622950819672,
+        "false_positive_rate": 0.6138211382113821,
+        "false_negative_rate": 0.17647058823529413,
+        "auroc": 0.703012912482066,
+        "auprc_average_precision": 0.35307573377799495,
+        "confusion_matrix": {
+          "tn": 95,
+          "fp": 151,
+          "fn": 9,
+          "tp": 42
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 297,
+        "positive": 51,
+        "normal": 246,
+        "accuracy": 0.7474747474747475,
+        "precision": 0.36666666666666664,
+        "recall_sensitivity": 0.6470588235294118,
+        "specificity": 0.7682926829268293,
+        "f1": 0.46808510638297873,
+        "false_positive_rate": 0.23170731707317074,
+        "false_negative_rate": 0.35294117647058826,
+        "auroc": 0.762314681970349,
+        "auprc_average_precision": 0.4468880881950407,
+        "confusion_matrix": {
+          "tn": 189,
+          "fp": 57,
+          "fn": 18,
+          "tp": 33
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "lateral": {
+      "classification": {
+        "n": 161,
+        "positive": 39,
+        "normal": 122,
+        "accuracy": 0.4409937888198758,
+        "precision": 0.2857142857142857,
+        "recall_sensitivity": 0.8717948717948718,
+        "specificity": 0.30327868852459017,
+        "f1": 0.43037974683544306,
+        "false_positive_rate": 0.6967213114754098,
+        "false_negative_rate": 0.1282051282051282,
+        "auroc": 0.6941992433795713,
+        "auprc_average_precision": 0.4290978787694408,
+        "confusion_matrix": {
+          "tn": 37,
+          "fp": 85,
+          "fn": 5,
+          "tp": 34
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 39,
+        "mean_positive_dice": 0.3031834192534926,
+        "mean_positive_iou": 0.23160874169533643,
+        "mean_positive_precision_nonempty": 0.4096208498558208,
+        "mean_positive_recall": 0.36064566165605144,
+        "global_dice": 0.04544876953704096,
+        "global_iou": 0.023252790118105972,
+        "global_pixel_precision": 0.035939415456963136,
+        "global_pixel_recall": 0.06180092384605638,
+        "pixel_counts": {
+          "tp": 10730,
+          "fp": 287828,
+          "fn": 162892
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 161,
+        "positive": 39,
+        "normal": 122,
+        "accuracy": 0.40372670807453415,
+        "precision": 0.24324324324324326,
+        "recall_sensitivity": 0.6923076923076923,
+        "specificity": 0.3114754098360656,
+        "f1": 0.36,
+        "false_positive_rate": 0.6885245901639344,
+        "false_negative_rate": 0.3076923076923077,
+        "auroc": 0.6059268600252207,
+        "auprc_average_precision": 0.3927304897032112,
+        "confusion_matrix": {
+          "tn": 38,
+          "fp": 84,
+          "fn": 12,
+          "tp": 27
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 161,
+        "positive": 39,
+        "normal": 122,
+        "accuracy": 0.7391304347826086,
+        "precision": 0.4727272727272727,
+        "recall_sensitivity": 0.6666666666666666,
+        "specificity": 0.7622950819672131,
+        "f1": 0.5531914893617021,
+        "false_positive_rate": 0.23770491803278687,
+        "false_negative_rate": 0.3333333333333333,
+        "auroc": 0.8333333333333333,
+        "auprc_average_precision": 0.6141408214342798,
+        "confusion_matrix": {
+          "tn": 93,
+          "fp": 29,
+          "fn": 13,
+          "tp": 26
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "oblique": {
+      "classification": {
+        "n": 42,
+        "positive": 5,
+        "normal": 37,
+        "accuracy": 0.2619047619047619,
+        "precision": 0.11764705882352941,
+        "recall_sensitivity": 0.8,
+        "specificity": 0.1891891891891892,
+        "f1": 0.20512820512820512,
+        "false_positive_rate": 0.8108108108108109,
+        "false_negative_rate": 0.2,
+        "auroc": 0.5405405405405406,
+        "auprc_average_precision": 0.15356395758872537,
+        "confusion_matrix": {
+          "tn": 7,
+          "fp": 30,
+          "fn": 1,
+          "tp": 4
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 5,
+        "mean_positive_dice": 0.10294117647058823,
+        "mean_positive_iou": 0.0693069306930693,
+        "mean_positive_precision_nonempty": 0.15293383270911362,
+        "mean_positive_recall": 0.11722488038277512,
+        "global_dice": 0.003353545861450648,
+        "global_iou": 0.0016795892204649378,
+        "global_pixel_precision": 0.001704549407582114,
+        "global_pixel_recall": 0.10289794204115918,
+        "pixel_counts": {
+          "tp": 245,
+          "fp": 143488,
+          "fn": 2136
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 42,
+        "positive": 5,
+        "normal": 37,
+        "accuracy": 0.23809523809523808,
+        "precision": 0.09090909090909091,
+        "recall_sensitivity": 0.6,
+        "specificity": 0.1891891891891892,
+        "f1": 0.15789473684210525,
+        "false_positive_rate": 0.8108108108108109,
+        "false_negative_rate": 0.4,
+        "auroc": 0.427027027027027,
+        "auprc_average_precision": 0.1322222222222222,
+        "confusion_matrix": {
+          "tn": 7,
+          "fp": 30,
+          "fn": 2,
+          "tp": 3
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 42,
+        "positive": 5,
+        "normal": 37,
+        "accuracy": 0.7857142857142857,
+        "precision": 0.25,
+        "recall_sensitivity": 0.4,
+        "specificity": 0.8378378378378378,
+        "f1": 0.3076923076923077,
+        "false_positive_rate": 0.16216216216216217,
+        "false_negative_rate": 0.6,
+        "auroc": 0.7081081081081081,
+        "auprc_average_precision": 0.5198787878787878,
+        "confusion_matrix": {
+          "tn": 31,
+          "fp": 6,
+          "fn": 3,
+          "tp": 2
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "small_region_proxy": {
+      "classification": {
+        "n": 12,
+        "positive": 12,
+        "normal": 0,
+        "accuracy": 0.9166666666666666,
+        "precision": 1.0,
+        "recall_sensitivity": 0.9166666666666666,
+        "specificity": null,
+        "f1": 0.9565217391304348,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.08333333333333333,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 1,
+          "tp": 11
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 12,
+        "mean_positive_dice": 0.2970380427612254,
+        "mean_positive_iou": 0.19729778927215638,
+        "mean_positive_precision_nonempty": 0.32969454418059546,
+        "mean_positive_recall": 0.4408533219835513,
+        "global_dice": 0.444362799128028,
+        "global_iou": 0.28564680690263256,
+        "global_pixel_precision": 0.3227309922795033,
+        "global_pixel_recall": 0.7131289308176101,
+        "pixel_counts": {
+          "tp": 9071,
+          "fp": 19036,
+          "fn": 3649
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 12,
+        "positive": 12,
+        "normal": 0,
+        "accuracy": 0.8333333333333334,
+        "precision": 1.0,
+        "recall_sensitivity": 0.8333333333333334,
+        "specificity": null,
+        "f1": 0.9090909090909091,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.16666666666666666,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 2,
+          "tp": 10
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 12,
+        "positive": 12,
+        "normal": 0,
+        "accuracy": 0.5833333333333334,
+        "precision": 1.0,
+        "recall_sensitivity": 0.5833333333333334,
+        "specificity": null,
+        "f1": 0.7368421052631579,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.4166666666666667,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 5,
+          "tp": 7
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    },
+    "multiple_fractures": {
+      "classification": {
+        "n": 16,
+        "positive": 16,
+        "normal": 0,
+        "accuracy": 0.9375,
+        "precision": 1.0,
+        "recall_sensitivity": 0.9375,
+        "specificity": null,
+        "f1": 0.967741935483871,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.0625,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 1,
+          "tp": 15
+        },
+        "score_definition": "Conservative head+ OR mask+ review alerts; max uncalibrated head/mask proxy, not clinical probability"
+      },
+      "segmentation": {
+        "n_positive": 16,
+        "mean_positive_dice": 0.3223163368942398,
+        "mean_positive_iou": 0.23855242416991046,
+        "mean_positive_precision_nonempty": 0.3893584514303613,
+        "mean_positive_recall": 0.34521259969615037,
+        "global_dice": 0.2512872579592429,
+        "global_iou": 0.14369841993945176,
+        "global_pixel_precision": 0.4118381173114637,
+        "global_pixel_recall": 0.18080304730099925,
+        "pixel_counts": {
+          "tp": 6930,
+          "fp": 9897,
+          "fn": 31399
+        },
+        "empty_policy": "Normals excluded from positive macro Dice/IoU. Missed positive Dice/IoU/recall=0; empty prediction precision=null. Global metrics include normal false-positive pixels."
+      },
+      "mask_classification": {
+        "n": 16,
+        "positive": 16,
+        "normal": 0,
+        "accuracy": 0.875,
+        "precision": 1.0,
+        "recall_sensitivity": 0.875,
+        "specificity": null,
+        "f1": 0.9333333333333333,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.125,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 2,
+          "tp": 14
+        },
+        "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+      },
+      "head_classification": {
+        "n": 16,
+        "positive": 16,
+        "normal": 0,
+        "accuracy": 0.6875,
+        "precision": 1.0,
+        "recall_sensitivity": 0.6875,
+        "specificity": null,
+        "f1": 0.8148148148148148,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.3125,
+        "auroc": null,
+        "auprc_average_precision": 1.0,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 5,
+          "tp": 11
+        },
+        "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+      }
+    }
+  },
+  "categories": {
+    "FP": 259,
+    "TP": 74,
+    "TN": 121,
+    "FN": 9
+  },
+  "segmentation_failure_counts": {
+    "over_segmentation_precision_below_0.5": 17,
+    "complete_mislocalization": 18,
+    "complete_empty_miss": 20,
+    "under_segmentation_recall_below_0.5": 14
+  },
+  "practical_classification_targets": {
+    "tp_min": 79,
+    "tn_min": 342,
+    "sensitivity_rounding": "79/83=95.1807%, approximately95.2%; user practical count rule",
+    "classification_counts_pass": false,
+    "promotion_accepted": false,
+    "reason": "Native localization/segmentation comparison, calibration, robustness and freeze still required even if case counts pass"
+  },
+  "timing": {
+    "forward_median_ms": 562.1798499996657,
+    "forward_p95_ms": 729.6502700035489,
+    "pipeline_median_ms": 614.9603500016383,
+    "full_inference_audit_seconds": 309.20963309999934,
+    "peak_process_rss_bytes": 1240850432,
+    "context": "CPU audit may overlap separate GPU training; not an isolated idle latency comparison"
+  },
+  "test_images_read": 0,
+  "unavailable": [
+    "patient/study independence",
+    "clinical subtle/nondisplaced labels",
+    "paired-study fusion",
+    "external generalization",
+    "radiologist adjudication"
+  ],
+  "mask_classification": {
+    "n": 463,
+    "positive": 83,
+    "normal": 380,
+    "accuracy": 0.4298056155507559,
+    "precision": 0.20521172638436483,
+    "recall_sensitivity": 0.7590361445783133,
+    "specificity": 0.35789473684210527,
+    "f1": 0.3230769230769231,
+    "false_positive_rate": 0.6421052631578947,
+    "false_negative_rate": 0.24096385542168675,
+    "auroc": 0.6705770450221941,
+    "auprc_average_precision": 0.3506158517792417,
+    "confusion_matrix": {
+      "tn": 136,
+      "fp": 244,
+      "fn": 20,
+      "tp": 63
+    },
+    "score_definition": "Maximum native bilinear inverse sigmoid pixel; uncalibrated case proxy, not a case probability"
+  },
+  "mask_categories": {
+    "FP": 244,
+    "TP": 63,
+    "TN": 136,
+    "FN": 20
+  },
+  "head_classification": {
+    "n": 463,
+    "positive": 83,
+    "normal": 380,
+    "accuracy": 0.755939524838013,
+    "precision": 0.3880597014925373,
+    "recall_sensitivity": 0.6265060240963856,
+    "specificity": 0.7842105263157895,
+    "f1": 0.4792626728110599,
+    "false_positive_rate": 0.21578947368421053,
+    "false_negative_rate": 0.37349397590361444,
+    "auroc": 0.7806594800253646,
+    "auprc_average_precision": 0.4794263909329902,
+    "confusion_matrix": {
+      "tn": 298,
+      "fp": 82,
+      "fn": 31,
+      "tp": 52
+    },
+    "score_definition": "Supervised balanced-BCE presence sigmoid, uncalibrated"
+  },
+  "head_calibration": {
+    "brier_score": 0.1658787937071451,
+    "expected_calibration_error": 0.17017815084866456,
+    "bins": 10,
+    "binning": "equal-width; final bin includes 1",
+    "reliability_curve": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "n": 89,
+        "mean_score": 0.05198333369505204,
+        "observed_fracture_fraction": 0.011235955056179775
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "n": 96,
+        "mean_score": 0.14617885905317962,
+        "observed_fracture_fraction": 0.07291666666666667
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "n": 58,
+        "mean_score": 0.24892636825298442,
+        "observed_fracture_fraction": 0.1896551724137931
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "n": 34,
+        "mean_score": 0.34737178245011496,
+        "observed_fracture_fraction": 0.14705882352941177
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "n": 52,
+        "mean_score": 0.44503447871941787,
+        "observed_fracture_fraction": 0.1346153846153846
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "n": 40,
+        "mean_score": 0.5555644765496254,
+        "observed_fracture_fraction": 0.275
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "n": 35,
+        "mean_score": 0.6425878984587533,
+        "observed_fracture_fraction": 0.42857142857142855
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "n": 26,
+        "mean_score": 0.7536668594066913,
+        "observed_fracture_fraction": 0.23076923076923078
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "n": 15,
+        "mean_score": 0.8405057668685914,
+        "observed_fracture_fraction": 0.4666666666666667
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "n": 18,
+        "mean_score": 0.934808525774214,
+        "observed_fracture_fraction": 0.7222222222222222
+      }
+    ],
+    "score_exactly_one_count": 0,
+    "interpretation": "Learned presence raw sigmoid, TRAIN-weighted; no calibration fit"
+  },
+  "four_groups_by_truth": {
+    "classifier+/mask+|normal": 67,
+    "classifier+/mask+|fracture": 41,
+    "classifier-/mask-|normal": 121,
+    "classifier-/mask+|normal": 177,
+    "classifier+/mask-|fracture": 11,
+    "classifier-/mask-|fracture": 9,
+    "classifier+/mask-|normal": 15,
+    "classifier-/mask+|fracture": 22
+  },
+  "mask_gated_by_classifier": false,
+  "small_region_definition": {
+    "cutoff_fraction": 0.0020550129324089714,
+    "source": "TRAIN25th percentile; not clinical subtlety"
+  },
+  "trainer_reproduction": {
+    "differing_cases": [
+      {
+        "image_id": "IMG0000008.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 75434,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 75408,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000019.jpg",
+        "audit": {
+          "tp_pixels": 21196,
+          "fp_pixels": 21849,
+          "fn_pixels": 4053,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 21195,
+          "fp_pixels": 21845,
+          "fn_pixels": 4054,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000027.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 1529,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 1525,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000030.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 15677,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 15665,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000038.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 16235,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 16234,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000040.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 1793,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 1796,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000050.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 25772,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 25770,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000071.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 23955,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 23940,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000079.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 468,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 466,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000081.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 14301,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 14299,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000086.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 39143,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 39131,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000113.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 22164,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 22154,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000123.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 34143,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 34128,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000133.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 37946,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 37939,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000149.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 2687,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 2684,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000170.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 15167,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 15160,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000174.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 15276,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 15271,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000178.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 2187,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 2176,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000179.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 8357,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 8353,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000201.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 17103,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 17092,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000208.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 58912,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 58880,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000214.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 4497,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 4496,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000216.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 19383,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 19378,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000224.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 1174,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 1170,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000225.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 1490,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 1486,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000227.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 11861,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 11857,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000241.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 26969,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 26957,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000244.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 2855,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 2851,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000260.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 24708,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 24695,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000294.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 448,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 447,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000370.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 911,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 910,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000432.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 775,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 774,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000589.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 14,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 13,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000630.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 217,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 216,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000638.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 304,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 303,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000643.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 692,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 691,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000676.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 178,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 177,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0000705.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 1221,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 1220,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000766.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 512,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 511,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0000878.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 1832,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 1831,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0001198.jpg",
+        "audit": {
+          "tp_pixels": 442,
+          "fp_pixels": 300,
+          "fn_pixels": 195,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 442,
+          "fp_pixels": 299,
+          "fn_pixels": 195,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0001371.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 667,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 666,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0001486.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 248,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 247,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0001557.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 623,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 622,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0001583.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 1886,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 1885,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0001692.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 282,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 281,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0001741.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 671,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 670,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0001968.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 232,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 231,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002012.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 627,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 626,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002072.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 858,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 857,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0002181.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 265,
+          "fn_pixels": 815,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 263,
+          "fn_pixels": 815,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002208.jpg",
+        "audit": {
+          "tp_pixels": 1098,
+          "fp_pixels": 845,
+          "fn_pixels": 112,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 1098,
+          "fp_pixels": 844,
+          "fn_pixels": 112,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0002311.jpg",
+        "audit": {
+          "tp_pixels": 19297,
+          "fp_pixels": 5696,
+          "fn_pixels": 9097,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 19297,
+          "fp_pixels": 5692,
+          "fn_pixels": 9097,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002323.jpg",
+        "audit": {
+          "tp_pixels": 2285,
+          "fp_pixels": 6063,
+          "fn_pixels": 24017,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 2284,
+          "fp_pixels": 6055,
+          "fn_pixels": 24018,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0002342.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 3733,
+          "fn_pixels": 43723,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 3727,
+          "fn_pixels": 43723,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002349.jpg",
+        "audit": {
+          "tp_pixels": 7810,
+          "fp_pixels": 14913,
+          "fn_pixels": 1974,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 7809,
+          "fp_pixels": 14908,
+          "fn_pixels": 1975,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0002441.jpg",
+        "audit": {
+          "tp_pixels": 562,
+          "fp_pixels": 267,
+          "fn_pixels": 92,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 562,
+          "fp_pixels": 266,
+          "fn_pixels": 92,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002465.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 769,
+          "fn_pixels": 166,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 768,
+          "fn_pixels": 166,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0002631.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 182,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 181,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002681.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 620,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 619,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002753.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 67,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 66,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002782.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 1401,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 1400,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002835.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 883,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 882,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002866.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 381,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 380,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002911.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 238,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 237,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0002997.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 270,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 269,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0003350.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 323,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 322,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0003529.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 311,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 310,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": true
+        }
+      },
+      {
+        "image_id": "IMG0003583.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 344,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 343,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0003854.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 707,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 706,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0003867.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 898,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 897,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      },
+      {
+        "image_id": "IMG0004195.jpg",
+        "audit": {
+          "tp_pixels": 0,
+          "fp_pixels": 381,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        },
+        "trainer": {
+          "tp_pixels": 0,
+          "fp_pixels": 380,
+          "fn_pixels": 0,
+          "prediction_present": true,
+          "review_alert_present": true,
+          "classifier_prediction_present": false
+        }
+      }
+    ],
+    "exact_counts": false,
+    "trainer_device": "cuda",
+    "audit_device": "cpu",
+    "note": "Boundary/device differences retained, never overwrite trainer evidence"
+  }
+}

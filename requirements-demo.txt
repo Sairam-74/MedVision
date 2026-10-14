@@ -1,0 +1,14 @@
+# Patched local serving runtime; do not replace the running training environment.
+# Install torch==2.14.1 from https://download.pytorch.org/whl/cpu first.
+numpy==2.3.2
+opencv-python-headless==4.13.0.92
+scikit-learn==1.8.0
+torch==2.14.1
+fastapi==0.136.1
+uvicorn==0.47.0
+httpx==0.28.1
+python-multipart==0.0.32
+psutil==7.0.0
+pillow==12.3.0
+albumentations==2.0.8
+setuptools==84.0.0

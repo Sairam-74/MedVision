@@ -1,0 +1,14 @@
+{
+  "utc": "2026-10-09T10:31:25.402493+00:00",
+  "status": "request_released",
+  "on_AC": true,
+  "active_workspace_AI_jobs": [],
+  "API_return_nonzero": true,
+  "persistent_power_settings_changed": false,
+  "display_required": false,
+  "away_mode": false,
+  "manual_sleep_respected": true,
+  "lease_hours": 8,
+  "elapsed_seconds": 7756.163781400013,
+  "source_sha256": "138cbd61dd82d19c948d224fc4fa6115797f48323908c9c88cf17a4463f054c5"
+}

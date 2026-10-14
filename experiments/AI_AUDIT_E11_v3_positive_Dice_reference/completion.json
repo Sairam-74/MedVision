@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "metrics_sha256": "b76674549a726b8ec5e0399a42f1cf9294401920aa6db7b00ac307037b09b091",
+  "cases_sha256": "846acc4ecc7fcc0e73b58c6fe4f46c9ae4cc84fecfce505603d9461927d81438",
+  "checkpoint_sha256": "c1703d13e5b4cdf35b600c48825ec93c3394570ab1df44d20e9a06b41abc2b84",
+  "independent_masks": true,
+  "calibration_fit": false,
+  "test_images_read": 0,
+  "promotion": false
+}

@@ -1,0 +1,36 @@
+{
+  "seed": 42,
+  "train_ids": [
+    "IMG0003183.jpg",
+    "IMG0000000.jpg"
+  ],
+  "preprocess": {
+    "size": 128,
+    "resize": "letterbox",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 0,
+    "normalization": "unit"
+  },
+  "loss": {
+    "mode": "bce_dice",
+    "delta": 0.7,
+    "focal_exponent": 0.75,
+    "unified_gamma": 0.5,
+    "unified_weight": 0.5,
+    "smooth": 1e-06
+  },
+  "augmentation": false,
+  "architecture": "AttentionUNet64",
+  "output_contract": "binary-logits-v2",
+  "lr": 0.001,
+  "max_steps": 200,
+  "acceptance": "fixed .5 grid positive Dice >=.85 and zero predicted normal pixels",
+  "source_hashes": {
+    "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+    "tools/overfit_pipeline.py": "e0d23cb81e29d153b9953fd8c28f0dbd31a72a6a23d56b88bfba622b682d1fd3"
+  },
+  "manifest_sha256": "19a950c34d96c0fc076fbb75bdeffbf2f0b262626817d61018eff31e907544bb",
+  "scope": "train-only memorization sanity; not performance"
+}

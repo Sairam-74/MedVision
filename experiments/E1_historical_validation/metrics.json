@@ -1,0 +1,61 @@
+{
+  "scope": "historical checkpoint diagnostic; unknown prior exposure; no independent test claim",
+  "split": "val",
+  "baseline": {
+    "threshold": 0.9,
+    "policy": "all",
+    "n_positive": 110,
+    "n_normal": 502,
+    "mean_positive_dice": 0.482325982035374,
+    "median_positive_dice": 0.5707524466951832,
+    "positive_dice_group_bootstrap95": [
+      0.42268476771992836,
+      0.5375382684351614
+    ],
+    "mean_positive_iou": 0.36181753631180613,
+    "case_sensitivity": 0.9818181818181818,
+    "normal_false_positive_rate": 0.9023904382470119,
+    "case_true_positive": 108,
+    "case_false_negative": 2,
+    "case_false_positive": 453,
+    "case_true_negative": 49,
+    "global_dice": 0.1826135249607624,
+    "global_iou": 0.10048139318128235,
+    "pixel_precision": 0.10459527206972884,
+    "pixel_recall": 0.7186852369882983,
+    "mean_regions_per_normal": 1.8864541832669324
+  },
+  "validation_selected": {
+    "threshold": 0.8,
+    "policy": "all",
+    "n_positive": 110,
+    "n_normal": 502,
+    "mean_positive_dice": 0.4829622786378259,
+    "median_positive_dice": 0.5695869005801897,
+    "positive_dice_group_bootstrap95": [
+      0.42385510972298085,
+      0.5371801912406594
+    ],
+    "mean_positive_iou": 0.3618433303547572,
+    "case_sensitivity": 0.9818181818181818,
+    "normal_false_positive_rate": 0.9083665338645418,
+    "case_true_positive": 108,
+    "case_false_negative": 2,
+    "case_false_positive": 456,
+    "case_true_negative": 46,
+    "global_dice": 0.18013125141434713,
+    "global_iou": 0.09898035314598358,
+    "pixel_precision": 0.10280503779404385,
+    "pixel_recall": 0.726815334305189,
+    "mean_regions_per_normal": 1.9103585657370519
+  },
+  "forward_latency_ms": {
+    "median": 505.44420001097023,
+    "p95": 1209.4972500344738,
+    "first": 1117.793899960816
+  },
+  "elapsed_seconds": 501.4042268000776,
+  "peak_process_rss_bytes": 1262391296,
+  "checkpoint_sha256": "922f30bf691b9979aee65d386bcf73d2643558c049a7d11ab013fea315f39b81",
+  "manifest_sha256": "e931cd3d3dce044f7d8f43fefeda596d39d9dc8529453f5262441c1a64e20227"
+}

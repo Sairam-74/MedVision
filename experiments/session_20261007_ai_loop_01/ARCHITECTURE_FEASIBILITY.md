@@ -1,0 +1,15 @@
+# Dedicated fracture-presence output: feasibility, not implementation or accepted result
+
+Existing source inspection was limited to the model's current forward path. Original medvision_ai.py and medvision_pipeline.py are unchanged. E5/E6 must finish and be analyzed before deciding this next experiment.
+
+The existing Attention U-Net exposes a shared1024-channel bottleneck before four attention-gated decoder stages. A small adaptive pooling/linear branch can consume that bottleneck while retaining the existing mask decoder. Global average pooling plus a1024-to1 linear layer would add1025 trainable parameters. This is source-derived architecture arithmetic, not a measured validation advantage.
+
+A clean research extension would return segmentation logits and a separate case logit, with its own output contract, checkpoint/config and strict loading. Shared encoder/decoder initialization must match a segmentation-only reference; no hidden change in preprocessing, masks, train distribution, augmentation, optimizer or seed. The classification label comes from the explicit source case label, not an augmented mask that could lose its target. Any class weighting must be fixed from training counts and recorded as part of this one major supervised-case-branch intervention.
+
+Required checks before a full run: shared state names/shapes, mask-forward parity at initialization, finite gradients from both objectives through the intended branches, no calibration/test membership, checkpoint resume and actual four-group inference. Those groups are classifier+/mask+, classifier+/mask-, classifier-/mask+, classifier-/mask-. All segmentation metrics must use the independent, unfiltered mask; a negative classifier must not erase a real fracture or hide false-positive mask area. Disagreement is a review/uncertainty state, not a reason to declare a case normal with confidence.
+
+The current scalar max-pixel score is saturated and weakly discriminative. The fixed-validation normal error audit measured316/337 false alarms enriched at strong image gradients, across anatomy/views. Normal cortical/joint appearance confusion is a supported technical hypothesis, not expert causal adjudication. Adding case supervision is an experiment to investigate that problem; it is not guaranteed to outperform the current decoder or meet the target.
+
+Source metadata also shows uneven anatomy and very small hardware/difficult-view denominators. A case head could exploit those nuisance priors instead of learning fractures. Evaluate within anatomy/view groups and actual hard examples, preserve nonexclusive subgroup definitions and avoid treating frontal as proven AP. Patient/study identifiers are unavailable, so no paired-view architecture can be credibly trained from invented groupings.
+
+No architecture change, new-head training, classifier threshold, calibration mapping, test inference or deployment has occurred in this document. The relevant Lindsey2018 primary-source method and limitations were already recorded in the prior research matrix; no generic research search or published-performance transfer is needed for feasibility analysis.

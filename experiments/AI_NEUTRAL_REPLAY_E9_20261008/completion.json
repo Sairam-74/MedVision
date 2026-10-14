@@ -1,0 +1,30 @@
+{
+  "status": "passed_exact_neutral_training_replay",
+  "checks": {
+    "model_tensors_exactly_equal": true,
+    "actual_optimizer_state_exactly_equal": true
+  },
+  "global_epoch": 19,
+  "model_digests": [
+    "1e11dde07205166cd91298ea597fe51c5ce9df78d283033e701f53aeac9b9fb1",
+    "1e11dde07205166cd91298ea597fe51c5ce9df78d283033e701f53aeac9b9fb1"
+  ],
+  "optimizer_digests": [
+    "ae3ccf801bc1dd67fc10401e9ed5a85a0a76a68ae2cba9c58d56679c416389bb",
+    "ae3ccf801bc1dd67fc10401e9ed5a85a0a76a68ae2cba9c58d56679c416389bb"
+  ],
+  "input_hashes": {
+    "experiments\\AI_E7_v3_presence_reference_r2\\epoch_011_resume.pt": "222a92f3b70eefaf940552e902d6d231898205eaeb48767a5099466c2eea937e",
+    "experiments\\AI_E9_v3_hard_reference\\epoch_001_resume.pt": "1e01ef4fefb6f67f20f8885f024fd841c7c1f561b5a3a8ef04b431418218d97e"
+  },
+  "source_sha256": "b6c838087a0d38dc6b27b8cd15ecc7bd70d2565e2d8c178bb3f0c5e09f246f72",
+  "device": "cpu",
+  "checkpoint_reads_only": true,
+  "image_reads": 0,
+  "inference_performed": false,
+  "optimizer_steps": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "promotion": false,
+  "scope": "Known same-seed reference trajectory integrity; not a model improvement or clinical generalization result"
+}

@@ -1,0 +1,9 @@
+{
+  "status": "completed_TRAIN_metadata_group_concentration_audit",
+  "concentration_sha256": "9c6d7323a534f99c58cf7a696aba955589a06bb7dc92b1c3f77444d00234cf19",
+  "new_image_reads": 0,
+  "inference_performed": false,
+  "model_trained": false,
+  "weights_modified": false,
+  "test_images_read": 0
+}

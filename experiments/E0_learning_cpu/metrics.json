@@ -1,0 +1,72 @@
+{
+  "scope": "two-training-image learning sanity, not validation/test performance",
+  "sample_ids": [
+    "IMG0000025.jpg",
+    "IMG0000000.jpg"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "bce_plus_dice": 1.6644501686096191,
+      "seconds": 6.8146394999930635
+    },
+    {
+      "step": 2,
+      "bce_plus_dice": 1.6316577196121216,
+      "seconds": 6.596943599986844
+    },
+    {
+      "step": 3,
+      "bce_plus_dice": 1.6046924591064453,
+      "seconds": 6.441394399967976
+    },
+    {
+      "step": 4,
+      "bce_plus_dice": 1.5811328887939453,
+      "seconds": 6.364239200018346
+    },
+    {
+      "step": 5,
+      "bce_plus_dice": 1.5601696968078613,
+      "seconds": 6.339269799995236
+    },
+    {
+      "step": 6,
+      "bce_plus_dice": 1.5415403842926025,
+      "seconds": 6.25655390007887
+    },
+    {
+      "step": 7,
+      "bce_plus_dice": 1.5252918004989624,
+      "seconds": 6.276847300003283
+    },
+    {
+      "step": 8,
+      "bce_plus_dice": 1.511296033859253,
+      "seconds": 6.179113500053063
+    },
+    {
+      "step": 9,
+      "bce_plus_dice": 1.4987211227416992,
+      "seconds": 6.465627299970947
+    },
+    {
+      "step": 10,
+      "bce_plus_dice": 1.4870415925979614,
+      "seconds": 6.403554000076838
+    },
+    {
+      "step": 11,
+      "bce_plus_dice": 1.4762624502182007,
+      "seconds": 6.4045731000369415
+    },
+    {
+      "step": 12,
+      "bce_plus_dice": 1.4661632776260376,
+      "seconds": 8.634897999931127
+    }
+  ],
+  "median_step_seconds": 6.403554000076838,
+  "peak_process_rss_bytes": 2707132416,
+  "estimated_full_epoch_seconds": 9013.00225510815
+}

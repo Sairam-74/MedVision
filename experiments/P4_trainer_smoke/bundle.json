@@ -1,0 +1,23 @@
+{
+  "output_contract": "binary-logits-v2",
+  "architecture": "AttentionUNet64",
+  "checkpoint": "best_model.pt",
+  "checkpoint_sha256": "d8f90b5acdeb24fb51a5379354d3a3fc2d3dc85f29ed7fe3bbbb7bfa68007906",
+  "preprocess": {
+    "size": 128,
+    "resize": "letterbox",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 0,
+    "normalization": "unit"
+  },
+  "postprocess": {
+    "threshold": 0.5,
+    "policy": "all",
+    "min_pixels": 16
+  },
+  "manifest_sha256": "19a950c34d96c0fc076fbb75bdeffbf2f0b262626817d61018eff31e907544bb",
+  "epoch": 1,
+  "calibration_status": "UNSELECTED research checkpoint; default .5/all; smoke only"
+}

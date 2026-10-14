@@ -8,6 +8,10 @@ export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    files: ['tools/**/*.mjs'],
+    languageOptions: { globals: { process: 'readonly', console: 'readonly', document: 'readonly', window: 'readonly', performance: 'readonly' } },
+  },
+  {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parserOptions: {
@@ -25,6 +29,6 @@ export default [
   },
   prettier,
   {
-    ignores: ['dist', 'coverage', 'playwright-report', 'test-results'],
+    ignores: ['dist', 'coverage', 'playwright-report', 'test-results', '.venv*', 'experiments', 'deliverables'],
   },
 ];

@@ -1,0 +1,30 @@
+{
+  "run": "experiments\\AI_E5_v3_BCE_reference",
+  "native_audit": "experiments\\AI_AUDIT_E5_v3",
+  "checkpoint_sha256": "4bf4065a256c412c735895b26b42f3b5c1ef862f89376973236c66f43acb0ba7",
+  "selected_epoch": 8,
+  "preprocess": {
+    "size": 256,
+    "resize": "stretch",
+    "clahe": true,
+    "clip_limit": 2.0,
+    "tile_grid": 8,
+    "blur_kernel": 3,
+    "normalization": "unit"
+  },
+  "manifest_sha256": "4fb850caf0050e29350002a56a8462c93d49365958ebe721e06be2c49480a318",
+  "cache_completion_sha256": "e50f30c3e4e5768a18c694b6de3e14e5d9064c84d6141191e88e26ca471ffce4",
+  "source_hashes": {
+    "tools/audit_ai_learning_fit.py": "c25bdda6ffebf8c6a014e14c7b5037ac5ab4ad27fa8987c2b3bd6df40b06eeeb",
+    "tools/ai_cached_dataset.py": "0cdf89276b3fae7bd1279712fb37224fa009952e4f261f1400e86d6f73dbf2b9",
+    "tools/ai_metrics.py": "8008b83db7b8ee2bac1f137e8aa1a0383731320d9e97a330c410c32690476aca",
+    "medvision_pipeline.py": "e1c318b6673f3aa731619b19a61bf3c6196a9346c938c033b16f7911f56df86e",
+    "medvision_ai.py": "52e46a5a84e6bcaf835b7b30685c406ca8e3d3e7ee71638e0d8a78ab8c1ebcfc"
+  },
+  "scope": "Full unaugmented TRAIN grid predictions vs already saved validation grid predictions; no new validation image inference",
+  "device": "cpu",
+  "inference_batch_size": 1,
+  "validation_images_read": 0,
+  "calibration_images_read": 0,
+  "test_images_read": 0
+}

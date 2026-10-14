@@ -1,0 +1,17 @@
+{
+  "status": "completed_saved_TRAIN_grid_positive_Dice_fit_pair_comparison",
+  "analysis_sha256": "66d5cc3ab8120d6e53027af92f4962c65d985ad0a2d4efbd0a03da3ca9817dde",
+  "report_sha256": "98886326d5f55f655ecb6bf13bd5de07039bc60c36298fad56bf87f420d90f75",
+  "per_case_sha256": "40d58d3d13a97c4f67a844aa17de103de5969cb4bf369ed62e2d04b2de654b20",
+  "source_sha256": "5e5a0a46dfdf2e0391741c76dff087111d5fa321d8eaa683957ba8c1a76547ce",
+  "new_image_reads": 0,
+  "new_mask_array_reads": 0,
+  "checkpoint_tensor_loads": 0,
+  "checkpoint_file_byte_reads_performed": true,
+  "unique_checkpoint_files_byte_hashed": 4,
+  "inference_performed": false,
+  "GPU_work_performed": false,
+  "calibration_images_read": 0,
+  "test_images_read": 0,
+  "promotion": false
+}

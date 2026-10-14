@@ -1,0 +1,8 @@
+{
+  "status": "completed",
+  "epochs_finished": 12,
+  "best_validation_score": 0.44594239372612443,
+  "elapsed_seconds": 6778.000467500002,
+  "smoke": false,
+  "test_evaluated": false
+}

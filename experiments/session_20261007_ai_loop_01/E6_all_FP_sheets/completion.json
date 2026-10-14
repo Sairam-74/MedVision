@@ -1,0 +1,10 @@
+{
+  "status": "completed_contact_sheet_visual_review",
+  "images_reviewed": 215,
+  "sheets_reviewed": 24,
+  "no_new_inference": true,
+  "no_label_changes": true,
+  "clinical_adjudication": false,
+  "limitations": "Tiny masks may be unresolved at contact-sheet scale; retain full native panels and pixel counts",
+  "observations": "Repeated joint margins, shafts and wrists/ankles; internal divider marks in1355 and2185. Association is not cause proof."
+}

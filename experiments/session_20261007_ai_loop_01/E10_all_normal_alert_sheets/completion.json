@@ -1,0 +1,16 @@
+{
+  "status": "completed_actual_native_normal_alerts_review",
+  "audit": "experiments\\AI_AUDIT_E10_v3_hard_weight2",
+  "selection": "normal_alerts",
+  "actual_new_case_reviews": 199,
+  "previously_reviewed_selected_cases": 0,
+  "total_selected_cases": 199,
+  "actual_sheets_reviewed": 23,
+  "per_case_review_sha256": "fe996fdd7e3f67dc12303341bfc5f9969618ddd6e7417e13f3966047a36bbe13",
+  "index_sha256": "1fcb4287c2e6e8fed27a07b3fdf53fcbad4579f3b9544017dabd3cc6cca7d4d8",
+  "notes_sha256": "24fa7864794c307d719e712d7cd245b7475a7d8e5202a8819d4afa642fbb25ab",
+  "recorder_sha256": "e4d873893298f6ba94cf2bc2bc50189f4a02c3cd354f208ef2414b648aa2abc2",
+  "new_inference": false,
+  "no_label_changes": true,
+  "clinical_adjudication": false
+}
