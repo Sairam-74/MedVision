@@ -32,6 +32,12 @@ BASE_DIR = Path(__file__).resolve().parent
 CHECKPOINT_PATH = Path(os.environ.get('MEDVISION_CHECKPOINT', BASE_DIR / 'best_model.pt')).resolve()
 BUNDLE_PATH = os.environ.get('MEDVISION_BUNDLE')
 GENERATED_DIR = Path(os.environ.get('MEDVISION_GENERATED_DIR', BASE_DIR / 'generated')).resolve()
+ORIGINAL_PROJECT_DIR = (BASE_DIR.parent / 'MedVision').resolve()
+for selected_path in (GENERATED_DIR, Path(os.environ.get('MEDVISION_DB', BASE_DIR / '.local_demo/app.sqlite3')).resolve(), CHECKPOINT_PATH):
+    if BASE_DIR != ORIGINAL_PROJECT_DIR and (selected_path == ORIGINAL_PROJECT_DIR or ORIGINAL_PROJECT_DIR in selected_path.parents):
+        raise RuntimeError('Feature environment must not point to original project storage or model files')
+if BASE_DIR != ORIGINAL_PROJECT_DIR and BUNDLE_PATH and ORIGINAL_PROJECT_DIR in Path(BUNDLE_PATH).resolve().parents:
+    raise RuntimeError('Copy the immutable model bundle into this independent clone')
 UPLOAD_DIR = GENERATED_DIR / 'uploads'
 OVERLAY_DIR = GENERATED_DIR / 'overlays'
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
@@ -39,7 +45,7 @@ OVERLAY_DIR.mkdir(parents=True, exist_ok=True)
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024
 MAX_REQUEST_BYTES = MAX_UPLOAD_BYTES + 64 * 1024  # Multipart headers/fields are separate from the image limit.
 SUPPORTED_IMAGE_TYPES = {'image/jpeg': (b'\xff\xd8\xff',), 'image/png': (b'\x89PNG\r\n\x1a\n',)}
-COOKIE = 'medvision_session'
+COOKIE = 'medvision_feature_session'
 store = Store(os.environ.get('MEDVISION_DB', BASE_DIR / '.local_demo/app.sqlite3'))
 demo_user = {'id': 'user-1', 'name': 'Demo Researcher', 'email': 'demo.clinician@example.invalid',
              'role': 'clinician', 'status': 'active', 'organization': 'Local Research Demo'}
@@ -98,16 +104,16 @@ async def access_control(request: Request, call_next):
             return JSONResponse({'detail': 'Untrusted request origin'}, status_code=403)
         if request.headers.get('sec-fetch-site') == 'cross-site':
             return JSONResponse({'detail': 'Cross-site request rejected'}, status_code=403)
-    protected = path in ('/ready', '/api/research') or path.startswith('/analyses') or path.startswith('/generated')
+    protected = path in ('/ready', '/api/research') or path.startswith(('/analyses', '/generated', '/patients', '/studies', '/reports', '/models', '/retraining', '/feedback'))
     if protected and request.method != 'OPTIONS':
         user = await asyncio.to_thread(store.user_for_session, request.cookies.get(COOKIE))
         if not user:
             return JSONResponse({'detail': 'Sign in required'}, status_code=401,
                                 headers={'Cache-Control': 'no-store'})
         request.state.user = user
-    if path.startswith('/auth/') and request.method == 'POST':
+    if (path.startswith('/analyses/') and path.endswith('/feedback') or path.startswith('/auth/') or path.startswith(('/patients','/studies','/reports','/models','/retraining','/feedback')) and not path.endswith(('/images','/mask')))  and request.method == 'POST':
         try:
-            request._body = await _bounded_body(request, 16384)
+            request._body = await _bounded_body(request, 16384 if path.startswith('/auth/') else 65536)
         except HTTPException as exc:
             return JSONResponse({'detail': exc.detail}, status_code=exc.status_code)
     response = await call_next(request)
@@ -320,7 +326,14 @@ def _result_from_prediction(
         "id": f"res-{analysis_id}",
         "analysisId": analysis_id,
         "fractureStatus": fracture_status,
-        "severity": _severity_to_frontend_tier(severity_tier) if fracture_status == "fracture" else "not_applicable",
+        "fracturePresence": "Positive segmentation signal — radiologist review required" if fracture_status == "fracture" else "Negative segmentation signal — fracture not excluded",
+        "bone": "Feature not supported by the current model",
+        "location": "Not determined",
+        "fractureType": "Feature not supported by the current model",
+        "displacement": "Feature not supported by the current model",
+        "angulation": "Feature not supported by the current model",
+        "confidence": None,
+        "severity": "not_applicable",
         "region": "Uploaded X-ray",
         "type": "AI segmentation finding" if fracture_status == "fracture" else "No predicted region",
         "recommendation": "Research output only. Compare with the original image; do not use for clinical decisions.",
@@ -384,6 +397,7 @@ async def _run_prediction_job(case, owner):
         await asyncio.wait_for(inference_lock.acquire(), timeout=QUEUE_TIMEOUT)
         acquired = True
         case['status'] = 'processing'
+        case['analysisStartedAt'] = datetime.now(timezone.utc).isoformat()
         store.save_case(case, owner)
         task = asyncio.create_task(asyncio.to_thread(_predict_selected, str(case['imagePath']), str(CHECKPOINT_PATH)))
         try:
@@ -398,11 +412,19 @@ async def _run_prediction_job(case, owner):
             return
         binary_mask = _mask_from_prediction(prediction)
         if binary_mask is not None:
+            original = cv2.imread(str(case['imagePath']), cv2.IMREAD_GRAYSCALE)
+            if original is None or binary_mask.shape != original.shape:
+                raise ValueError('Model mask is not aligned to the native image')
             await asyncio.to_thread(create_overlay, str(case['imagePath']), binary_mask, str(case['overlayPath']), 'prediction')
         else:
             raise ValueError('Model returned no decodable mask')
+        prediction = dict(prediction, mask_present=bool(binary_mask.any()))
         result = _result_from_prediction(case['id'], prediction, case['originalImageUrl'], case['overlayUrl'])
+        result['severityFeatures']['componentCount'] = int(cv2.connectedComponents(binary_mask.astype(np.uint8), 8)[0] - 1)
         case['status'] = 'completed'
+        case['analysisCompletedAt'] = datetime.now(timezone.utc).isoformat()
+        result['analysisCompletedAt'] = case['analysisCompletedAt']
+        result['modelVersion'] = workflow_current_version()
     except asyncio.TimeoutError:
         case['status'] = 'timed_out'
         error = 'The inference queue was busy for too long. Please retry.'
@@ -435,8 +457,15 @@ def _decode_image(image_bytes):
     if max(decoded.shape) > 8192 or decoded.size > 25_000_000:
         raise HTTPException(413, 'Image dimensions exceed the supported limit')
 
+@app.post('/studies/{study_id}/images')
 @app.post('/analyses')
-async def create_analysis(request: Request):
+async def create_analysis(request: Request, study_id: str | None = None):
+    if study_id and not workflow.study(request.state.user["id"], study_id):
+        raise HTTPException(404, "Study not found")
+    if study_id:
+        report=workflow.report(request.state.user['id'],study_id)
+        if report and report['status']=='final':raise HTTPException(409,'Reopen the report before adding a study view')
+    view_type = None
     owner = request.state.user['id']
     if len(jobs) >= 8:
         raise HTTPException(429, 'Prediction queue full; retry shortly')
@@ -465,6 +494,10 @@ async def create_analysis(request: Request):
                 if upload is None or not hasattr(upload, 'read'):
                     raise HTTPException(400, 'Image file field was missing')
                 filename = Path(upload.filename or 'xray.png').name[:255]
+                if study_id:
+                    view_type = form.get('view_type')
+                    if view_type not in ('AP', 'Lateral', 'Oblique'):
+                        raise HTTPException(422, 'Select AP, Lateral or Oblique')
                 image_bytes = await upload.read()
                 if len(image_bytes) > MAX_UPLOAD_BYTES:
                     raise HTTPException(413, 'Image is too large (10 MB limit)')
@@ -486,7 +519,8 @@ async def create_analysis(request: Request):
         if len(owned_cases) >= 100:
             raise HTTPException(409, 'History limit reached')
         case_id = 'ana-' + uuid.uuid4().hex
-        image_path = UPLOAD_DIR / f'{case_id}-{_safe_upload_name(filename)}'
+        image_path = UPLOAD_DIR / f'{case_id}-xray'
+        image_path = image_path.with_suffix('.png' if upload.content_type == 'image/png' else '.jpg')
         overlay_path = OVERLAY_DIR / f'{case_id}-segmented.png'
         image_path.write_bytes(image_bytes)
         case = {'id': case_id, 'uploader': request.state.user['name'], 'uploadedBy': request.state.user['role'],
@@ -494,7 +528,11 @@ async def create_analysis(request: Request):
                 'imagePath': str(image_path), 'overlayPath': str(overlay_path),
                 'originalImageUrl': '/generated/uploads/' + image_path.name,
                 'overlayUrl': '/generated/overlays/' + overlay_path.name}
+        if study_id:
+            case.update(studyId=study_id, viewType=view_type)
         store.save_case(case, owner)
+        if study_id:
+            workflow.attach(owner, study_id, case_id, view_type)
         task = asyncio.create_task(_run_prediction_job(case, owner))
         jobs[case_id] = task
         task.add_done_callback(lambda _: jobs.pop(case_id, None))
@@ -522,6 +560,9 @@ async def get_analysis_result(analysis_id: str, request: Request):
 @app.delete('/analyses/{analysis_id}')
 async def delete_analysis(analysis_id: str, request: Request):
     case, _, _ = _owned(request, analysis_id)
+    with store.connect() as db:
+        if db.execute('SELECT 1 FROM study_images WHERE analysis_id=?', (analysis_id,)).fetchone() or db.execute('SELECT 1 FROM feedback WHERE analysis_id=?', (analysis_id,)).fetchone():
+            raise HTTPException(409, 'Study or feedback analysis must be retained for audit history')
     if analysis_id in jobs:
         raise HTTPException(409, 'An active analysis cannot be deleted')
     for key, directory in [('imagePath', UPLOAD_DIR), ('overlayPath', OVERLAY_DIR)]:
@@ -555,6 +596,9 @@ DIST_DIR = BASE_DIR / 'dist'
 if (DIST_DIR / 'assets').is_dir():
     app.mount('/assets', StaticFiles(directory=DIST_DIR / 'assets'), name='frontend-assets')
 
+from workflow_api import install
+workflow, workflow_current_version = install(app, store, globals())
+
 @app.get('/')
 @app.get('/login')
 @app.get('/signup')
@@ -567,6 +611,7 @@ if (DIST_DIR / 'assets').is_dir():
 @app.get('/research')
 @app.get('/session-expired')
 @app.get('/access-denied')
+@app.get('/studies/{analysis_id}')
 @app.get('/results/{analysis_id}')
 async def frontend(analysis_id: str = ''):
     index = DIST_DIR / 'index.html'

@@ -1,9 +1,9 @@
+import { XrayViewer } from '@/components/workflow/XrayViewer';
 import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Activity, Download, FileClock, ScanLine } from 'lucide-react';
 import { fetchAnalysisById } from '@/api/analyses';
-import { imageUrl } from '@/api/client';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,8 +19,6 @@ export function ResultsPage() {
     if (!data) return 'secondary';
     return data.fractureStatus === 'fracture' ? 'destructive' : data.fractureStatus === 'no_fracture' ? 'secondary' : 'warning';
   }, [data]);
-  const originalImage = imageUrl(data?.originalImageUrl ?? data?.imageUrl);
-  const overlayImage = imageUrl(data?.overlayUrl ?? (data?.maskPngBase64 ? `data:image/png;base64,${data.maskPngBase64}` : data?.imageUrl));
 
   if (isLoading) {
     return <p className="text-sm text-muted-foreground">Loading result…</p>;
@@ -77,16 +75,7 @@ export function ResultsPage() {
             </div>
           </CardHeader>
           <CardContent className="bg-muted p-4">
-            <div className="grid gap-4 md:grid-cols-2">
-            <figure className="overflow-hidden rounded-lg border border-slate-300 bg-black">
-              <figcaption className="border-b border-slate-700 bg-slate-950 px-4 py-2 text-center text-sm font-semibold uppercase tracking-[0.18em] text-slate-100">Before</figcaption>
-              <img src={originalImage} alt="Original X-ray study" className="h-auto w-full object-contain" />
-            </figure>
-            <figure className="overflow-hidden rounded-lg border border-slate-300 bg-black">
-              <figcaption className="border-b border-slate-700 bg-slate-950 px-4 py-2 text-center text-sm font-semibold uppercase tracking-[0.18em] text-cyan-100">After</figcaption>
-              <img src={overlayImage} alt="Prediction overlay highlighting suspected fracture region" className="h-auto w-full object-contain" />
-            </figure>
-            </div>
+            <XrayViewer result={data} />
           </CardContent>
         </Card>
         <Card className="border-slate-200 shadow-soft">
@@ -102,9 +91,9 @@ export function ResultsPage() {
           <CardContent className="space-y-4">
             <div className="grid gap-3 text-sm">
               <div>
-                <p className="text-muted-foreground">Experimental geometry tier</p>
-                <p className="font-medium capitalize">{data.severity.replace('_', ' ')}</p>
-                <p className="text-xs text-muted-foreground">Based on predicted pixel area; not clinical severity.</p>
+                <p className="text-muted-foreground">Clinical severity</p>
+                <p className="font-medium capitalize">Not determined</p>
+                <p className="text-xs text-muted-foreground">Not supported by the current segmentation model.</p>
               </div>
               <div>
                 <p className="text-muted-foreground">Region</p>

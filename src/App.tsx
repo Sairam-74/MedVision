@@ -20,6 +20,7 @@ const RequestAccessPage = lazy(() => import('./pages/RequestAccessPage').then((m
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage').then((module) => ({ default: module.ResetPasswordPage })));
 const ResultsPage = lazy(() => import('./pages/ResultsPage').then((module) => ({ default: module.ResultsPage })));
 const SessionExpiredPage = lazy(() => import('./pages/SessionExpiredPage').then((module) => ({ default: module.SessionExpiredPage })));
+const StudyPage = lazy(() => import('./pages/StudyPage').then(module => ({ default: module.StudyPage })));
 const UploadPage = lazy(() => import('./pages/UploadPage').then((module) => ({ default: module.UploadPage })));
 const ResearchPage = lazy(() => import('./pages/ResearchPage').then((module) => ({ default: module.ResearchPage })));
 
@@ -85,6 +86,7 @@ export default function App() {
         >
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/upload" element={<UploadPage />} />
+          <Route path="/studies/:studyId" element={<StudyPage />} />
           <Route path="/research" element={<ResearchPage />} />
           <Route path="/results/:analysisId" element={<ResultsPage />} />
           <Route path="/history" element={<HistoryPage />} />

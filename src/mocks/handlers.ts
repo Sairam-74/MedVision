@@ -38,6 +38,11 @@ function createMockResult(analysis: Analysis): PredictionResult {
 }
 
 export const handlers = [
+  http.post('*/patients/search',()=>HttpResponse.json([])),
+  http.post('*/studies/search',()=>HttpResponse.json({items:[],total:0,limit:10,offset:0})),
+  http.get('*/models/current',()=>HttpResponse.json({model:null,feedback_count:0,threshold:10,metrics:null})),
+  http.get('*/models/history',()=>HttpResponse.json([])),
+  http.get('*/retraining/jobs',()=>HttpResponse.json([])),
   http.post('*/auth/login', async () => {
     await delay(350);
     return HttpResponse.json(mockSession);

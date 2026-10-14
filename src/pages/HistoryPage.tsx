@@ -1,3 +1,4 @@
+import { StudySearch } from '@/components/workflow/StudySearch';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -32,6 +33,7 @@ export function HistoryPage() {
 
   return (
     <div className="space-y-6">
+      <StudySearch />
       <PageHeader title="History" description="Search, filter, and review past analyses." />
       {deletion.isError ? <p role="alert">Could not delete this analysis. Retry after any active job finishes.</p> : null}
       <Card>

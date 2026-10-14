@@ -53,3 +53,7 @@ medvision_temp/
 deliverables/
 experiments/
 reports/
+
+# Isolated feature development runtime
+.venv-feature/
+.feature_data/

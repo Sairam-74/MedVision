@@ -1,3 +1,4 @@
+import { ModelManagement } from '@/components/workflow/ModelManagement';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { FlaskConical, Database, ArrowUpRight, RefreshCw, CheckCircle2, Circle, ScanLine } from 'lucide-react';
@@ -13,6 +14,7 @@ export function ResearchPage() {
   const latest = data?.runs.flatMap(run => run.epochs.length ? [{ name: `${run.label} · epoch ${run.epochs.at(-1)!.epoch}`, ...run.epochs.at(-1)! }] : []);
   return (
     <div className="space-y-6">
+      <ModelManagement />
       <section className="workspace-hero p-6 sm:p-8">
         <p className="eyebrow text-cyan-300">Methods · Experiments · Measured results</p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Research & evidence</h2>

@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-14",
+  "backup_commit": "500c76edccb0020415940286a95cf4aac82cc161",
+  "branch": "feature/medvision-radiologist-workflow",
+  "checks": {
+    "real_workflow": 72,
+    "deterministic_workflow": 72,
+    "security": 64,
+    "browser": 22,
+    "training_smoke": 24,
+    "job_policy": 7
+  },
+  "frontend_tests": 13,
+  "authentication_checks": 31,
+  "build": "passed",
+  "typecheck": "passed",
+  "lint": "passed; no warnings",
+  "pip_check": "passed",
+  "original_tracked_files_unchanged": 605,
+  "real_smoke": {
+    "epochs": 1,
+    "validation_images": 4,
+    "candidate_dice": 0.0,
+    "baseline_dice": 0.510928726295633,
+    "candidate_status": "rejected",
+    "production_promoted": false,
+    "reserved_test_evaluated": false
+  },
+  "unverified": [
+    "Full-budget feedback retraining and full 463-image candidate validation",
+    "Genuine accepted-candidate promotion and subsequent live production rollback",
+    "Clinical finding heads, calibrated case confidence and clinical localization validation",
+    "Independent patient-level partitions; current frozen manifest explicitly unverified"
+  ],
+  "note": "Deterministic fixtures exercise policies and failure handling only. Real model training is a smoke test, not a performance improvement claim."
+}

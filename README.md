@@ -1,3 +1,5 @@
+> Independent radiologist-workflow feature clone: see [FEATURE_WORKFLOW.md](FEATURE_WORKFLOW.md) for the isolated environment, new workflow, verification and scientific limitations.
+
 # MedVision AI
 
 MedVision AI is a student research prototype for bone-fracture segmentation and severity heuristics from JPG/PNG X-ray images. It includes a PyTorch backend and a React/Vite frontend for local demonstrations.

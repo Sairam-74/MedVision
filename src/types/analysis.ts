@@ -18,7 +18,15 @@ export interface PredictionResult {
   analysisId: string;
   fractureStatus: PredictionStatus;
   severity: 'low' | 'moderate' | 'high' | 'critical' | 'not_applicable';
-  confidence?: number;
+  confidence?: number | null;
+  fracturePresence?: string;
+  bone?: string;
+  location?: string;
+  fractureType?: string;
+  displacement?: string;
+  angulation?: string;
+  modelVersion?: string;
+  analysisCompletedAt?: string;
   modelSha256?: string;
   geometryUnits?: string;
   region: string;

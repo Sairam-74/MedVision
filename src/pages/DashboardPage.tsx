@@ -1,3 +1,4 @@
+import { StudySearch } from '@/components/workflow/StudySearch';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowRight, ScanLine, Layers3, FileJson, FileImage, Activity, FlaskConical } from 'lucide-react';
@@ -17,6 +18,7 @@ export function DashboardPage() {
   const latest = research.data?.runs.find(r => r.status === 'training');
   return (
     <div className="space-y-6">
+      <StudySearch />
       <section className="workspace-hero grid gap-8 p-6 md:p-8 xl:grid-cols-[1.3fr_1fr]">
         <div>
           <p className="eyebrow text-cyan-300">Visual intelligence · Research workflow</p>

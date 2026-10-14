@@ -100,3 +100,16 @@ img {
 .research-table td, .research-table th { padding: 12px 14px; border-bottom: 1px solid hsl(var(--border)); }
 .research-table tbody tr:last-child td { border-bottom: 0; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0s !important; } }
+
+.print-only { display: none; }
+@media print {
+  @page { margin: 18mm; }
+  body { background: white; color: black; }
+  body *:not(:has(#radiology-report)):not(#radiology-report):not(#radiology-report *) { display: none !important; }
+  #root, #root *:has(#radiology-report) { display: block !important; position: static !important; width: auto !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important; }
+  #radiology-report { position: static; width: 100%; background: white; color: black; border: 0; margin: 0; padding: 0; }
+  #radiology-report button, #radiology-report .report-edit-controls { display: none !important; }
+  #radiology-report .print-only { display: block; }
+  #radiology-report h4 { font-weight: bold; margin-top: 1em; }
+  #radiology-report p { overflow-wrap: anywhere; }
+}

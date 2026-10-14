@@ -60,24 +60,16 @@ describe('MedVision routing and prediction workflow', () => {
     expect(await screen.findByRole('heading', { name: /welcome back/i })).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: /^sign in$/i }));
 
-    expect(await screen.findByRole('heading', { name: /image intake station/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /patient and study intake/i })).toBeInTheDocument();
   });
 
-  it('rejects uploads larger than 10 MB', async () => {
-    const user = userEvent.setup();
-    act(() => {
-      useAuthStore.getState().login(mockSession);
-    });
+  it('collects patient and examination data before enabling image submission', async () => {
+    act(() => useAuthStore.getState().login(mockSession));
     renderApp('/upload');
-
-    const input = await screen.findByLabelText(/drag and drop an x-ray image here/i);
-    const largeFile = new File([new Uint8Array(10 * 1024 * 1024 + 1)], 'large-xray.png', {
-      type: 'image/png',
-    });
-
-    await user.upload(input, largeFile);
-
-    expect(await screen.findByText(/maximum size is 10 mb/i)).toBeInTheDocument();
+    expect(await screen.findByLabelText('Patient name')).toBeInTheDocument();
+    expect(screen.getByLabelText('Examination date')).toBeRequired();
+    expect(screen.queryByLabelText('Study X-ray')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name:'Save study and upload views' })).toBeInTheDocument();
   });
 
   it('supports the prediction polling API contract', async () => {
@@ -98,8 +90,8 @@ describe('MedVision routing and prediction workflow', () => {
     renderApp('/results/ana-1001');
 
     expect(await screen.findByRole('heading', { name: /prediction result/i })).toBeInTheDocument();
-    expect(screen.getByText('Before')).toBeInTheDocument();
-    expect(screen.getByText('After')).toBeInTheDocument();
+    expect(screen.getByLabelText('Display layer')).toBeInTheDocument();
+    expect(screen.getByAltText('Original X-ray')).toBeInTheDocument();
     expect(screen.getByText('Decision threshold')).toBeInTheDocument();
     expect(screen.getByText('0.90')).toBeInTheDocument();
     expect(screen.queryByText('0.4526')).not.toBeInTheDocument();

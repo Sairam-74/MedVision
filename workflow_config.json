@@ -1,0 +1,10 @@
+{
+  "frozen_manifest_sha256": "a0ea0dbfd336eb3606558592923caa9106b0621d732ef35a6308d7bb04c1c12b",
+  "archive_sha256": "747119b26f2684e0e35a7688083b14b12a206149b0cfe5357824b69b3a5e6cf8",
+  "feedback_threshold": 10,
+  "minimum_true_positive": 79,
+  "minimum_true_negative": 342,
+  "required_positive_count": 83,
+  "required_normal_count": 380,
+  "patient_independence_required": true
+}

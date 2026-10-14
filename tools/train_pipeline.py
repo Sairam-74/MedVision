@@ -47,6 +47,7 @@ def validate(model,dataset,preprocess,post,device):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out',required=True)
+    ap.add_argument('--feedback-manifest')
     ap.add_argument('--manifest',default='experiments/data_v2/manifest.json')
     ap.add_argument('--archive',default='FracAtlas.zip')
     ap.add_argument('--epochs',type=int,default=12)
@@ -80,10 +81,10 @@ def main():
     manifest = json.loads(Path(args.manifest).read_text(encoding='utf-8'))
     if p.sha(args.archive) != manifest['archive_sha256']:
         raise ValueError('Archive no longer matches manifest')
-    sources = ['medvision_pipeline.py','medvision_ai.py','tools/train_pipeline.py','tools/run_experiment.py']
+    sources = ['medvision_pipeline.py','medvision_ai.py','tools/train_pipeline.py','tools/run_experiment.py','reviewed_dataset.py']
     config = dict(vars(args),preprocess=asdict(preprocess),loss_config=asdict(loss_config),
                   postprocess=asdict(post),output_contract=p.CONTRACT,architecture='AttentionUNet64',
-                  manifest_sha256=p.sha(args.manifest),archive_sha256=p.sha(args.archive),
+                  feedback_sha256=p.sha(args.feedback_manifest) if args.feedback_manifest else None,manifest_sha256=p.sha(args.manifest),archive_sha256=p.sha(args.archive),
                   original_checkpoint_sha256=p.sha(root/'best_model.pt'),
                   source_hashes={s:p.sha(root/s) for s in sources},torch=torch.__version__,
                   sampling='natural shuffle' if args.positive_fraction is None else 'weighted replacement, training only',
@@ -92,7 +93,8 @@ def main():
     torch.set_num_threads(2)
     cv2.setNumThreads(1)
     p.seed_everything(args.seed)
-    train = p.FracDataset(args.archive,args.manifest,'train',preprocess,True,args.seed,args.elastic)
+    from reviewed_dataset import ReviewedDataset
+    train = ReviewedDataset(args.archive,args.manifest,'train',preprocess,True,args.seed,args.elastic,feedback_manifest=args.feedback_manifest)
     val = p.FracDataset(args.archive,args.manifest,'val',preprocess)
     if args.smoke:
         for ds in (train,val):
@@ -102,7 +104,7 @@ def main():
     first,best,stale = 1,-1.,0
     if args.resume:
         old = json.loads((out/'config.json').read_text(encoding='utf-8'))
-        for key in ('manifest_sha256','archive_sha256','preprocess','loss_config','postprocess','batch_size','lr','seed','elastic','positive_fraction','source_hashes','smoke','device'):
+        for key in ('feedback_sha256','manifest_sha256','archive_sha256','preprocess','loss_config','postprocess','batch_size','lr','seed','elastic','positive_fraction','source_hashes','smoke','device'):
             if old[key] != config[key]:
                 raise ValueError(f'Resume config changed: {key}')
         ck = torch.load(out/'last.pt',map_location=args.device,weights_only=True)
